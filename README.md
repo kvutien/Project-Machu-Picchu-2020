@@ -5,7 +5,7 @@ Final Project ConsenSys Bootcamp
 This Final Project initiates a decentralised database, using OrbitDB on IPFS. The database contains JSON objects describing a person and a wallet. The final purpose is to make this tool available as open source to all insternational organisations providing benefits to disinherited people: refugees, smallholder farmers, subsahelien breeders etc. 
 
 ## Advantages
-This will make "Data as a Public Service": data collected by an organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
+This will make "Data as a Public Service": data collected by any social relief organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
 
 ## Specifications (Novemnber 2020)
 * The dApp offers 3 actions: append persons, read persons, update a person (more to come)
