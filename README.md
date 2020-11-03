@@ -25,7 +25,7 @@ Feel free to open new issues or submit pull requests for Machu Picchu. If you'd 
 Before opening an issue or submitting a PR, you may want to follow these usual guidelines:
 ### Issues
 *   Please state whether your issue is a question, feature request, or bug report.
-*   Always try the latest version of Camo before opening an issue.
+*   Always try the latest version of _Machu Picchu_ before opening an issue.
 *   If the issue is a bug, be sure to clearly state your problem, what you expected to happen, and what all you have tried to resolve it.
 *   Always try to post simplified code that shows the problem. Use Gists for longer examples.
 
