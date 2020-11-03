@@ -8,7 +8,7 @@ My Final Project initiates a decentralised database, using OrbitDB on IPFS. Orbi
 This will make "Data as a Public Service": data collected by any social relief organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
 
 ## Specifications (November 2020)
-* The dApp offers 3 actions: append persons, read persons, update a person (more to come)
+The dApp offers 3 actions: append persons, read persons, update a person (more to come)
 * Append persons: the dApp reads a .CSV file of participants, create a JSON for each person and store it on OrbitDB
 * Read persons: the dApp goes trhough the database and displays the data of each person
 * Update a person: the dApp searches for a specific person and displays the pairs key-value for update and records the update
