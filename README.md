@@ -1,11 +1,11 @@
-# Machu-Picchu
+# _Machu-Picchu_
 Final Project ConsenSys Bootcamp 2020
 
-## Why Machu Picchu?
+## Why _Machu Picchu_?
 My Final Project is a decentralised database, using OrbitDB on IPFS. OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person and a wallet. The final purpose is to make this tool available as open source to all international organisations providing benefits to disinherited people: refugees, smallholder farmers, subsahelien breeders etc. 
 
 ## Advantages
-This will make "Data as a Public Service": data collected by any social relief organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
+This will make "_Data as a Public Service_". Data collected by any social relief organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
 
 ## Specifications (November 2020)
 The dApp offers 3 actions in its current stage: append persons, read persons, update a person (more to come)
@@ -20,7 +20,7 @@ The dApp offers 3 actions in its current stage: append persons, read persons, up
 ...
 
 ## Contributing
-Feel free to open new issues or submit pull requests for Machu Picchu. If you'd like to contact me before doing so, feel free to get in touch (see Contact section below).
+Feel free to open new issues or submit pull requests for _Machu Picchu_. If you'd like to contact me before doing so, feel free to get in touch (see Contact section below).
 
 Before opening an issue or submitting a PR, you may want to follow these usual guidelines:
 ### Issues
