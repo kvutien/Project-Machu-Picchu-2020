@@ -1,5 +1,5 @@
 # _Machu-Picchu_
-Final Project ConsenSys Bootcamp 2020
+ConsenSys Bootcamp 2020 - Final Project of Vu Tien Khang
 
 ## Why _Machu Picchu_?
 My Final Project is a decentralised database, using OrbitDB on IPFS. OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person, a wallet and various data that can be used to optimise social relief programs. The final purpose is to make this tool available as open source to all international organisations providing benefits to disinherited people: refugees, smallholder farmers, subsahelien breeders etc. 
