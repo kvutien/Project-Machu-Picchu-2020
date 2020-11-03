@@ -2,7 +2,7 @@
 Final Project ConsenSys Bootcamp 2020
 
 ## Why Machu Picchu?
-My Final Project initiates a decentralised database, using OrbitDB on IPFS. OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person and a wallet. The final purpose is to make this tool available as open source to all international organisations providing benefits to disinherited people: refugees, smallholder farmers, subsahelien breeders etc. 
+My Final Project is a decentralised database, using OrbitDB on IPFS. OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person and a wallet. The final purpose is to make this tool available as open source to all international organisations providing benefits to disinherited people: refugees, smallholder farmers, subsahelien breeders etc. 
 
 ## Advantages
 This will make "Data as a Public Service": data collected by any social relief organisation is available and usable by others. Having the data on blockchain to make it open to the public and at the same time allows each person to remain owner of his/her personal data.
