@@ -4,7 +4,7 @@ ConsenSys Bootcamp 2020 - Final Project of Vu Tien Khang
 ## Why _Machu Picchu_?
 _Machu Picchu_ is a decentralised database, using OrbitDB on IPFS. 
 
-OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person, a wallet and various data that can be used to optimise social relief programs. The final purpose is to make this tool available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
+OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person and a virtual secretary (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
 
 In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with a simple dApp. After the bootcamp, I'll make it grow inb complexity and in useability. It will be the theme of my participation in future hackathons.
 ### and why this name _Machu Picchu_?
