@@ -44,7 +44,7 @@ Before opening an issue or submitting a PR, you may want to follow these usual g
 *   Always try to post simplified code that shows the problem. Use Gists for longer examples.
 
 ### Pull Requests
-*   If your PR is a new feature, please consult with me first.
+*   If your PR is a new feature, please coordinate with me first. Someone else may started the same idea.
 *   Any PR should contain only one feature or bug fix. If you have more than one, please submit them as separate PRs.
 *   Always try to include relevant tests with your PRs. If you aren't sure where a test should go or how to create one, feel free to ask.
 *   Include updates to the README when needed.
