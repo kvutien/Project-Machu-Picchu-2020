@@ -21,9 +21,7 @@ The dApp offers 3 actions in its current stage: append persons, read persons, up
 * a management system to on-board, list and modify the persons in need, using OrbitDB and IPFS (this Final Project)
 * a management system of helper institutions, n-to-n connected to persons in need
 * modify the on-boarding by adding meta-transactions paid by helper institutions
-* progressive improvements (see White Paper)
-
-FileCoin can be added at any stage.
+* progressive improvements. See White Paper (FileCoin can be added at any stage).
 
 
 ## Install and Run
