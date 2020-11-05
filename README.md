@@ -22,7 +22,8 @@ The dApp offers 3 actions in its current stage: append persons, read persons, up
 * a management system of helper institutions, n-to-n connected to persons in need
 * modify the on-boarding by adding meta-transactions paid by helper institutions
 * progressive improvements. See White Paper (FileCoin can be added at any stage).
-
+### Potential Technical Stack
+![Technical Stack](https://github.com/kvutien/Machu-Picchu/blob/main/20201029%20Machu%20Picchu%20Tech%20Stack.png)
 
 ## Install and Run
 ...
