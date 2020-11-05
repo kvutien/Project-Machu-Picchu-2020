@@ -4,7 +4,7 @@ ConsenSys Bootcamp 2020 - Final Project of Vu Tien Khang
 ## Why _Machu Picchu_?
 _Machu Picchu_ is a decentralised database, using OrbitDB on IPFS. 
 
-OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a person and a virtual secretary (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
+OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a _person in need_ and his/her _virtual personal secretary_ (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
 
 In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with a simple dApp. After the bootcamp, I'll make it grow inb complexity and in useability. It will be the theme of my participation in future hackathons. The project is open source and collaborative; let's make it happen together.
 ### and why this name _Machu Picchu_?
@@ -12,7 +12,7 @@ In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with
 * Remember what happened to it?
 
 ## Advantages
-This will make "_Data as a Public Service_". Data collected by any social relief organisation is available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each person to remain owner of his/her personal data.
+This will make "_Data as a Public Service_". Data collected by any social relief organisation is available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each _person in need_ to remain owner of his/her personal data, taking advantage of IPFS and of the _virtual personal secretary_.
 
 ## Specifications (November 2020)
 The dApp offers 3 actions in its current stage: append persons, read persons, update a person (more to come)
