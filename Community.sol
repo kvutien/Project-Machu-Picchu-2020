@@ -20,7 +20,8 @@ contract Community {
         personsInNeed[_personInNeed] = true;  // today we use 'true'; will be IPFS hash in the future
         HelperInstitution helperInstitution = new HelperInstitution(_personInNeed);
         // there will be a contract to associate a personInNeed with a helperInstitution
-        // a helperInstitution may help n persons in need; a person in need may receive aid from n institutions
+        // a helperInstitution may help n persons in need
+        // a person in need may receive aid from n institutions but is always in contact with only 1 (NG)organisation
         helperInstitutions.push(helperInstitution);
         // do the same for helpWallets
     }
