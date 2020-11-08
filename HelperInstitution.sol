@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /* Contract (placeholder) to manage Machu Picchu helper institution
 */
 contract HelperInstitution {
