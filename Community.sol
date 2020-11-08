@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /* Contract to manage Machu Picchu persons in need
 */
 pragma solidity ^0.5.0;
