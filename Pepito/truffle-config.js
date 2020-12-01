@@ -34,6 +34,16 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
+    module.exports = {
+      networks: {
+        development: {
+          host: 'localhost',
+          port: 8545,
+          network_id: '*'
+        }
+      }
+    };
+    
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -42,12 +52,17 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
-    // Another network with more advanced options...
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ganache CLI (Ganache GUI: 7545)
+     network_id: "*",       // Any network (default: none)
+    },
+    test: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ganache CLI Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+     },
+     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
     // network_id: 1342,       // Custom network
