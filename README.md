@@ -2,11 +2,14 @@
 ConsenSys Bootcamp 2020 - Final Project of Vu Tien Khang
 
 ## Why _Machu Picchu_?
-_Machu Picchu_ is a decentralised database, using OrbitDB on IPFS. 
+_Machu Picchu_ is the beginning of a collaborative open source initiative. It aims to use the Ethereum blockchain to share “_Data as a Public Service_” among all the humanitarian organisations that provide support and benefits to the persons-in-need. These persons remain owners of their data and receive a micro-fee from every entity that retrieves this data. Like when you give your data to the GAFA to obtain map guidance, news, entertainment suggestions, taxi services etc. But here the data are accessible to all, including startups. [The business model is explained in Medium](https://kvutien-yes.medium.com/machu-picchu-how-the-blockchain-can-help-persons-in-need-8396820d13d1).
+
+In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with a simple dApp. It will take form of a game where users are able to build a character with components of its face: hair, eyes, nose, mouth). Then the user will record it on the blockchain. [Here is the Medium description](https://kvutien-yes.medium.com/machu-picchu-why-should-humanitarian-organizations-be-interested-in-using-blockchain-360bbfcb88f5). It's a gamification of a person-in-need real life record.
+
+After the bootcamp, I'll make it grow in complexity and in useability by adding IPFS and OrbitDB or textile. It will be the theme of my participation in future hackathons. The project is open source and collaborative; let's make it happen together.
 
 OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a _person in need_ and his/her _virtual personal secretary_ (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
 
-In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with a simple dApp. After the bootcamp, I'll make it grow in complexity and in useability. It will be the theme of my participation in future hackathons. The project is open source and collaborative; let's make it happen together.
 ### and why this name _Machu Picchu_?
 * Remember how centralised was the Inca empire? -- _it was very centralised_
 * Remember what happened to it?
