@@ -15,7 +15,7 @@ OrbitDB is a Document Database, like MongoDB, instead of being a Relation Databa
 
 ### and why this name _Machu Picchu_?
 * Remember how centralised was the Inca empire? -- _it was very centralised_
-* Remember what happened to it?
+* Remember what happened to it? _conquered by only 168 men, one cannon, and 27 horses_
 
 ## Advantages
 This will make "_Data as a Public Service_". Data collected by any social relief organisation is available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each _person in need_ to remain owner of his/her personal data, taking advantage of IPFS and of the _virtual personal secretary_.
