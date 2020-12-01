@@ -22,11 +22,12 @@ This will make "_Data as a Public Service_". Data collected by any social relief
 
 ## Specifications (November 2020)
 The dApp offers 3 actions in its current stage: append persons, read persons, update a person (more to come)
-* Append persons: the dApp reads a .CSV file of participants, create a JSON for each person and store it on OrbitDB
-* Read persons: the dApp goes trhough the database and displays the data of each person
-* Update a person: the dApp searches for a specific person and displays the pairs key-value for update and records the update
+* Create character: mainly in `React.js`, the dApp assembles a character from the coice of components, creates a JSON for each character and stores it on a mapping
+* Read character: the dApp goes through the mapping and displays the data of each character
+* Update character: the dApp searches for a specific character and displays the pairs key-value for update and records the update
 ### Roadmap
-* a management system to on-board, list and modify the persons in need, using OrbitDB and IPFS (this Final Project)
+* a demonstration game (this Final Project)
+* a management system to on-board, list and modify the persons in need, using OrbitDB and IPFS, with decentralised data schemas
 * a management system of helper institutions, n-to-n connected to persons in need
 * modify the on-boarding by adding meta-transactions paid by helper institutions
 * progressive improvements. See White Paper (FileCoin can be added at any stage).
