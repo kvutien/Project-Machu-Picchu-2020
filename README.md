@@ -22,7 +22,7 @@ This will make "_Data as a Public Service_". Data collected by any social relief
 
 ## Specifications (November 2020)
 The dApp offers 3 actions in its current stage: append persons, read persons, update a person (more to come)
-* Create character: mainly in `React.js`, the dApp assembles a character from the coice of components, creates a JSON for each character and stores it on a mapping
+* Create character: mainly in `React.js`, the dApp assembles a character from the choice of components, creates a JSON for each character and stores it on a mapping
 * Read character: the dApp goes through the mapping and displays the data of each character
 * Update character: the dApp searches for a specific character and displays the pairs key-value for update and records the update
 ### Roadmap
