@@ -8,7 +8,7 @@ contract PepitoDisguise {
     constructor() public {}
     
     // state variables
-    var storedData;                 // test data, to be removed
+    uint public storedData;         // test data, to be removed
     
     // functions
     function set(uint x) public {   // test function, to be removed
