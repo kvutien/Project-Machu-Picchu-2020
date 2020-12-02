@@ -20,7 +20,7 @@ In the following we'll specify and code a dApp to help you in this mission. But 
 * Smart contract should be deployed to a testnet
 
 ## Frontend
-* The front end is liberally inspired from [this project](https://github.com/keep-network/random-avatar)
+* The front end is liberally inspired from [this project](https://github.com/keep-network/random-avatar) and [this project](https://github.com/fangpenlin/avataaars)
 * Have a development server to serve the frontend interaction of the application locally (You should be able to visit a local URL and interact with the application)
   +	Frontend should work with `web3.js` / `ethers.js`, Infura and MetaMask to: 
   +	Recognize and display current Metamask account
