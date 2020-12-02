@@ -5,10 +5,15 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 contract PepitoDisguise {
-    constructor(address PepitoDisguiseOwner, uint initialBalance) public {}
-    
     // state variables
     uint public storedData;         // test data, to be removed
+    address pepitoDisguiseOwner
+    uint initialBalance
+    
+    constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
+        pepitoDisguiseOwner = _pepitoDisguiseOwner;
+        initialBalance = _initialBalance;
+    }
     
     // functions
     function set(uint x) public {   // test function, to be removed
