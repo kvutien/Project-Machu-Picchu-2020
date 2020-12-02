@@ -8,11 +8,23 @@ contract PepitoDisguise {
     constructor() public {}
     
     // state variables
-    var storedData;                 // test data
+    var storedData;                 // test data, to be removed
     
     // functions
-    function set(uint x) public {   // test function
+    function set(uint x) public {   // test function, to be removed
         storedData = x;
+    }
+
+    function createDisguise() public payable {
+        // to be filled
+    }
+
+    function readDisguise() public {
+        // to be filled
+    }
+
+    function updateDisguise() public payable {
+        // to be filled
     }
     
 }
