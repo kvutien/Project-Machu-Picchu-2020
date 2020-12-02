@@ -1,7 +1,9 @@
 
 # Presentation
-Pepito is the name of the main character of a French comic book I loved when I was a kid. 
-Pepito was a young pirate of the Caribbean islands. His specialty was his disguises, with which he could fool the Governor of the Spanish colonies, his favorite (and not very smart) victim.
+Pepito is the name of the main character of a [French comic book](https://en.wikipedia.org/wiki/Pepito_(comics)) I loved when I was a kid. 
+Pepito was a young pirate of the Caribbean islands. His specialty was his disguises, with which he could fool Hernandez Banana, the Governor of the island of Las Ananas, his favorite (and not very smart) victim. 
+
+![](https://upload.wikimedia.org/wikipedia/en/9/93/Pepito_Bottaro.jpg)
 
 In this game, your mission is to build a disguise for Pepito, from a set of existing components. Once you built this disguise, you'll record it on the blockchain so that Pepito is sure he'll not reuse it again and never take twice the same disguise.
 
