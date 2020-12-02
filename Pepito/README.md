@@ -1,6 +1,6 @@
 
 # Presentation
-Pepito is the name of the main character of a [French comic book](https://en.wikipedia.org/wiki/Pepito_(comics)) I loved when I was a kid. 
+Pepito is the name of the main character of a [French comic book](https://en.wikipedia.org/wiki/Pepito_(comics)) I loved when I was a kid, in 1960. 
 Pepito was a young pirate of the Caribbean islands. His specialty was his disguises, with which he could fool Hernandez Banana, the Governor of the island of Las Ananas, his favorite (and not very smart) victim. 
 
 ![](https://upload.wikimedia.org/wikipedia/en/9/93/Pepito_Bottaro.jpg)
