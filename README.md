@@ -22,10 +22,10 @@ This will make "_Data as a Public Service_". Data collected by any social relief
 
 ## Specifications of project (PepitoDisguise, December 2020)
 [The project is here](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito). 
-The dApp offers 3 actions in its current stage: create character, read character, update character (more to come)
-* Create character: mainly in `React.js`, the dApp assembles a character from the choice of components, creates a JSON for each character and stores it on a mapping
-* Read character: the dApp goes through the mapping and displays the data of each character
-* Update character: the dApp searches for a specific character and displays the pairs key-value for update and records the update
+The dApp offers 3 actions in its current stage: create disguise, read disguise, update disguise (more to come)
+* Create disguise: mainly in `React.js`, the dApp assembles a disguise from the choice of components, creates a JSON for each disguise and stores it on a mapping
+* Read disguise: the dApp goes through the mapping and displays the data of each disguise
+* Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update
 ### Roadmap of Machu Picchu
 * a demonstration game [(this Final Project)](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito)
 * a management system to on-board, list and modify the persons in need, using OrbitDB and IPFS, with decentralised data schemas
