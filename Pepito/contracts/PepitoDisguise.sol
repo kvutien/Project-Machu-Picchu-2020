@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: MIT
 /*
     Demo dApp for Machu Picchu. Also Final Project of Vu Tien Khang
+    Remix compiled successfully 2020-12-04
 */
 pragma solidity >=0.4.22 <0.8.0;
 
 contract PepitoDisguise {
     /*
-    First example of a character, that can be copied to generate farmers, refugees, homeless etc.
+        A disguise is composed of many features
+        Copy this contract to generate also farmers, refugees, homeless etc.
     */
     // state variables
     string public storedData;         // test data, to be replaced by a struct describing a dsguise

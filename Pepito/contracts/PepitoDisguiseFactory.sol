@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.8.0;
-
 /*
     Placeholder for a factory of PepitoDisguise - inspired from the MetaCoinFactory of Truffle box
+    Remix compiled successfully 2020-12-04
 */
 
+import "./Pepito.sol";
 import "./PepitoDisguise.sol";
 
 contract PepitoDisguiseFactory {
@@ -15,17 +16,18 @@ contract PepitoDisguiseFactory {
     */
     PepitoDisguise[] public pepitoDisguiseAddresses;            // array of addresses of PepitoDisguise
     event PepitoDisguiseCreated(PepitoDisguise pepitoDisguise);
+    /*address private disguiseOwner;*/                  // unused, disguiseOwner is Pepito, sent when creating disguise
 
-    address private pepitoDisguiseOwner;
-
-    constructor(address _pepitoDisguiseOwner ) public {
-        pepitoDisguiseOwner = _pepitoDisguiseOwner ;
+    constructor(/*address _pepitoIsOwner */) public {
+       /* disguiseOwner = _pepitoIsOwner ;*/            // disguiseOwner is Pepito, sent to createPepitoDisguise
     }
 
-    function createPepitoDisguise(uint256 initialBalance) external {
-        PepitoDisguise pepitoDisguise = new PepitoDisguise(pepitoDisguiseOwner, initialBalance);
-
-        pepitoDisguiseAddresses.push(pepitoDisguise);
+    function createPepitoDisguise(address _owner, uint256 _initialBalance) external {
+        require (_owner == msg.sender);             // the transaction caller must be _owner Pepito
+        require (_initialBalance != uint256(0));    // initial balance must not be nil
+        PepitoDisguise pepitoDisguise = new PepitoDisguise(_owner, _initialBalance);
+        // disguise is a future virtual secretary of persons-in-need, so its address is useful
+        pepitoDisguiseAddresses.push(pepitoDisguise);   // record address of disguise
         emit PepitoDisguiseCreated(pepitoDisguise);
     }
 
