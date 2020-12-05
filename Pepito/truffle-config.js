@@ -34,16 +34,6 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
-    module.exports = {
-      networks: {
-        development: {
-          host: 'localhost',
-          port: 8545,
-          network_id: '*'
-        }
-      }
-    };
-    
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
