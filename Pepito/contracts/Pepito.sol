@@ -27,6 +27,8 @@ contract Pepito {
     address public owner;       // Pepito is the owner of the whole system
     uint256 public initialBalance;  // initial balance of a disguise
     address[] public pepitoDisguiseAddresses;   // array of addresses of PepitoDisguise
+    // array is used because disguises will be iterated and displayed
+    // mapping may be used when disguises are transposed into people-in-need
     event PepitoDisguiseCreated(address pepitoDisguise);
     
     constructor() public {
