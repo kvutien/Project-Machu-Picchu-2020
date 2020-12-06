@@ -13,11 +13,11 @@ contract PepitoDisguise {
     // state variables
     string public storedData;           // test data, to be replaced by a struct describing a disguise
     // address pepitoDisguiseOwner;     // check if really needed?
-    uint balance;                       // used only for person-in-need
+    uint balance;                       // will be used for person-in-need, not for disguise
     
     constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
-        // pepitoDisguiseOwner = _pepitoDisguiseOwner;
-        balance = _initialBalance;
+        // pepitoDisguiseOwner = _pepitoDisguiseOwner;  // check if really needed?
+        balance = _initialBalance;      // in future versions, balance will be a mapping of tokens of various names
     }
     
     // functions
