@@ -6,7 +6,7 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 /** Solidity NatSpec format
-    @title  Demo dApp for Machu Picchu. Also Final Project of
+    @title  PepitoDisguise. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
     @notice A disguise is composed of many features

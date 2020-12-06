@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.8.0;
 import "./PepitoDisguise.sol";
 
 /**
-    @title  Demo dApp for Machu Picchu. Also Final Project of
+    @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick
