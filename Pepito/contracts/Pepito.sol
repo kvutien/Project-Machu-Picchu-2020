@@ -26,15 +26,18 @@ contract Pepito {
     bool public stopped;        // the circuit breaker
     address public owner;       // Pepito is the owner of the whole system
     uint256 public initialBalance;  // initial balance of a disguise
-    address[] public pepitoDisguiseAddresses;   // array of addresses of PepitoDisguise
+    uint256 public disguiseNumber;  // number of disguises in array pepitoDisguiseAddresses
+    address[512] public pepitoDisguiseAddresses;   // array of addresses of PepitoDisguise
     // array is used because disguises will be iterated and displayed
     // mapping may be used when disguises are transposed into people-in-need
+    // for the demo we limit array size to 512; in real disguises will be in IPFS database
     event PepitoDisguiseCreated(address pepitoDisguise);
     
     constructor() public {
         stopped = false;
         owner = msg.sender;     // the owner is the EOA that created Pepito
         initialBalance = 10;    // initial balance is 10 Pepito tokens
+        disguiseNumber = 0;     // initial number of disguises created
     }
     
     modifier isAdmin() {
@@ -65,16 +68,19 @@ contract Pepito {
     }
     
     function createPepitoDisguise() public {
-        require (owner == msg.sender);             // the transaction caller must be _owner Pepito
-        require (initialBalance != uint256(0));    // initial balance must not be nil
+        require (owner == msg.sender, "the transaction caller must be Pepito");
+        require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
+        require (disguiseNumber < 512, "there has been already 512 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner, initialBalance);
         // disguise is a future virtual secretary of persons-in-need, so its address is useful
-        pepitoDisguiseAddresses.push(address(pepitoDisguise));   // record address of disguise
+        pepitoDisguiseAddresses[disguiseNumber] = address(pepitoDisguise);   // record address of disguise
+        disguiseNumber += 1;
         emit PepitoDisguiseCreated(address(pepitoDisguise));
     }
     
-    function getPepitoDisguises() external view returns (address[] memory) {
-        return pepitoDisguiseAddresses;
+    function getPepitoDisguises(uint i) external view returns(address) {
+        // this function will be called inb a JavaScript loop
+        require (i < 512, "cannot exist more than 512 disguises");
+        return pepitoDisguiseAddresses[i];
     }
-
 }
