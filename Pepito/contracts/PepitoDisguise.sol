@@ -14,12 +14,13 @@ pragma solidity >=0.4.22 <0.8.0;
 
     @dev    Remix-compiled successfully 2020-12-06
 */
+
 contract PepitoDisguise {
     // state variables
-    string public storedData;   /// @dev    test data, to be replaced by a struct describing a disguise
     address pepitoDisguiseOwner;/// @dev    the owner of the disguise is Pepito
     uint balance;               /// @dev    running balance of pepitoTokens of this disguise
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
+    string public storedData;   /// @dev    test data, to be replaced by a struct describing a disguise
     
     constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
