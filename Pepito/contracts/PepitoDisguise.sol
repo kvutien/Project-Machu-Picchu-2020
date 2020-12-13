@@ -11,6 +11,7 @@ pragma solidity >=0.4.22 <0.8.0;
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
     @notice A disguise is composed of many features
     @notice Copy this contract to generate also farmers, refugees, homeless etc.
+    @dev    PepitoDisguise's function is similar to ENS Resolver.sol, Pepito to ENS Registry.sol
 
     @dev    Remix-compiled successfully 2020-12-06
 */

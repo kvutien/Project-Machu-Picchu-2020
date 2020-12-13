@@ -12,6 +12,7 @@ pragma solidity >=0.4.22 <0.8.0;
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
+    @dev    Pepito's function is similar to ENS Registry.sol, PepitoDisguise to ENS Resolver.sol
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
     @dev    He is also a factory of disguises.
