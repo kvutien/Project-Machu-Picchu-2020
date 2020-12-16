@@ -1,5 +1,5 @@
 # _Machu-Picchu_
-[![Vu Tien's github stats](https://github-readme-stats.vercel.app/api?username=kvutien)](https://github.com/anuraghazra/github-readme-stats)
+[![Vu Tien's github stats](https://github-readme-stats.vercel.app/api?username=kvutien)](https://github.com/anuraghazra/github-readme-stats) [tool courtesy Anurag Hazra](https://github.com/anuraghazra/github-readme-stats)
 
 ConsenSys Bootcamp 2020 - Final Project of Vu Tien Khang, [the project is here](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito).
 
