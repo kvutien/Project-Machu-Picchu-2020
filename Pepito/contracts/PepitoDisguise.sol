@@ -47,9 +47,10 @@ contract PepitoDisguise {
     }
     Disguise public storedDisguise;
     
-    constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
+    constructor(address _pepitoDisguiseOwner/*, uint _initialBalance*/) public {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
-        balance = _initialBalance;
+        //balance = _initialBalance;
+        balance = 0;
     }
     
     /// @dev    functions to set elements of the struct storedData with data of the disguise

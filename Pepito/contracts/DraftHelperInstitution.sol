@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.8.0;
 /* Contract (placeholder) to manage Machu Picchu helper institution
 */
 contract HelperInstitution {
@@ -6,7 +7,7 @@ contract HelperInstitution {
     address public owner;
 
     constructor (address _personInNeed) public {
-        require(_personInNeed != 0x0);
+        require(_personInNeed != address(0x0));
         owner = msg.sender;
         personInNeed = _personInNeed;
     }
