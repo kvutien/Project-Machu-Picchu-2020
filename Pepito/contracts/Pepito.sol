@@ -12,7 +12,7 @@ pragma solidity >=0.4.22 <0.8.0;
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
-    @notice    Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
+    @notice Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick :-)
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
     @dev    contract Pepito is a factory of disguises.
@@ -106,7 +106,7 @@ order of function modifiers
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner, initialBalance);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        pepitoDisguises[disguiseNumber] = pepitoDisguise;   // record disguise smart contract
+        pepitoDisguises[disguiseNumber] = address(pepitoDisguise);   // record disguise smart contract
         disguiseNumber += 1;
         emit PepitoDisguiseCreated(address(pepitoDisguise));
     }
