@@ -23,15 +23,15 @@ contract PepitoDisguise {
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
     string public storedData;   /// @dev    test data, to be replaced by a struct describing a disguise
     struct storedDisguise {
-        string topType;   // 'Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair' etc.
-        string hatColor;  // 'Black', 'Blue01', 'Blue02' etc.
+        string topType;     // 'Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair' etc.
+        string hatColor;    // 'Black', 'Blue01', 'Blue02' etc.
         string accessoriesType; // 'Round', 'Sunglasses', 'Wayfarers' etc.
         string hairColor;   // 'PastelYellow', 'Pink', 'Red', 'White' etc.
         string facialHairType;   // 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum' etc.
-        string clotheType;   // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
-        string clotheColor;   // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
-        string eyeType;   // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
-        string eyebrowType;   // 'Angry', 'AngryNatural', 'Default','RaisedExcited' etc.
+        string clotheType;  // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
+        string clotheColor; // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
+        string eyeType;     // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
+        string eyebrowType; // 'Angry', 'AngryNatural', 'Default','RaisedExcited' etc.
         string mouthType;   // 'Concerned', 'Default', 'Disbelief','Eating' etc.
         string skinColor;   // 'Tanned', 'Yellow', 'Pale', 'Light', 'Brown' etc.
     }
