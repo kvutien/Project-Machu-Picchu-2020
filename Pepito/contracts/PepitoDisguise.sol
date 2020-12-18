@@ -21,20 +21,31 @@ contract PepitoDisguise {
     address pepitoDisguiseOwner;/// @dev    the owner of the disguise is Pepito
     uint balance;               /// @dev    running balance of pepitoTokens of this disguise
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
-    string public storedData;   /// @dev    test data, to be replaced by a struct describing a disguise
-    struct storedDisguise {
-        string topType;     // 'Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair' etc.
-        string hatColor;    // 'Black', 'Blue01', 'Blue02' etc.
-        string accessoriesType; // 'Round', 'Sunglasses', 'Wayfarers' etc.
-        string hairColor;   // 'PastelYellow', 'Pink', 'Red', 'White' etc.
-        string facialHairType;   // 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum' etc.
-        string clotheType;  // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
-        string clotheColor; // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
-        string eyeType;     // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
-        string eyebrowType; // 'Angry', 'AngryNatural', 'Default','RaisedExcited' etc.
-        string mouthType;   // 'Concerned', 'Default', 'Disbelief','Eating' etc.
-        string skinColor;   // 'Tanned', 'Yellow', 'Pale', 'Light', 'Brown' etc.
+    enum TopTypes {Eyepatch, Hat, Hijab, LongHairBigHair, LongHairBob, LongHairBun, LongHairCurly, LongHairCurvy, LongHairDreads, LongHairFrida, LongHairFro, LongHairFroBand, LongHairMiaWallace, LongHairNotTooLong, LongHairShavedSides, LongHairStraight, LongHairStraight2, LongHairStraightStrand, NoHair, ShortHairDreads01, ShortHairDreads02, ShortHairFrizzle, ShortHairShaggy, ShortHairShaggyMullet, ShortHairShortCurly, ShortHairShortFlat, ShortHairShortRound, ShortHairShortWaved, ShortHairSides, ShortHairTheCaesar, ShortHairTheCaesarSidePart, Turban, WinterHat1, WinterHat2, WinterHat3, WinterHat4}
+    enum HatColors {Black, Blue01, Blue02, Blue03, Gray01, Gray02, Heather, PastelBlue, PastelGreen, PastelOrange, PastelRed, PastelYellow, Pink, Red, White}
+    enum AccessoriesTypes {Blank, Kurt, Prescription01, Prescription02, Round, Sunglasses, Wayfarers}
+    enum HairColors {Auburn, Black, Blonde, BlondeGolden, Brown, BrownDark, PastelPink, Platinum, Red, SilverGray}
+    enum FacialHairTypes {BeardLight, BeardMagestic, BeardMedium, Blank, MoustacheFancy, MoustacheMagnum}
+    enum ClotheTypes {BlazerShirt, BlazerSweater, CollarSweater, GraphicShirt, Graphics, Hoodie, Overall, ShirtCrewNeck, ShirtScoopNeck, ShirtVNeck}
+    enum ClotheColors {Black, Blue01, Blue02, Blue03, Gray01, Gray02, Heather, PastelBlue, PastelGreen, PastelOrange, PastelRed, PastelYellow, Pink, Red, White}
+    enum EyeTypes {Close, Cry, Default, Dizzy, EyeRoll, Happy, Hearts, Side, Squint, Surprised, Wink, WinkWacky}
+    enum EyebrowTypes {Angry, AngryNatural, Default, DefaultNatural, FlatNatural, FrownNatural, RaisedExcited, RaisedExcitedNatural, SadConcerned, SadConcernedNatural, UnibrowNatural, UpDown, UpDownNatural}
+    enum MouthTypes {Concerned, Default, Disbelief,Eating, Grimace, Sad, ScreamOpen, Serious, Smile, Tongue, Twinkle, Vomit}
+    enum SkinColors{ Tanned, Yellow, Pale, Light, Brown, DarkBrown, Black}
+    struct Disguise {
+        TopTypes topType;       // 'Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair' etc.
+        HatColors hatColor;     // 'Black', 'Blue01', 'Blue02' etc.
+        AccessoriesTypes accessoriesType; // 'Round', 'Sunglasses', 'Wayfarers' etc.
+        HairColors hairColor;   // 'PastelYellow', 'Pink', 'Red', 'White' etc.
+        FacialHairTypes facialHairType;   // 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum' etc.
+        ClotheTypes clotheType; // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
+        ClotheColors clotheColor; // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
+        EyeTypes eyeType;       // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
+        EyebrowTypes eyebrowType; // 'Angry', 'AngryNatural', 'Default','RaisedExcited' etc.
+        MouthTypes mouthType;   // 'Concerned', 'Default', 'Disbelief','Eating' etc.
+        SkinColors skinColor;   // 'Tanned', 'Yellow', 'Pale', 'Light', 'Brown' etc.
     }
+    Disguise public storedDisguise;
     
     constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
@@ -42,10 +53,9 @@ contract PepitoDisguise {
     }
     
     /// @dev    functions to set elements of the struct storedData with data of the disguise
-    function setTop(string memory x) public {   /// @dev    test function, set one character feature in the struct
-        storedData = x;                         /// @dev    to be replaced by adequate when finalised
+    function setTopType(TopTypes x) public {    /// @dev    test function, set one character feature in the struct
+        storedDisguise.topType = x;             /// @dev    to be replaced by adequate when finalised
     }
-    function setTopType(/*string memory x*/) public {}
     function setHatColor(/*string memory x*/) public {}
     function setAccessoriesType(/*string memory x*/) public {}
     function setHairColor(/*string memory x*/) public {}
