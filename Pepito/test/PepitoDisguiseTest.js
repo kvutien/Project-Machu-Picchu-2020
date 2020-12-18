@@ -1,15 +1,15 @@
 contract('PepitoDisguise', async (accounts) => {
-    it('Calling setTop(x) should set storedData in storage to x', async() => {
-        let newValue = 'NoHair';
+    it('Calling setTopType(0) should set storedDisguise.top in storage to Eyepatch', async() => {
+        let newValue = 0;
         let instance = await PepitoDisguise.deployed()
 
         instance.setTop(newValue, {from: accounts[0]})
-        let returnedValue = await instance.storedData.call()    // not sure that call() can return a string?
+        let returnedValue = await instance.storedDisguise.topType.call()    // not sure that call() can return a struct?
 
         assert.equal(newValue, returnedValue, "The returned value should equal the new value.")
     })
 
-    it('Calling createDisguise(x) should do something', async() => {
+    it('Calling storeDisguise(x) should do something', async() => {
 
     })
 
