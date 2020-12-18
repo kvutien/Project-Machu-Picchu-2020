@@ -56,16 +56,16 @@ contract PepitoDisguise {
     function setTopType(TopTypes x) public {    /// @dev    test function, set one character feature in the struct
         storedDisguise.topType = x;             /// @dev    to be replaced by adequate when finalised
     }
-    function setHatColor(/*string memory x*/) public {}
-    function setAccessoriesType(/*string memory x*/) public {}
-    function setHairColor(/*string memory x*/) public {}
-    function setFacialHairType(/*string memory x*/) public {}
-    function setClotheType(/*string memory x*/) public {}
-    function setClotheColor(/*string memory x*/) public {}
-    function setEyeType(/*string memory x*/) public {}
-    function setEyebrowType(/*string memory x*/) public {}
-    function setMouthType(/*string memory x*/) public {}
-    function setSkinColor(/*string memory x*/) public {}
+    function setHatColor(HatColors x) public { storedDisguise.hatColor = x; }
+    function setAccessoriesType(AccessoriesTypes x) public { storedDisguise.accessoriesType = x; }
+    function setHairColor(HairColors x) public { storedDisguise.hairColor = x; }
+    function setFacialHairType(FacialHairTypes x) public {storedDisguise.facialHairType = x; }
+    function setClotheType(ClotheTypes x) public {storedDisguise.clotheType = x; }
+    function setClotheColor(ClotheColors x) public {storedDisguise.clotheColor = x; }
+    function setEyeType(EyeTypes x) public {storedDisguise.eyeType = x; }
+    function setEyebrowType(EyebrowTypes x) public {storedDisguise.eyebrowType = x; }
+    function setMouthType(MouthTypes x) public {storedDisguise.mouthType = x; }
+    function setSkinColor(SkinColors x) public {storedDisguise.skinColor = x; }
 
     function storeDisguise() public payable {
         /// @dev    write the struct storedData in blockchain first, IPFS database in future
