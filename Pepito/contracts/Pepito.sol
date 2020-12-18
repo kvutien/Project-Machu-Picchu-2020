@@ -12,14 +12,15 @@ pragma solidity >=0.4.22 <0.8.0;
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
-    @dev    Pepito's function is similar to ENS Registry.sol, PepitoDisguise to ENS Resolver.sol
-    @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick
+    @notice    Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
+    @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick :-)
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
-    @dev    He is also a factory of disguises.
+    @dev    contract Pepito is a factory of disguises.
     @dev    - the main interest of a factory is to maintain an array or mapping of addresses of child contracts
     @dev    - specially useful for persons-in-need because their contract will be their virtual secretary
     @dev        and will maintain their balance of tokens 
     @dev        and will execute the few orders sent via SMS by the persons-in-need
+    @dev Pepito contract only manages the array of addresses of disguise samrt contract
 
     @dev    Remix-compiled successfully 2020-12-06
 */
@@ -104,6 +105,7 @@ order of function modifiers
 
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner, initialBalance);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
+        /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
         pepitoDisguises[disguiseNumber] = pepitoDisguise;   // record disguise smart contract
         disguiseNumber += 1;
         emit PepitoDisguiseCreated(address(pepitoDisguise));
@@ -112,7 +114,7 @@ order of function modifiers
     function getPepitoDisguise(uint i) external view returns(address) {
         /// @dev    this function will be called from a JavaScript loop
         /// @dev    i is loop index, rank in the array of disguises
-        /// @return one instance of pepitoDisguiseAddress
+        /// @return one instance of pepitoDisguiseAddress, function to retrieve its data is exposed in pepitoDisguide
         require (i < 512, "cannot exist more than 512 disguises");
         return pepitoDisguises[i];
     }

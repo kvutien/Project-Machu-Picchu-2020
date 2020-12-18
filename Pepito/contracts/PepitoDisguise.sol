@@ -41,8 +41,8 @@ contract PepitoDisguise {
     function setNose(/*string memory x*/) public {}
     function setSkin(/*string memory x*/) public {}
 
-    function createDisguise() public payable {
-        /// @dev    write the struct storedData in IPFS database
+    function storeDisguise() public payable {
+        /// @dev    write the struct storedData in blockchain first, IPFS database in future
         /// @dev    to be filled
     }
 
