@@ -22,6 +22,19 @@ contract PepitoDisguise {
     uint balance;               /// @dev    running balance of pepitoTokens of this disguise
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
     string public storedData;   /// @dev    test data, to be replaced by a struct describing a disguise
+    struct storedDisguise {
+        string topType;   // 'Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair' etc.
+        string hatColor;  // 'Black', 'Blue01', 'Blue02' etc.
+        string accessoriesType; // 'Round', 'Sunglasses', 'Wayfarers' etc.
+        string hairColor;   // 'PastelYellow', 'Pink', 'Red', 'White' etc.
+        string facialHairType;   // 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum' etc.
+        string clotheType;   // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
+        string clotheColor;   // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
+        string eyeType;   // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
+        string eyebrowType;   // 'Angry', 'AngryNatural', 'Default','RaisedExcited' etc.
+        string mouthType;   // 'Concerned', 'Default', 'Disbelief','Eating' etc.
+        string skinColor;   // 'Tanned', 'Yellow', 'Pale', 'Light', 'Brown' etc.
+    }
     
     constructor(address _pepitoDisguiseOwner, uint _initialBalance) public {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
@@ -32,14 +45,17 @@ contract PepitoDisguise {
     function setTop(string memory x) public {   /// @dev    test function, set one character feature in the struct
         storedData = x;                         /// @dev    to be replaced by adequate when finalised
     }
-    function setClothe(/*string memory x*/) public {}
-    function setAccessories(/*string memory x*/) public {}
-    function setFacialHair(/*string memory x*/) public {}
-    function setEyes(/*string memory x*/) public {}
-    function setEyebrows(/*string memory x*/) public {}
-    function setMouth(/*string memory x*/) public {}
-    function setNose(/*string memory x*/) public {}
-    function setSkin(/*string memory x*/) public {}
+    function setTopType(/*string memory x*/) public {}
+    function setHatColor(/*string memory x*/) public {}
+    function setAccessoriesType(/*string memory x*/) public {}
+    function setHairColor(/*string memory x*/) public {}
+    function setFacialHairType(/*string memory x*/) public {}
+    function setClotheType(/*string memory x*/) public {}
+    function setClotheColor(/*string memory x*/) public {}
+    function setEyeType(/*string memory x*/) public {}
+    function setEyebrowType(/*string memory x*/) public {}
+    function setMouthType(/*string memory x*/) public {}
+    function setSkinColor(/*string memory x*/) public {}
 
     function storeDisguise() public payable {
         /// @dev    write the struct storedData in blockchain first, IPFS database in future
