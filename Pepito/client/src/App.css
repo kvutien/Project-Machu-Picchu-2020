@@ -1,0 +1,19 @@
+.container {
+  max-width: 42em;
+  text-align: center;
+}
+
+h1 {
+  position: relative;
+}
+
+h1 sup {
+  position: absolute;
+  font-size: 0.4em;
+  font-style: italic;
+  color: red;
+}
+
+.spinner div {
+  margin: 2em auto;
+}
