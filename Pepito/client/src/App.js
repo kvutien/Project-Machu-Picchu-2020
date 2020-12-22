@@ -2,6 +2,7 @@ import React, { Component } from 'react';	// from node.js module
 import './App.css'; 	// specific
 import Avatar from 'avataaars'; 	// from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
+import Iframe from 'react-iframe'; 	// from node.js module
 
 /**
  * @author Vu Tien Khang
@@ -108,6 +109,7 @@ class App extends Component {
             />
           </div>
         }
+                
       </div>
     );
   }
