@@ -1,14 +1,14 @@
 // class OptionTable
 import React from "react";
-import { render } from "react-dom";
-import ReactTable from "react-table";   // in npm library
-import "react-table/react-table.css";   // (!) to be analysed
+// import { render } from "react-dom";
+import ReactTable from "react-table-6";   // in npm library
+import "react-table-6/react-table.css";   // (!) to be analysed
 
 class OptionTable extends React.Component {
   constructor() {
     super();
-    };
-  }
+  };
+
   render() {
     /** @dev retrieve pepito disguise options from props */
     const data = [        // array = rows, array components = JSON key:value pairs
@@ -25,7 +25,7 @@ class OptionTable extends React.Component {
         {component: "skinColor", option: this.props.skinColor},
     ];
     const columns = [       // our table has 2 columns
-        {Header: "AvatarComponent", accessor: "component"}  // Header is any string, accessor match the JSON key
+        {Header: "AvatarComponent", accessor: "component"},  // Header is any string, accessor matches the JSON key
         {Header: "Option", accessor: "option"}              // a dropdown menu to select an option of the component
     ];
     return (

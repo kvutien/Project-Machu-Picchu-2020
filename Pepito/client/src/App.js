@@ -1,15 +1,13 @@
 import React, { Component } from 'react';	// from node.js module
-import './App.css'; 	// specific
+import './App.css';               // specific
+import OptionTable from './OptionTable'; 	// specific
 import Avatar from 'avataaars'; 	// from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
-import Iframe from 'react-iframe'; 	// from node.js module
 
 /**
  * @author Vu Tien Khang
  * @notice React component for pepito frontend
  * @dev derived from random-avatar but without the blockchain request of random number
- * @dev still in /random-avatar/src/
- * @dev to be moved for tests to /Machu-Picchu/Pepito/client/src/ once the React frontend is generated
  */
 class App extends Component {
 
@@ -67,22 +65,30 @@ class App extends Component {
       });
     }
 
-  render() {	/** @dev React main display renderer */
+    async storeDisguise() {
+      /** 
+      * @dev from stackOverflow, to be refined and tested
+      */
+    }
+
+      render() {	/** @dev React main display renderer */
     /** @dev retrieve pepito disguise options from this.state */
     const {topType, hatColor, accessoriesType, hairColor, facialHairType, clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.state;
     return (
       <div className="container text-center">
-      {this.state.error ? 	// if error is true
-        <div className="alert alert-danger m-5" role="alert">
-          Please check if Metamask is enabled and connected to the correct network
-        </div>:<div></div>	// if error is false
-      }
+        {this.state.error ? 	// if error is true
+          <div className="alert alert-danger m-5" role="alert">
+            Please check if Metamask is enabled and connected to the correct network
+          </div>:<div></div>	// if error is false
+        }
         <header>
-          <h1 className="m-5">Random Pepito Disguise <sup>not on blockchain</sup></h1>
+          <h1 className="m-5">Random Pepito Disguise <sup>(not yet) on blockchain</sup></h1>
         </header>
         <div>
-          <button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Get random disguise!</button>
+          <button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise!</button>
           <img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" />
+          <br />
+          <button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise!</button>
         </div>
         { this.state.loading ?
           <div className="spinner">	{/* if loading is true, waiting for random response */}
@@ -109,7 +115,19 @@ class App extends Component {
             />
           </div>
         }
-                
+        {<OptionTable 
+          topType={topType}
+          hatColor={hatColor}
+          accessoriesType={accessoriesType}
+          hairColor={hairColor}
+          facialHairType={facialHairType}
+          clotheType={clotheType}
+          clotheColor={clotheColor}
+          eyeType={eyeType}
+          eyebrowType={eyebrowType}
+          mouthType={mouthType}
+          skinColor={skinColor}
+        />}
       </div>
     );
   }
