@@ -15,6 +15,8 @@ In final the win-win situation is
 * Persons-in-need are free to share and exchange their tokens until they decide to make it real fiat money
 * Any private of public entity (large or small) who targets these persons can use the data, that are not confiscated by any single actor.
 
+The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services taregting the same population is 10 times this amount.
+
 # Design
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once a person-in-need is recorded, all humanitarian organisations can access the data, and this person keeps full control on these personal data.
