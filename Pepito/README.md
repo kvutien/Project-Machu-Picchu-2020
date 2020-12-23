@@ -8,6 +8,13 @@ In this game, your mission is to build a disguise for Pepito, from [a set of exi
 
 ![Target look](https://github.com/kvutien/Machu-Picchu/blob/main/20201128%20Avatars.jpeg)
 
+Actually, our real purpose is to build a blockchain-based tool to manage personal data of persons-in-need worldwide and the financial humanitarian assistance tokens that helper organisations would give to these persons-in-need. These tokens can be exchanged and bundled in a DEX until their owner have enough tokens that it becomes cost-effective to exchange then into fiat money.
+
+In final the win-win situation is
+* Helper institutions share the data of the persons-in-need to improve the efficiency of their incentive and aid programs
+* Persons-in-need are free to share and exchange their tokens until they decide to make it real fiat money
+* Any private of public entity (large or small) who targets these persons can use the data, that are not confiscated by any single actor.
+
 # Design
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once a person-in-need is recorded, all humanitarian organisations can access the data, and this person keeps full control on these personal data.
