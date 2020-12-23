@@ -1,4 +1,4 @@
-// class OptionTable
+// React Functional Component OptionTable-V7, for later evolutions
 import React from 'react'
 import styled from 'styled-components'
 import { useTable } from 'react-table'

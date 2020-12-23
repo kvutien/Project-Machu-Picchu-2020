@@ -1,3 +1,4 @@
+// class App.js
 import React, { Component } from 'react';	// from node.js module
 import './App.css';                       // specific
 import OptionTable from './OptionTable'; 	// specific
@@ -9,8 +10,8 @@ import getWeb3 from "./getWeb3";          // to call web3 API
 
 /**
  * @author Vu Tien Khang
- * @notice React component for pepito frontend
- * @dev derived from random-avatar but without the blockchain request of random number
+ * @notice React root component for Pepito frontend
+ * @dev web3 calls work in progress
  */
 class App extends Component {
 

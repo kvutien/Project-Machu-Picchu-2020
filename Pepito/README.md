@@ -1,11 +1,10 @@
 
 # Presentation
-Pepito is the name of the main character of a [French comic book](https://en.wikipedia.org/wiki/Pepito_(comics)) I loved when I was a kid, in 1960. 
-Pepito was a young corsair of the Caribbean islands. His specialty was his disguises, with which he could fool Hernandez Banana, the Governor of the island of Las Ananas, his favorite (and not very smart) victim. 
+|![](https://upload.wikimedia.org/wikipedia/en/9/93/Pepito_Bottaro.jpg)|Pepito is the name of the main character of a [French comic book](https://en.wikipedia.org/wiki/Pepito_(comics)) I loved when I was a kid, in 1960. Pepito was a young corsair of the Caribbean islands. His specialty was his disguises, with which he could fool Hernandez Banana, the Governor of the island of Las Ananas, his favorite (and not very smart) victim. |
+|-------|---------|
 
-![](https://upload.wikimedia.org/wikipedia/en/9/93/Pepito_Bottaro.jpg)
 
-In this game, your mission is to build a disguise for Pepito, from [a set of existing components](https://avataaars.com/). Once you built this disguise, you'll record it on the blockchain so that Pepito is sure he'll not reuse it again and never take twice the same disguise.
+In this game, your mission is to build a disguise for Pepito, from [a set of existing components](https://avataaars.com/). Once you built this disguise, you'll record it on the blockchain so that Pepito is sure he'll not reuse it again and will never take twice the same disguise.
 
 ![Target look](https://github.com/kvutien/Machu-Picchu/blob/main/20201128%20Avatars.jpeg)
 
@@ -16,7 +15,7 @@ In the following we'll specify and code a dApp to help you in this mission. But 
 ![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
 
 ## React Frontend design
-The frontend is derived from Truffle Box React.
+The frontend of _Machu Picchu_ is derived from Truffle Box React.
 
 ![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
 
@@ -119,7 +118,7 @@ Big thanks to the following resources:
 * [https://github.com/keep-network/random-avatar](https://github.com/keep-network/random-avatar): using avataar to illustrate its own blockchain secure random number generator 
 
 
-# Specifications of the dApp
+# ConsenSys Specifications of the dApp
 ## Smart contract
 * (**done**) Be a Truffle project
 * Have a smart contract(s) commented according to the specs which:
@@ -141,7 +140,7 @@ The front end is liberally inspired from this project [(https://github.com/keep-
 ## Git
 *	(**done**) Be uploaded to its own Github repository
 *	(**done**) Have a README doc describing the overview of your project, pointing out directory structure and how to build and run your project locally  
-*	AND A document called design_pattern_decisions.md explaining which design patterns you used
+*	(**done**) AND A document called design_pattern_decisions.md explaining which design patterns you used
 *	AND A document called avoiding_common_attacks.md explaining security steps you took what measures you took to ensure your contracts are not susceptible to common attacks
 *	AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
 *	A screen recording walking through your Dapp.
