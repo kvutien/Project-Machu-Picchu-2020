@@ -21,7 +21,7 @@ OrbitDB is a Document Database, like MongoDB, instead of being a Relation Databa
 * Remember how centralised was the Inca empire? -- _it was very centralised_
 * Remember what happened to it? _conquered by only 168 men, one cannon, and 27 horses_
 
-## Advantages of Machu Picchu
+## Advantages of _Machu Picchu_
 This will make "_Data as a Public Service_". Data collected by any social relief organisation is available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each _person in need_ to remain owner of his/her personal data, taking advantage of IPFS and of the _virtual personal secretary_.
 
 ## Specifications of project (PepitoDisguise, December 2020)
@@ -30,7 +30,7 @@ The dApp offers 3 actions in its current stage: create disguise, read disguise, 
 * Create disguise: mainly in `React.js`, the dApp assembles a disguise from the choice of components, creates a JSON for each disguise and stores it on a mapping
 * Read disguise: the dApp goes through the mapping and displays the data of each disguise
 * Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update
-### Roadmap of Machu Picchu
+### Roadmap of _Machu Picchu_
 * a demonstration game [(this Final Project)](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito)
 * a management system to on-board, list and modify the persons in need, using OrbitDB and IPFS, with decentralised data schemas
 * a management system of helper institutions, n-to-n connected to persons in need
