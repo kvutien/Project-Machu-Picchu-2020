@@ -4237,6 +4237,26 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0x923adbc87f0779ec430116d167509b913d1e920d6d5ac8da78dd8bb8dc098280": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "aDisguise",
+              "type": "address"
+            }
+          ],
+          "name": "PepitoDisguiseCreated",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x523e9E111996C3f228148bB5d8FeC85486cB00a3",
+      "transactionHash": "0x2ce59f679e2bd6e0f9b05d6e7584ea1f71e11d54683abcdd78f5bfcfb1a1ee9d"
+    },
     "1608226970226": {
       "events": {
         "0x923adbc87f0779ec430116d167509b913d1e920d6d5ac8da78dd8bb8dc098280": {
@@ -4259,7 +4279,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-12-18T21:33:25.764Z",
+  "updatedAt": "2020-12-23T13:43:30.566Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

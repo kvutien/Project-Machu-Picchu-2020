@@ -1,8 +1,11 @@
 import React, { Component } from 'react';	// from node.js module
-import './App.css';               // specific
+import './App.css';                       // specific
 import OptionTable from './OptionTable'; 	// specific
-import Avatar from 'avataaars'; 	// from node.js module
+import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
+/* import PepitoContract from "../../build/contracts/Pepito.json";                 // to call web3 API
+// import PepitoDisguiseContract from "../../build/contracts/PepitoDisguise.json"; // to call web3 API */
+import getWeb3 from "./getWeb3";          // to call web3 API
 
 /**
  * @author Vu Tien Khang
@@ -30,50 +33,82 @@ class App extends Component {
     this.state.loading = false;
   }
 
-  componentDidMount() {	//React hook that runs after the first render() lifecycle
+  state = { storageValue: 0, web3: null, accounts: null, contract: null };          // to call web3 API
+
+  async componentDidMount() {	//React hook that runs after the first render() lifecycle
+    this.requestRandomNumber();
+    try {
+      // Get network provider and web3 instance.
+      const web3 = await getWeb3();
+
+    /** section copied from truffle react, to be adapted
+      // Use web3 to get the user's accounts.
+      const accounts = await web3.eth.getAccounts();
+
+      // Get the contract instance.
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const instance = new web3.eth.Contract(
+        SimpleStorageContract.abi,
+        deployedNetwork && deployedNetwork.address,
+      );
+
+      // Set web3, accounts, and contract to the state, and then proceed with an
+      // example of interacting with the contract's methods.
+      this.setState({ web3, accounts, contract: instance }, this.runExample);
+    */
+  } catch (error) {
+      // Catch any errors for any of the above operations.
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`,
+      );
+      console.error(error);
+    }
+  };
+
+  /** section copied from truffle react, to be adapted
+  runExample = async () => {
+    const { accounts, contract } = this.state;
+
+    // Stores a given value, 5 by default.
+    await contract.methods.set(500).send({ from: accounts[0] });
+
+    // Get the value from the contract to prove it worked.
+    const response = await contract.methods.get().call();
+
+    // Update state with the result.
+    this.setState({ storageValue: response });
+  };
+    */ 
+
+  async requestRandomNumber() {
+    /** 
+    * @dev from stackOverflow, to be refined and tested
+    */
     var getRandomValues = require("get-random-values");	// import JS random generator from npm
-    var array = new Uint32Array(2);
-    array = getRandomValues(array); 	// fill array with random numbers
+    var array = new Uint32Array(10);
+    getRandomValues(array); 	// fill array with random numbers
     /// @dev end of section random generator to be tested
     let randomBigNumber = array[0]; 	// use 1st random number in the array
     this.setState({
         loading: true,
         randomBigNumber: randomBigNumber	// for use directly by getData()
-    } 
+    }
     ,() => {
       this.getData();
     });
-    /** @dev this.getData() is put inside the asynchronous function setState()	*/
-    /** @dev use random number in state to choose disguise options from arrays of options */
   }
 
-  async requestRandomNumber() {
-      /** 
-      * @dev from stackOverflow, to be refined and tested
-      */
-      var getRandomValues = require("get-random-values");	// import JS random generator from npm
-      var array = new Uint32Array(10);
-      getRandomValues(array); 	// fill array with random numbers
-      /// @dev end of section random generator to be tested
-      let randomBigNumber = array[0]; 	// use 1st random number in the array
-      this.setState({
-          loading: true,
-          randomBigNumber: randomBigNumber	// for use directly by getData()
-      }
-      ,() => {
-        this.getData();
-      });
-    }
+  async storeDisguise() {
+    /** 
+    * @dev from stackOverflow, to be refined and tested
+    */
+  }
 
-    async storeDisguise() {
-      /** 
-      * @dev from stackOverflow, to be refined and tested
-      */
-    }
-
-      render() {	/** @dev React main display renderer */
+  render() {	/** @dev React main display renderer */
     /** @dev retrieve pepito disguise options from this.state */
-    const {topType, hatColor, accessoriesType, hairColor, facialHairType, clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.state;
+    const {topType, hatColor, accessoriesType, hairColor, facialHairType,
+      clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.state;
     return (
       <div className="container text-center">
         {this.state.error ? 	// if error is true
@@ -90,7 +125,7 @@ class App extends Component {
           <br />
           <button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise!</button>
         </div>
-        { this.state.loading ?
+        {this.state.loading ?
           <div className="spinner">	{/* if loading is true, waiting for random response */}
             <BounceLoader
               color={'#6c757d'}
@@ -132,33 +167,33 @@ class App extends Component {
     );
   }
 
-    async getData() {
-      /**
-       * @dev set the disguise state options
-       */
-        let randomBigNumber = this.state.randomBigNumber;	// read random number set in state by requestRandomNumber()
-        console.log("getData randomBigNumber", randomBigNumber, randomBigNumber % Object.values(this.options.topType).length);
-        this.setState({   //random number --> position of the option in the array of options
-          topType: this.options.topType[randomBigNumber % Object.values(this.options.topType).length],
-          hatColor: this.options.hatColor[randomBigNumber % Object.values(this.options.hatColor).length],
-          accessoriesType: this.options.accessoriesType[randomBigNumber % Object.values(this.options.accessoriesType).length],
-          hairColor: this.options.hairColor[randomBigNumber % Object.values(this.options.hairColor).length],
-          facialHairType: this.options.facialHairType[randomBigNumber % Object.values(this.options.facialHairType).length],
-          clotheType: this.options.clotheType[randomBigNumber % Object.values(this.options.clotheType).length],
-          clotheColor: this.options.clotheColor[randomBigNumber % Object.values(this.options.clotheColor).length],
-          eyeType: this.options.eyeType[randomBigNumber % Object.values(this.options.eyeType).length],
-          eyebrowType: this.options.eyebrowType[randomBigNumber % Object.values(this.options.eyebrowType).length],
-          mouthType: this.options.mouthType[randomBigNumber % Object.values(this.options.mouthType).length],
-          skinColor: this.options.skinColor[randomBigNumber % Object.values(this.options.skinColor).length],
-            loading: false
-        }
-        ,() => {
-          console.log("topType:", this.state.topType, ", hatColor:", this.state.hatColor, ", accessoriesType:", this.state.accessoriesType);
-          console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
-          console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
-          console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
-        });    
+  async getData() {
+    /**
+     * @dev set the disguise state options
+     */
+    let randomBigNumber = this.state.randomBigNumber;	// read random number set in state by requestRandomNumber()
+    console.log("getData randomBigNumber", randomBigNumber, "modulo", randomBigNumber % Object.values(this.options.topType).length);
+    this.setState({   //random number --> position of the option in the array of options
+      topType: this.options.topType[randomBigNumber % Object.values(this.options.topType).length],
+      hatColor: this.options.hatColor[randomBigNumber % Object.values(this.options.hatColor).length],
+      accessoriesType: this.options.accessoriesType[randomBigNumber % Object.values(this.options.accessoriesType).length],
+      hairColor: this.options.hairColor[randomBigNumber % Object.values(this.options.hairColor).length],
+      facialHairType: this.options.facialHairType[randomBigNumber % Object.values(this.options.facialHairType).length],
+      clotheType: this.options.clotheType[randomBigNumber % Object.values(this.options.clotheType).length],
+      clotheColor: this.options.clotheColor[randomBigNumber % Object.values(this.options.clotheColor).length],
+      eyeType: this.options.eyeType[randomBigNumber % Object.values(this.options.eyeType).length],
+      eyebrowType: this.options.eyebrowType[randomBigNumber % Object.values(this.options.eyebrowType).length],
+      mouthType: this.options.mouthType[randomBigNumber % Object.values(this.options.mouthType).length],
+      skinColor: this.options.skinColor[randomBigNumber % Object.values(this.options.skinColor).length],
+      loading: false
     }
+    ,() => {
+      console.log("topType:", this.state.topType, ", hatColor:", this.state.hatColor, ", accessoriesType:", this.state.accessoriesType);
+      console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
+      console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
+      console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
+    });    
+  }
 }
 
 export default App;

@@ -6321,6 +6321,12 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x58919E4c76330DB629FC1D79bee533Fc6Aa1c4c0",
+      "transactionHash": "0xc62c4367263817dbf9a457b7faedcc7da72ab16abeed2bcb327cccee04c08639"
+    },
     "1608226970226": {
       "events": {},
       "links": {},
@@ -6329,7 +6335,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-12-18T21:33:25.756Z",
+  "updatedAt": "2020-12-23T13:43:30.557Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Vu Tien Khang",
