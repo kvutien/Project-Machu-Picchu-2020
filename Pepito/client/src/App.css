@@ -17,3 +17,14 @@ h1 sup {
 .spinner div {
   margin: 2em auto;
 }
+
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+}
+
+tr td {
+  text-align: center;
+  width: 50%;
+}

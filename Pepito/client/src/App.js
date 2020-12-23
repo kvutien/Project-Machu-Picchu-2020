@@ -119,6 +119,12 @@ class App extends Component {
     */
   }
 
+  async getDisguise() {
+    /** 
+    * @dev to be refined and tested
+    */
+  }
+
   render() {	/** @dev React main display renderer */
     /** @dev retrieve pepito disguise options from this.state */
     const {topType, hatColor, accessoriesType, hairColor, facialHairType,
@@ -134,10 +140,22 @@ class App extends Component {
           <h1 className="m-5">Random Pepito Disguise <sup>(not yet) on blockchain</sup></h1>
         </header>
         <div>
-          <button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise!</button>
+          {/* <button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise!</button>
           <img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" />
           <br />
-          <button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise!</button>
+          <button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise!</button> */}
+          <table>
+            <tr>
+              <th rowspan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" /></th>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise</button></td>
+            </tr>
+            <tr>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise</button></td>
+            </tr>
+            <tr>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise</button></td>
+            </tr>
+          </table>
         </div>
         {this.state.loading ?
           <div className="spinner">	{/* if loading is true, waiting for random response */}
