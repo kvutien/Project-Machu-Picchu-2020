@@ -8,7 +8,7 @@ In this game, your mission is to build a disguise for Pepito, from [a set of exi
 
 ![Target look](https://github.com/kvutien/Machu-Picchu/blob/main/20201128%20Avatars.jpeg)
 
-Actually, our real purpose in _Machu Picchu_ is to build a blockchain-based tool to manage personal data of persons-in-need worldwide and the financial humanitarian assistance tokens that helper organisations would give to these persons-in-need. These tokens can be exchanged and bundled in a DEX until their owner have enough tokens that it becomes cost-effective to exchange then into fiat money. More info here [YouTube](https://youtu.be/9fWTD8gf-Us)
+Actually, our real purpose in _Machu Picchu_ is to build a blockchain-based tool to manage personal data of persons-in-need worldwide and the financial humanitarian assistance tokens that helper organisations would give to these persons-in-need. These tokens can be exchanged and bundled in a DEX until their owner have enough tokens that it becomes cost-effective to exchange then into fiat money. More info here: [ConsenSys Academy graduation days](https://youtu.be/9fWTD8gf-Us).
 
 In final the win-win situation is
 * Helper institutions share the data of the persons-in-need to improve the efficiency of their incentive and aid programs
