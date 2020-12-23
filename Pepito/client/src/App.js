@@ -31,6 +31,7 @@ class App extends Component {
       skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
     }
     this.state.loading = false;
+    this.storeDisguise = this.storeDisguise.bind(this);   // make storeDisguise know of "this"
   }
 
   state = { storageValue: 0, web3: null, accounts: null, contract: null };          // to call web3 API
@@ -101,7 +102,19 @@ class App extends Component {
 
   async storeDisguise() {
     /** 
-    * @dev from stackOverflow, to be refined and tested
+    * @dev to be refined and tested
+    const pepitoDisguise = await contract.methods.createPepitoDisguise({ from: accounts[0] });
+    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setClotheType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setClotheColor().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setEyeType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setEyebrowType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
     */
   }
 

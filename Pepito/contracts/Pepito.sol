@@ -100,9 +100,8 @@ order of function modifiers
     function createPepitoDisguise() public {
         /// @dev    deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
-        require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
+        /// @dev future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
         require (disguiseNumber < 512, "there has been already 512 disguises created");
-
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
