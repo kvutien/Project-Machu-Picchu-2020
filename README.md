@@ -39,12 +39,6 @@ The dApp offers 3 actions in its current stage: create disguise, read disguise, 
 ### Vision of Technical Stack in the future
 ![Technical Stack](https://github.com/kvutien/Machu-Picchu/blob/main/20201029%20Machu%20Picchu%20Tech%20Stack.png)
 
-## Install and Run
-...
-
-## How to use the smart contract
-...
-
 ## Contributing
 Feel free to open new issues or submit pull requests for _Machu Picchu_. If you'd like to contact me before doing so, feel free to get in touch (see Contact section below).
 
