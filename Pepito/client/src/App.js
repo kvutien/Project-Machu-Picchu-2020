@@ -5,8 +5,8 @@ import OptionTable from './OptionTable'; 	// specific
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
-/* import PepitoContract from "../../build/contracts/Pepito.json";                 // to call web3 API
-// import PepitoDisguiseContract from "../../build/contracts/PepitoDisguise.json"; // to call web3 API */
+import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
+import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API
 
 /**
  * @author Vu Tien Khang
@@ -19,12 +19,12 @@ class App extends Component {
     super()	//ES6 class constructors MUST call super if they are subclasses
     this.state = {};	//state holds variables of the component App
     this.options = {	//disguise options to react-select
-      topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', 'ShortHairShaggy', 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
+      topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
       hatColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
       accessoriesType: ['Blank', 'Kurt', 'Prescription01', 'Prescription02', 'Round', 'Sunglasses', 'Wayfarers'],
       hairColor: ['Auburn', 'Black', 'Blonde', 'BlondeGolden', 'Brown', 'BrownDark', 'PastelPink', 'Platinum', 'Red', 'SilverGray'],
       facialHairType: ['BeardLight', 'BeardMagestic', 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum'],
-      //facialHairColor: ['Auburn', 'Black', 'Brown', 'BrownGolden', 'brownBlack', 'Platinum', 'red'],
+      facialHairColor: ['Auburn', 'Black', 'Brown', 'BrownGolden', 'brownBlack', 'Platinum', 'red'],
       clotheType: ['BlazerShirt', 'BlazerSweater', 'CollarSweater', 'GraphicShirt', /*'Graphics',*/ 'Hoodie', 'Overall', 'ShirtCrewNeck', 'ShirtScoopNeck', 'ShirtVNeck'],
       clotheColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
       eyeType: ['Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll', 'Happy', 'Hearts', 'Side', 'Squint', 'Surprised', 'Wink', 'WinkWacky'],
@@ -36,7 +36,7 @@ class App extends Component {
     this.storeDisguise = this.storeDisguise.bind(this);   // make storeDisguise know of "this"
   }
 
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };          // to call web3 API
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, ownerPepito: null };          // to call web3 API
 
   async componentDidMount() {	//React hook that runs after the first render() lifecycle
     this.requestRandomNumber();
@@ -46,20 +46,22 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-      console.log("accounts", accounts);
+      //console.log("accounts", accounts);
 
-    /** @dev section copied from truffle react, to be adapted
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const deployedNetwork = Pepito.networks[networkId];
       const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
+        Pepito.abi,
         deployedNetwork && deployedNetwork.address,
       );
+      const ownerPepito = await instance.methods.owner().call(); // <--- find another way to get address public owner
+      console.log("instance PepitoContract", instance, ". public variable 'owner' in Pepito", ownerPepito);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, accounts, contract: instance, ownerPepito }, this.storeDisguise);
+    /** @dev section copied from truffle react, to be adapted
     */
   } catch (error) {
       // Catch any errors for any of the above operations.
@@ -85,33 +87,20 @@ class App extends Component {
   };
     */ 
 
-  async requestRandomNumber() {
-    /** 
-    * @dev from stackOverflow, to be refined and tested
-    */
-    var getRandomValues = require("get-random-values");	// import JS random generator from npm
-    var array = new Uint32Array(10);
-    getRandomValues(array); 	// fill array with random numbers
-    /// @dev end of section random generator to be tested
-    let randomBigNumber = array[0]; 	// use 1st random number in the array
-    this.setState({
-        loading: true,
-        randomBigNumber: randomBigNumber	// for use directly by getData()
-    }
-    ,() => {
-      this.getData();
-    });
-  }
-
   async storeDisguise() {
     /** 
     * @dev to be refined and tested
-    const pepitoDisguise = await contract.methods.createPepitoDisguise({ from: accounts[0] });
-    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+    */
+    const { accounts, contract, ownerPepito } = this.state;
+    console.log("user account in state", accounts, ". Pepito contract in state", contract, ". 'owner' variable in Pepito", ownerPepito);
+    const pepitoDisguise = await contract.methods.createPepitoDisguise();
+    console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
+    /* await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
     await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
     await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setFacialHairColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setClotheType().call({ from: accounts[0] });
     await pepitoDisguise.methods.setClotheColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setEyeType().call({ from: accounts[0] });
@@ -129,7 +118,7 @@ class App extends Component {
 
   render() {	/** @dev React main display renderer */
     /** @dev retrieve pepito disguise options from this.state */
-    const {topType, hatColor, accessoriesType, hairColor, facialHairType,
+    const {topType, hatColor, accessoriesType, hairColor, facialHairType, facialHairColor,
       clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.state;
     return (
       <div className="container text-center">
@@ -171,6 +160,7 @@ class App extends Component {
               accessoriesType={accessoriesType}
               hairColor={hairColor}
               facialHairType={facialHairType}
+              facialHairColor={facialHairColor}
               clotheType={clotheType}
               clotheColor={clotheColor}
               eyeType={eyeType}
@@ -186,6 +176,7 @@ class App extends Component {
           accessoriesType={accessoriesType}
           hairColor={hairColor}
           facialHairType={facialHairType}
+          facialHairColor={facialHairColor}
           clotheType={clotheType}
           clotheColor={clotheColor}
           eyeType={eyeType}
@@ -195,6 +186,24 @@ class App extends Component {
         />}
       </div>
     );
+  }
+
+  async requestRandomNumber() {
+    /** 
+    * @dev from stackOverflow, to be refined and tested
+    */
+    var getRandomValues = require("get-random-values");	// import JS random generator from npm
+    var array = new Uint32Array(10);
+    getRandomValues(array); 	// fill array with random numbers
+    /// @dev end of section random generator to be tested
+    let randomBigNumber = array[0]; 	// use 1st random number in the array
+    this.setState({
+        loading: true,
+        randomBigNumber: randomBigNumber	// for use directly by getData()
+    }
+    ,() => {
+      this.getData();
+    });
   }
 
   async getData() {
@@ -209,6 +218,7 @@ class App extends Component {
       accessoriesType: this.options.accessoriesType[randomBigNumber % Object.values(this.options.accessoriesType).length],
       hairColor: this.options.hairColor[randomBigNumber % Object.values(this.options.hairColor).length],
       facialHairType: this.options.facialHairType[randomBigNumber % Object.values(this.options.facialHairType).length],
+      facialHairColor: this.options.facialHairColor[randomBigNumber % Object.values(this.options.facialHairColor).length],
       clotheType: this.options.clotheType[randomBigNumber % Object.values(this.options.clotheType).length],
       clotheColor: this.options.clotheColor[randomBigNumber % Object.values(this.options.clotheColor).length],
       eyeType: this.options.eyeType[randomBigNumber % Object.values(this.options.eyeType).length],
