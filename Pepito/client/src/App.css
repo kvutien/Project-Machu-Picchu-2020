@@ -1,6 +1,7 @@
 .container {
   max-width: 42em;
   text-align: center;
+  background-color: #fbfff8;
 }
 
 h1 {
