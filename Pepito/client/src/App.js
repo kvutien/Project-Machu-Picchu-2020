@@ -4,9 +4,9 @@ import './App.css';                       // specific
 import OptionTable from './OptionTable'; 	// specific
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
+import getWeb3 from "./getWeb3";          // to call web3 API
 /* import PepitoContract from "../../build/contracts/Pepito.json";                 // to call web3 API
 // import PepitoDisguiseContract from "../../build/contracts/PepitoDisguise.json"; // to call web3 API */
-import getWeb3 from "./getWeb3";          // to call web3 API
 
 /**
  * @author Vu Tien Khang
@@ -24,7 +24,8 @@ class App extends Component {
       accessoriesType: ['Blank', 'Kurt', 'Prescription01', 'Prescription02', 'Round', 'Sunglasses', 'Wayfarers'],
       hairColor: ['Auburn', 'Black', 'Blonde', 'BlondeGolden', 'Brown', 'BrownDark', 'PastelPink', 'Platinum', 'Red', 'SilverGray'],
       facialHairType: ['BeardLight', 'BeardMagestic', 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum'],
-      clotheType: ['BlazerShirt', 'BlazerSweater', 'CollarSweater', 'GraphicShirt', 'Graphics', 'Hoodie', 'Overall', 'ShirtCrewNeck', 'ShirtScoopNeck', 'ShirtVNeck'],
+      //facialHairColor: ['Auburn', 'Black', 'Brown', 'BrownGolden', 'brownBlack', 'Platinum', 'red'],
+      clotheType: ['BlazerShirt', 'BlazerSweater', 'CollarSweater', 'GraphicShirt', /*'Graphics',*/ 'Hoodie', 'Overall', 'ShirtCrewNeck', 'ShirtScoopNeck', 'ShirtVNeck'],
       clotheColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
       eyeType: ['Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll', 'Happy', 'Hearts', 'Side', 'Squint', 'Surprised', 'Wink', 'WinkWacky'],
       eyebrowType: ['Angry', 'AngryNatural', 'Default', 'DefaultNatural', 'FlatNatural', 'FrownNatural', 'RaisedExcited', 'RaisedExcitedNatural', 'SadConcerned', 'SadConcernedNatural', 'UnibrowNatural', 'UpDown', 'UpDownNatural'],
@@ -43,10 +44,11 @@ class App extends Component {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
 
-    /** section copied from truffle react, to be adapted
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
+      console.log("accounts", accounts);
 
+    /** @dev section copied from truffle react, to be adapted
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = SimpleStorageContract.networks[networkId];
@@ -146,10 +148,10 @@ class App extends Component {
               <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise</button></td>
             </tr>
             <tr>
-              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise</button></td>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain</button></td>
             </tr>
             <tr>
-              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise</button></td>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain</button></td>
             </tr>
           </table>
         </div>

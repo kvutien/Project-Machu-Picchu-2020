@@ -33,7 +33,7 @@ class OptionTable extends React.Component {
         <ReactTable                // ReactTable is a component 
           data={data}              // props for ReactTable
           columns={columns}        // props for ReactTable
-          defaultPageSize={20}
+          defaultPageSize={12}
           className="-striped -highlight"
         />
       </div>
