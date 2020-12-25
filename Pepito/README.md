@@ -108,7 +108,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 * Clone the project via `git clone` [URL of the project]
 * Navidate to Pepito inside the cloned folder (should be `Machu-Picchu/Pepito`)
 * Install the required packages `npm install`
-* (23 Dec 2020) 
+* (25 Dec 2020) 
   * run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
   * manually copy the ABI `Pepito.json` and `PepitoDisguise.json` from `Pepito/build/contracts` to `pepito/client/src/contracts_abi` because `App.js` cannot read outside the directory `src` (I have to investigate this React limitation)
