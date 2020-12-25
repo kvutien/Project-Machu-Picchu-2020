@@ -55,15 +55,14 @@ class App extends Component {
         Pepito.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      const ownerPepito = await instance.methods.owner().call(); // <--- find another way to get address public owner
+      const ownerPepito = await instance.methods.owner().call();
       console.log("instance PepitoContract", instance, ". public variable 'owner' in Pepito", ownerPepito);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance, ownerPepito }, this.storeDisguise);
-    /** @dev section copied from truffle react, to be adapted
-    */
-  } catch (error) {
+  
+    } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`,
@@ -79,9 +78,6 @@ class App extends Component {
     // Stores a given value, 5 by default.
     await contract.methods.set(500).send({ from: accounts[0] });
 
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-
     // Update state with the result.
     this.setState({ storageValue: response });
   };
@@ -95,8 +91,12 @@ class App extends Component {
     console.log("user account in state", accounts, ". Pepito contract in state", contract, ". 'owner' variable in Pepito", ownerPepito);
     const pepitoDisguise = await contract.methods.createPepitoDisguise();
     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
-    /* await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
+    var topType = 1;    //  test value, should be the rank in the array of topType
+    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+    const storedDisguise = await pepitoDisguise.methods.storedDisguise().call();
+    console.log("storedDisguise", storedDisguise);
+
+    /* await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
     await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
@@ -128,7 +128,7 @@ class App extends Component {
           </div>:<div></div>	// if error is false
         }
         <header>
-          <h1 className="m-5">Random Pepito Disguise <sup>(not yet) on blockchain</sup></h1>
+          <h1 className="m-5">Pepito Disguises <sup>(not yet) on blockchain</sup></h1>
         </header>
         <div>
           <table>

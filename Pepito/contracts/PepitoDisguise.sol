@@ -21,12 +21,12 @@ contract PepitoDisguise {
     address pepitoDisguiseOwner;/// @dev    the owner of the disguise is Pepito
     uint balance;               /// @dev    running balance of pepitoTokens of this disguise
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
-    enum TopTypes {Eyepatch, Hat, Hijab, LongHairBigHair, LongHairBob, LongHairBun, LongHairCurly, LongHairCurvy, LongHairDreads, LongHairFrida, LongHairFro, LongHairFroBand, LongHairMiaWallace, LongHairNotTooLong, LongHairShavedSides, LongHairStraight, LongHairStraight2, LongHairStraightStrand, NoHair, ShortHairDreads01, ShortHairDreads02, ShortHairFrizzle, ShortHairShaggy, ShortHairShaggyMullet, ShortHairShortCurly, ShortHairShortFlat, ShortHairShortRound, ShortHairShortWaved, ShortHairSides, ShortHairTheCaesar, ShortHairTheCaesarSidePart, Turban, WinterHat1, WinterHat2, WinterHat3, WinterHat4}
+    enum TopTypes {Eyepatch, Hat, Hijab, LongHairBigHair, LongHairBob, LongHairBun, LongHairCurly, LongHairCurvy, LongHairDreads, LongHairFrida, LongHairFro, LongHairFroBand, LongHairMiaWallace, LongHairNotTooLong, LongHairShavedSides, LongHairStraight, LongHairStraight2, LongHairStraightStrand, NoHair, ShortHairDreads01, ShortHairDreads02, ShortHairFrizzle, /* ShortHairShaggy,*/ ShortHairShaggyMullet, ShortHairShortCurly, ShortHairShortFlat, ShortHairShortRound, ShortHairShortWaved, ShortHairSides, ShortHairTheCaesar, ShortHairTheCaesarSidePart, Turban, WinterHat1, WinterHat2, WinterHat3, WinterHat4}
     enum HatColors {Black, Blue01, Blue02, Blue03, Gray01, Gray02, Heather, PastelBlue, PastelGreen, PastelOrange, PastelRed, PastelYellow, Pink, Red, White}
     enum AccessoriesTypes {Blank, Kurt, Prescription01, Prescription02, Round, Sunglasses, Wayfarers}
     enum HairColors {Auburn, Black, Blonde, BlondeGolden, Brown, BrownDark, PastelPink, Platinum, Red, SilverGray}
     enum FacialHairTypes {BeardLight, BeardMagestic, BeardMedium, Blank, MoustacheFancy, MoustacheMagnum}
-    enum ClotheTypes {BlazerShirt, BlazerSweater, CollarSweater, GraphicShirt, Graphics, Hoodie, Overall, ShirtCrewNeck, ShirtScoopNeck, ShirtVNeck}
+    enum ClotheTypes {BlazerShirt, BlazerSweater, CollarSweater, GraphicShirt, /*Graphics,*/ Hoodie, Overall, ShirtCrewNeck, ShirtScoopNeck, ShirtVNeck}
     enum ClotheColors {Black, Blue01, Blue02, Blue03, Gray01, Gray02, Heather, PastelBlue, PastelGreen, PastelOrange, PastelRed, PastelYellow, Pink, Red, White}
     enum EyeTypes {Close, Cry, Default, Dizzy, EyeRoll, Happy, Hearts, Side, Squint, Surprised, Wink, WinkWacky}
     enum EyebrowTypes {Angry, AngryNatural, Default, DefaultNatural, FlatNatural, FrownNatural, RaisedExcited, RaisedExcitedNatural, SadConcerned, SadConcernedNatural, UnibrowNatural, UpDown, UpDownNatural}
