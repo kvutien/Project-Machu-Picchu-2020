@@ -111,6 +111,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 * (23 Dec 2020) 
   * run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
+  * manually copy the ABI `Pepito.json` and `PepitoDisguise.json` from `Pepito/build/contracts` to `pepito/client/src/contracts_abi` because `App.js` cannot read outside the directory `src` (I have to investigate this React limitation)
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
 * (once built and submitted)
   * run Ganache as your local Ethereum testnet
