@@ -97,7 +97,7 @@ order of function modifiers
         /// @dev    and contract is hopelessly FOOBAR
    }
     
-    function createPepitoDisguise() public returns(address) {
+    function createPepitoDisguise() public returns(PepitoDisguise) {
         /// @dev    deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
@@ -108,7 +108,7 @@ order of function modifiers
         pepitoDisguises[disguiseNumber] = address(pepitoDisguise);   // record disguise smart contract
         disguiseNumber += 1;
         emit PepitoDisguiseCreated(address(pepitoDisguise));
-        return address(pepitoDisguise);
+        return pepitoDisguise;
     }
     
     function getPepitoDisguise(uint i) external view returns(address) {
