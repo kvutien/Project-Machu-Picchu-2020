@@ -20,7 +20,7 @@ pragma solidity >=0.4.22 <0.8.0;
     @dev    - specially useful for persons-in-need because their contract will be their virtual secretary
     @dev        and will maintain their balance of tokens 
     @dev        and will execute the few orders sent via SMS by the persons-in-need
-    @dev Pepito contract only manages the array of addresses of disguise samrt contract
+    @dev Pepito contract only manages the array of addresses of disguise smart contract
 
     @dev    Remix-compiled successfully 2020-12-06
 */

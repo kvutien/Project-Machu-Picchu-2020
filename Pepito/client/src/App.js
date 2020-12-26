@@ -41,12 +41,12 @@ class App extends Component {
   async componentDidMount() {	//React hook that runs after the first render() lifecycle
     this.requestRandomNumber();
     try {
-      // Get network provider and web3 instance.
+      // Get network provider and web3 instance. 
       const web3 = await getWeb3();
-
+      console.log("web3", web3);
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-      //console.log("accounts", accounts);
+      console.log("accounts", accounts);
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
@@ -60,8 +60,8 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
+      console.log("1.user account", accounts, ".\n 1.Pepito contract", instance, ".\n  1.'owner' variable in Pepito", ownerPepito);  
       this.setState({ web3, accounts, contract: instance, ownerPepito }, );
-  
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -88,15 +88,20 @@ class App extends Component {
     * @dev to be refined and tested
     */
     const { accounts, contract, ownerPepito } = this.state;
-    console.log("user account in state", accounts, ". Pepito contract in state", contract, ". 'owner' variable in Pepito", ownerPepito);
+    /*
+    if (typeof contract !== 'undefined' && typeof ownerPepito !== 'undefined')  // make sure that web3 is loaded
+    */
+    console.log("user account in state", accounts, ".\n Pepito contract in state", contract, ". 'owner' variable in Pepito", ownerPepito);
     const pepitoDisguise = await contract.methods.createPepitoDisguise();
     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
-    var topType = 1;    //  test value, should be the rank in the array of topType
-    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+    var HatColor = 1;    //  test value, should be the rank in the array of HatColor
+    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
     const storedDisguise = await pepitoDisguise.methods.storedDisguise().call();
     console.log("storedDisguise", storedDisguise);
 
-    /* await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
+    /* 
+    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
     await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
     await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
