@@ -34,12 +34,12 @@ class App extends Component {
     }
     this.state.loading = false;
     this.storeDisguise = this.storeDisguise.bind(this);   // make storeDisguise know of "this"
+    this.setRandomDisguise();                           // set random set of disguise options
   }
 
   state = { storageValue: 0, web3: null, accounts: null, contract: null, ownerPepito: null };          // to call web3 API
 
   async componentDidMount() {	//React hook that runs after the first render() lifecycle
-    this.requestRandomNumber();
     try {
       // Get network provider and web3 instance. 
       const web3 = await getWeb3();
@@ -60,8 +60,13 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      console.log("1.user account", accounts, ".\n 1.Pepito contract", instance, ".\n  1.'owner' variable in Pepito", ownerPepito);  
-      this.setState({ web3, accounts, contract: instance, ownerPepito }, );
+  
+      this.setState({ web3, accounts, contract: instance, ownerPepito } 
+        ,() => {
+          console.log("1.user account", accounts,
+            ".\n 1.Pepito contract", instance,
+            ".\n  1.'owner' variable in Pepito", ownerPepito);
+        });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -139,7 +144,7 @@ class App extends Component {
           <table>
             <tr>
               <th rowspan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" /></th>
-              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.requestRandomNumber.bind(this)}>Generate random disguise</button></td>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.setRandomDisguise.bind(this)}>Generate random disguise</button></td>
             </tr>
             <tr>
               <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain</button></td>
@@ -193,30 +198,31 @@ class App extends Component {
     );
   }
 
-  async requestRandomNumber() {
+  async setRandomDisguise() {
     /** 
-    * @dev from stackOverflow, to be refined and tested
+     * @notice generate pseudo random values of uint32; use it to retrieve random disguise options
+     * @dev based on npm package
+     * @dev not truly random but good enough for demo purposes
     */
     var getRandomValues = require("get-random-values");	// import JS random generator from npm
-    var array = new Uint32Array(10);
-    getRandomValues(array); 	// fill array with random numbers
-    /// @dev end of section random generator to be tested
+    var array = new Uint32Array(1);
+    getRandomValues(array);           // fill array with random numbers
     let randomBigNumber = array[0]; 	// use 1st random number in the array
     this.setState({
         loading: true,
         randomBigNumber: randomBigNumber	// for use directly by getData()
     }
     ,() => {
-      this.getData();
+      this.getData();                     // retrieve random disguise options
     });
   }
 
   async getData() {
     /**
-     * @dev set the disguise state options
+     * @notice set the disguise options based on random number
      */
-    let randomBigNumber = this.state.randomBigNumber;	// read random number set in state by requestRandomNumber()
-    console.log("getData randomBigNumber", randomBigNumber, "modulo", randomBigNumber % Object.values(this.options.topType).length);
+    let randomBigNumber = this.state.randomBigNumber;	// read random number set in state by setRandomDisguise()
+    console.log("getData randomBigNumber", randomBigNumber);
     this.setState({   //random number --> position of the option in the array of options
       topType: this.options.topType[randomBigNumber % Object.values(this.options.topType).length],
       hatColor: this.options.hatColor[randomBigNumber % Object.values(this.options.hatColor).length],
