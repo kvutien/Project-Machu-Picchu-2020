@@ -18,15 +18,15 @@ In final the win-win situation is
 The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services taregting the same population is 10 times this amount.
 
 ## State of the project submitted end of December 2020
-See last section "ConsenSys Specifications of the dApp"
+See details in last section below: "ConsenSys Specifications of the dApp"
 * backend working, continuously improved
   * truffle project
   * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
   * smart contracts deployed locally using "truffle develop"
 * frontend operational locally
-  * use React
+  * React frontend
   * interfaced with web3.js and Metamask, recognizes Metamask current account
-  * reflect state change in UI: display address of deployed contract
+  * reflect state change in UI: displays address of deployed contract
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
   * have a README doc describing the overview of your project, how to set up and run etc.
