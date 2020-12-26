@@ -19,9 +19,9 @@ The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 
 
 ## State of the project submitted end of December 2020
 See last section "ConsenSys Specifications of the dApp"
-* backend working, under progressive development
+* backend working, continuously improved
   * truffle project
-  * implement design patterns "Circuit Breaker" and "Factory"
+  * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
   * smart contracts deployed locally using "truffle develop"
 * frontend operational locally
   * use React
@@ -128,7 +128,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
   * in `truffle develop` type `migrate`
   * manually copy the ABI `Pepito.json` and `PepitoDisguise.json` from `Pepito/build/contracts` to `pepito/client/src/contracts_abi` because `App.js` cannot read outside the directory `src` (I have to investigate this React limitation)
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
-* (once built and submitted)
+* (*TODO: once built and submitted*)
   * run Ganache as your local Ethereum testnet
   * run `truffle migrate`: it will use account 0 of the 10 Ganache-generated accounts
   * connect Metamask to the local network of Ganache (if Ganache CLI, should be http://127.0.0.1:8545) and import the first 2 Ganache accounts into Metamask
