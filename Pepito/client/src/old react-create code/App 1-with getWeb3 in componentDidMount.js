@@ -1,4 +1,4 @@
-// class App.js v2.0 of Dec 26,2020
+// class App.js
 import React, { Component } from 'react';	// from node.js module
 import './App.css';                       // specific
 import OptionTable from './OptionTable'; 	// specific
@@ -11,16 +11,14 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web
 /**
  * @author Vu Tien Khang
  * @notice React root component for Pepito frontend
- * @dev disguise random options done
  * @dev web3 calls work in progress
- * @dev calling functions in PepitoDisguise to be done
  */
 class App extends Component {
 
   constructor() {
-    super()           // ES6 class constructors MUST call super if they are subclasses
-    this.state = {};	// state holds variables of the component App
-    this.options = {	// disguise options
+    super()	//ES6 class constructors MUST call super if they are subclasses
+    this.state = {};	//state holds variables of the component App
+    this.options = {	//disguise options to react-select
       topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
       hatColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
       accessoriesType: ['Blank', 'Kurt', 'Prescription01', 'Prescription02', 'Round', 'Sunglasses', 'Wayfarers'],
@@ -35,31 +33,22 @@ class App extends Component {
       skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
     }
     this.state.loading = false;
-    this.state.web3Connect = false;
-    this.storeDisguise = this.storeDisguise.bind(this);         // make storeDisguise know of "this"
-    this.setRandomDisguise = this.setRandomDisguise.bind(this); // make setRandomDisguise know of "this"
-    this.makePepito = this.makePepito.bind(this);               // make makePepito know of "this"
-    this.setRandomDisguise();                                   // set random set of disguise options
-    this.makePepito();                                          // connect to blockchain, create instance of Pepito
+    this.storeDisguise = this.storeDisguise.bind(this);   // make storeDisguise know of "this"
+    this.setRandomDisguise();                           // set random set of disguise options
   }
 
-  state = { web3: null, accounts: null, contract: null, ownerPepito: null };          // to call web3 API
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, ownerPepito: null };          // to call web3 API
 
-  async makePepito() {
-  /**
-  * @notice connect web3 API and create Pepito contract
-  * @dev access to blockchain via Metamask
-  * @dev get the account of the user (to store disguises)
-  * @dev create a Pepito singleton contract
-  */
+  async componentDidMount() {	//React hook that runs after the first render() lifecycle
     try {
-      // Get network provider and web3 instance by several channels 
+      // Get network provider and web3 instance. 
       const web3 = await getWeb3();
-      //console.log("web3", web3);
+      console.log("web3", web3);
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
+      console.log("accounts", accounts);
 
-      // Create a Pepito contract instance
+      // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = Pepito.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -67,8 +56,11 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
       const ownerPepito = await instance.methods.owner().call();
+      console.log("instance PepitoContract", instance, ". public variable 'owner' in Pepito", ownerPepito);
 
-      // Set web3, accounts, and contract to the state
+      // Set web3, accounts, and contract to the state, and then proceed with an
+      // example of interacting with the contract's methods.
+  
       this.setState({ web3, accounts, contract: instance, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
@@ -82,11 +74,6 @@ class App extends Component {
       );
       console.error(error);
     }
-  }
-
-
-  async componentDidMount() {	//React hook that runs after the first render() lifecycle
-    
   };
 
   /** section copied from truffle react, to be adapted
@@ -99,7 +86,7 @@ class App extends Component {
     // Update state with the result.
     this.setState({ storageValue: response });
   };
-  */ 
+    */ 
 
   async storeDisguise() {
     /** 
@@ -109,7 +96,7 @@ class App extends Component {
     /*
     if (typeof contract !== 'undefined' && typeof ownerPepito !== 'undefined')  // make sure that web3 is loaded
     */
-    console.log("storeDisguise, user account in state", accounts, ".\n Pepito contract in state", contract, ".\n  'owner' variable in Pepito", ownerPepito);
+    console.log("user account in state", accounts, ".\n Pepito contract in state", contract, ". 'owner' variable in Pepito", ownerPepito);
     const pepitoDisguise = await contract.methods.createPepitoDisguise();
     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
     var HatColor = 1;    //  test value, should be the rank in the array of HatColor
@@ -155,18 +142,16 @@ class App extends Component {
         </header>
         <div>
           <table>
-            <tbody>
-              <tr>
-                <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" /></th>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.setRandomDisguise.bind(this)}>Generate random disguise</button></td>
-              </tr>
-              <tr>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain</button></td>
-              </tr>
-              <tr>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain</button></td>
-              </tr>
-            </tbody>
+            <tr>
+              <th rowspan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" /></th>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.setRandomDisguise.bind(this)}>Generate random disguise</button></td>
+            </tr>
+            <tr>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain</button></td>
+            </tr>
+            <tr>
+              <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain</button></td>
+            </tr>
           </table>
         </div>
         {this.state.loading ?

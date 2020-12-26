@@ -55,11 +55,11 @@ class App extends Component {
     try {
       // Get network provider and web3 instance by several channels 
       const web3 = await getWeb3();
-      //console.log("web3", web3);
+      console.log("web3", web3);
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
-      // Create a Pepito contract instance
+      // Get the Pepito contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = Pepito.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -68,7 +68,9 @@ class App extends Component {
       );
       const ownerPepito = await instance.methods.owner().call();
 
-      // Set web3, accounts, and contract to the state
+      // Set web3, accounts, and contract to the state, and then proceed with an
+      // example of interacting with the contract's methods.
+  
       this.setState({ web3, accounts, contract: instance, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
@@ -86,7 +88,6 @@ class App extends Component {
 
 
   async componentDidMount() {	//React hook that runs after the first render() lifecycle
-    
   };
 
   /** section copied from truffle react, to be adapted

@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 const getWeb3 = () =>
   new Promise((resolve, reject) => {
-    // Wait for Metamask loading completion to avoid race conditions with web3 injection timing.
+    // Wait for page loading completion to avoid race conditions with web3 injection timing.
     window.addEventListener("load", async () => {
       // Modern dapp browsers...
       if (window.ethereum) {
