@@ -67,13 +67,15 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
       const ownerPepito = await instance.methods.owner().call();
+      var web3Connect = true;
 
       // Set web3, accounts, and contract to the state
-      this.setState({ web3, accounts, contract: instance, ownerPepito } 
+      this.setState({ web3, accounts, contract: instance, web3Connect, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
             ".\n 1.Pepito contract", instance,
-            ".\n  1.'owner' variable in Pepito", ownerPepito);
+            ".\n  1.web3Connect", web3Connect,
+            ".\n    1.'owner' variable in Pepito", ownerPepito);
         });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -105,11 +107,14 @@ class App extends Component {
     /** 
     * @dev to be refined and tested
     */
-    const { accounts, contract, ownerPepito } = this.state;
+    const { accounts, contract, web3Connect, ownerPepito } = this.state;
     /*
     if (typeof contract !== 'undefined' && typeof ownerPepito !== 'undefined')  // make sure that web3 is loaded
     */
-    console.log("storeDisguise, user account in state", accounts, ".\n Pepito contract in state", contract, ".\n  'owner' variable in Pepito", ownerPepito);
+    console.log("storeDisguise, user account", accounts,
+      ".\n storeDisguise, Pepito contract", contract,
+      ".\n  storeDisguise, web3Connect", web3Connect,
+      ".\n   storeDisguise, 'owner' variable in Pepito", ownerPepito);
     const pepitoDisguise = await contract.methods.createPepitoDisguise();
     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
     var HatColor = 1;    //  test value, should be the rank in the array of HatColor
