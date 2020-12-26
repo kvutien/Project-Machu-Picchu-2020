@@ -115,27 +115,29 @@ class App extends Component {
       ".\n storeDisguise, Pepito contract", contract,
       ".\n  storeDisguise, web3Connect", web3Connect,
       ".\n   storeDisguise, 'owner' variable in Pepito", ownerPepito);
-    const pepitoDisguise = await contract.methods.createPepitoDisguise();
-    console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
-    var HatColor = 1;    //  test value, should be the rank in the array of HatColor
-    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
-    const storedDisguise = await pepitoDisguise.methods.storedDisguise().call();
-    console.log("storedDisguise", storedDisguise);
+    if(web3Connect){
+      const pepitoDisguise = await contract.methods.createPepitoDisguise();
+      console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
+      var HatColor = 1;    //  test value, should be the rank in the array of HatColor
+      await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
+      const storedDisguise = await pepitoDisguise.methods.storedDisguise().call();
+      console.log("storedDisguise", storedDisguise);
 
-    /* 
-    await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setFacialHairColor().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setClotheType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setClotheColor().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setEyeType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setEyebrowType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
-    await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
-    */
+      /* 
+      await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setFacialHairColor().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setClotheType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setClotheColor().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setEyeType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setEyebrowType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
+      await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
+      */
+    }
   }
 
   async getDisguise() {
