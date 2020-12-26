@@ -29,7 +29,14 @@ table {
 
 tr td {
   text-align: center;
+  font-size: 60%;
+  overflow-wrap: break-word;
   width: 60%;
+}
+
+.tdaddr {
+  color: #e1efd8;
+  font-size:xx-small;
 }
 
 .disabled {

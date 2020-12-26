@@ -70,12 +70,13 @@ class App extends Component {
       var web3Connect = true;
 
       // Set web3, accounts, and contract to the state
-      this.setState({ web3, accounts, contract: instance, web3Connect, ownerPepito } 
+      this.setState({ web3, accounts, contract: instance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
-            ".\n 1.Pepito contract", instance,
-            ".\n  1.web3Connect", web3Connect,
-            ".\n    1.'owner' variable in Pepito", ownerPepito);
+          ".\n 1.Pepito contract", instance,
+          ".\n  1.Pepito contract address", this.state.pepitoAddress,
+          ".\n   1.web3Connect", web3Connect,
+          ".\n    1.'owner' variable in Pepito", ownerPepito);
         });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -137,7 +138,7 @@ class App extends Component {
       await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
       await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
       */
-    }
+    } else alert("Please reload page first, to get connected to local blockchain");
   }
 
   async getDisguise() {
@@ -164,14 +165,19 @@ class App extends Component {
           <table>
             <tbody>
               <tr>
-                <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="100" height="100" /></th>
+                <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="120" height="120" /></th>
                 <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.setRandomDisguise.bind(this)}>Generate random disguise</button></td>
               </tr>
               <tr>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain</button></td>
+                <td><button className="btn btn-lg btn-secondary mb-5" 
+                onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain (WIP - Reload page if crash)
+                </button></td>
+                <td>Pepito Address {this.state.pepitoAddress}</td>
               </tr>
               <tr>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain</button></td>
+                <td><button className="btn btn-lg btn-secondary mb-5 disabled" 
+                onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain: INACTIVE - WIP -
+                </button></td>
               </tr>
             </tbody>
           </table>

@@ -17,6 +17,21 @@ In final the win-win situation is
 
 The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services taregting the same population is 10 times this amount.
 
+## State of the project submitted end of December 2020
+See last section "ConsenSys Specifications of the dApp"
+* backend working, under progressive development
+  * truffle project
+  * implement design patterns "Circuit Breaker" and "Factory"
+  * smart contracts deployed locally using "truffle develop"
+* frontend operational locally
+  * use React
+  * interfaced with web3.js and Metamask, recognizes Metamask current account
+  * reflect state change in UI: display address of deployed contract
+* git
+  * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
+  * have a README doc describing the overview of your project, how to set up and run etc.
+  * have a document called design_pattern_decisions.md explaining which design patterns you used
+
 # Design
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once a person-in-need is recorded, all humanitarian organisations can access the data, and this person keeps full control on these personal data.
@@ -142,8 +157,8 @@ Big thanks to the following resources:
 
 The front end is liberally inspired from this project [(https://github.com/keep-network/random-avatar)](https://github.com/keep-network/random-avatar) and this project [(https://github.com/fangpenlin/avataaars)](https://github.com/fangpenlin/avataaars)
 * (**done**) Have a development server to serve the frontend interaction of the application locally (You should be able to visit a local URL and interact with the application)
-  +	(in progress) Frontend should work with `web3.js` / `ethers.js`, Infura and MetaMask to: 
-  +	(in progress) Recognize and display current Metamask account
+  +	(**done**) Frontend should work with `web3.js` / `ethers.js`, Infura and MetaMask to: 
+  +	(**done**) Recognize and display current Metamask account
   +	(in progress) Sign transactions that change a deployed contract’s state using MetaMask
 *	(**done**) Reflect the successful state change in the UI
 
