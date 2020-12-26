@@ -120,20 +120,21 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 * Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
 * Install node.js via brew `brew install node`
 * Navigate to the folder where you want to clone the Machu-Picchu project
-* Clone the project via `git clone` [URL of the project]
-* Navidate to Pepito inside the cloned folder (should be `Machu-Picchu/Pepito`)
+* Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
+* Navidate to Pepito inside the cloned folder (`Machu-Picchu/Pepito`)
 * Install the required packages `npm install`
-* (25 Dec 2020) 
+* (as of end Dec 2020) 
   * run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
   * manually copy the ABI `Pepito.json` and `PepitoDisguise.json` from `Pepito/build/contracts` to `pepito/client/src/contracts_abi` because `App.js` cannot read outside the directory `src` (I have to investigate this React limitation)
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
-* (*TODO: once built and submitted*)
-  * run Ganache as your local Ethereum testnet
-  * run `truffle migrate`: it will use account 0 of the 10 Ganache-generated accounts
-  * connect Metamask to the local network of Ganache (if Ganache CLI, should be http://127.0.0.1:8545) and import the first 2 Ganache accounts into Metamask
-* Run the app `npm run demo`
-* Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
+  * Run the app `npm run demo`
+  * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
+* (*TODO: target setup process, to be detailed and tested*)
+  * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
+  * run `truffle migrate --network` (your testnet)
+  * connect Metamask to this testnet where your account has some ETH
+  * run the app `heroku URL` or `IPFS`
 
 ## Credits
 Big thanks to the following resources:
