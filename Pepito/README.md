@@ -25,12 +25,12 @@ See details in last section below: "ConsenSys Specifications of the dApp"
   * smart contracts deployed locally using "truffle develop"
 * frontend operational locally
   * React frontend
-  * interfaced with web3.js and Metamask, recognizes Metamask current account
+  * interfaced with `web3.js` and Metamask, recognizes Metamask current account
   * reflect state change in UI: displays address of deployed contract (shameful hack to comply with submission specs but will be improved :-)
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
-  * have a README doc describing the overview of your project, how to set up and run etc.
-  * have a document called design_pattern_decisions.md explaining which design patterns you used
+  * have a README doc describing the overview of your project, how to set up and run etc. Read the MacOS section.
+  * have a document called `design_pattern_decisions.md` explaining which design patterns you used
 
 # Design
 ## Smart contract backend design
