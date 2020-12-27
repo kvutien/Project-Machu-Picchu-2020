@@ -94,10 +94,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 │   │       ├── index.js
 │   │       ├── logo.svg
 │   │       ├── old\ react-create\ code
-│   │       │   ├── App\ 1-with\ getWeb3\ in\ componentDidMount.js
-│   │       │   ├── App\ 2-with\ getWeb3\ in\ constructor.js
-│   │       │   ├── App\ copy.css
-│   │       │   └── App\ copy.js
+...
 │   │       ├── reportWebVitals.js
 │   │       └── setupTests.js
 │   ├── contracts
