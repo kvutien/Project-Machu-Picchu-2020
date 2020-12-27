@@ -42,7 +42,8 @@ Other contributions are welcome and could be:
 * a management system of helper institutions, n-to-n connected to persons in need
 * modify the cost-free person-in-need on-boarding, using meta-transactions paid by helper institutions
 * progressive improvements. See White Paper (FileCoin can be added at any stage).
-## Vision of Technical Stack in the future
+## Vision of Technical Stack
+A vision of the complete Technical Stack that can be used for _Machu Picchu_ is, in December 2020 and if we have 2-3 M$ immediately available :-)
 ![Technical Stack](https://github.com/kvutien/Machu-Picchu/blob/main/20201029%20Machu%20Picchu%20Tech%20Stack.png)
 
 # Contributing
