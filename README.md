@@ -17,13 +17,13 @@ After the bootcamp, I'll make it grow in complexity and in useability by adding 
 
 OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a _person in need_ and his/her _virtual personal secretary_ (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
 
-## and why this name _Machu Picchu_?
+## why this name _Machu Picchu_?
 * Remember how centralised was the Inca empire? -- _it was very centralised_
 * Remember what happened to it? _conquered by only 168 men, one cannon, and 27 horses_
 
 # Advantages of _Machu Picchu_
 1. This will make "_Data as a Public Service_". Data collected by any social relief organisation are available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each _person in need_ to remain owner of his/her personal data, taking advantage of IPFS and of the _virtual personal secretary_.
-2. Using blockchain tokens allows *"Cash & Voucher Assistance"* programs to do micro-payments in full trust and reduced risk of corruption and theft, while at the same time avoid the high banking overhead when distributing small amounts of cash.
+2. Using blockchain tokens allows *"Cash & Voucher Assistance"* programs (USD 5.6 Bn in 2019) to do micro-payments in full trust and reduced risk of corruption and theft, while at the same time avoid the high banking overhead when distributing small amounts of cash.
 3. Using blockchain DEX allows persons-in-need to collect, exchange and buble tokens from a number of cooperating helper organisations into a significant sum, that can be redeemed as fiat with the lowest overhead possible, and used to buy medicine, education, tools etc.
 
 # Specifications of project Pepito, December 2020
