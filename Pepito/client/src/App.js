@@ -11,9 +11,10 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web
 /**
  * @author Vu Tien Khang
  * @notice React root component for Pepito frontend
- * @dev disguise random options done
- * @dev web3 calls work in progress
- * @dev calling functions in PepitoDisguise to be done
+ * @dev disguise random options - done
+ * @dev web3 calls - work in progress
+ * @dev creating Pepito and PepitoDisguise - done
+ * @dev calling functions in PepitoDisguise - to be done
  */
 class App extends Component {
 
@@ -34,7 +35,7 @@ class App extends Component {
       mouthType: ['Concerned', 'Default', 'Disbelief','Eating', 'Grimace', 'Sad', 'ScreamOpen', 'Serious', 'Smile', 'Tongue', 'Twinkle', 'Vomit'],
       skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
     }
-    this.state.loading = false;
+    this.state.loading = false;                                 // for use in future testnet
     this.state.web3Connect = false;
     this.storeDisguise = this.storeDisguise.bind(this);         // make storeDisguise know of "this"
     this.setRandomDisguise = this.setRandomDisguise.bind(this); // make setRandomDisguise know of "this"
@@ -48,18 +49,16 @@ class App extends Component {
   async makePepito() {
   /**
   * @notice connect web3 API and create Pepito contract
-  * @dev access to blockchain via Metamask
-  * @dev get the account of the user (to store disguises)
-  * @dev create a Pepito singleton contract
   */
     try {
-      // Get network provider and web3 instance by several channels 
+      /// @dev access to blockchain via Metamask
+      /// @dev get network provider and web3 instance by trying several channels 
       const web3 = await getWeb3();
       //console.log("web3", web3);
-      // Use web3 to get the user's accounts.
+      /// @dev use web3 to get the account of the user
       const accounts = await web3.eth.getAccounts();
 
-      // Create a Pepito contract instance
+      /// @dev create a Pepito singleton contract instance
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = Pepito.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -69,17 +68,17 @@ class App extends Component {
       const ownerPepito = await instance.methods.owner().call();
       var web3Connect = true;
 
-      // Set web3, accounts, and contract to the state
+      /// @dev set web3, accounts, and contract to the state 
       this.setState({ web3, accounts, contract: instance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
-          ".\n 1.Pepito contract", instance,
+          ".\n 1.makePepito().Pepito contract", instance,
           ".\n  1.Pepito contract address", this.state.pepitoAddress,
           ".\n   1.web3Connect", web3Connect,
           ".\n    1.'owner' variable in Pepito", ownerPepito);
         });
     } catch (error) {
-      // Catch any errors for any of the above operations.
+      /// @dev catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`,
       );
@@ -89,16 +88,14 @@ class App extends Component {
 
 
   async componentDidMount() {	//React hook that runs after the first render() lifecycle
-    
+    /// @notice placeholder
   };
 
-  /** section copied from truffle react, to be adapted
+  /** @notice section copied from truffle react, to be ignored
   runExample = async () => {
     const { accounts, contract } = this.state;
-
     // Stores a given value, 5 by default.
     await contract.methods.set(500).send({ from: accounts[0] });
-
     // Update state with the result.
     this.setState({ storageValue: response });
   };
@@ -106,18 +103,18 @@ class App extends Component {
 
   async storeDisguise() {
     /** 
-    * @dev to be refined and tested
+    * @notice create a PepitoDisguise and store the options of this disguise
+    * @dev WIP - to be refined and tested
     */
     const { accounts, contract, web3Connect, ownerPepito } = this.state;
-    /*
-    if (typeof contract !== 'undefined' && typeof ownerPepito !== 'undefined')  // make sure that web3 is loaded
-    */
     console.log("storeDisguise, user account", accounts,
-      ".\n storeDisguise, Pepito contract", contract,
-      ".\n  storeDisguise, web3Connect", web3Connect,
-      ".\n   storeDisguise, 'owner' variable in Pepito", ownerPepito);
+      ".\n 2.storeDisguise, Pepito contract", contract,
+      ".\n  2.storeDisguise, web3Connect", web3Connect,
+      ".\n   2.storeDisguise, 'owner' variable in Pepito", ownerPepito);
+
     if(web3Connect){
       const pepitoDisguise = await contract.methods.createPepitoDisguise();
+      /// @dev bug to be changed: pepitoDisguise is currently a transaction object, not an address
       console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
       var HatColor = 1;    //  test value, should be the rank in the array of HatColor
       await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
@@ -143,12 +140,13 @@ class App extends Component {
 
   async getDisguise() {
     /** 
-    * @dev to be refined and tested
+    * @notice retrieve a PepitoDisguise and display it
+    * @dev to be done
     */
   }
 
-  render() {	/** @dev React main display renderer */
-    /** @dev retrieve pepito disguise options from this.state */
+  render() {
+    /// @dev retrieve pepito disguise options from this.state
     const {topType, hatColor, accessoriesType, hairColor, facialHairType, facialHairColor,
       clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.state;
     return (
@@ -228,20 +226,19 @@ class App extends Component {
 
   async setRandomDisguise() {
     /** 
-     * @notice generate pseudo random values of uint32; use it to retrieve random disguise options
-     * @dev based on npm package
+     * @notice generate pseudo random values of uint32, to retrieve random disguise options
      * @dev not truly random but good enough for demo purposes
     */
-    var getRandomValues = require("get-random-values");	// import JS random generator from npm
+    var getRandomValues = require("get-random-values");	/// @dev import JS random generator from npm
     var array = new Uint32Array(1);
-    getRandomValues(array);           // fill array with random numbers
-    let randomBigNumber = array[0]; 	// use 1st random number in the array
+    getRandomValues(array);           /// @dev fill array with random numbers
+    let randomBigNumber = array[0]; 	/// @dev use 1st random number in the array
     this.setState({
         loading: true,
-        randomBigNumber: randomBigNumber	// for use directly by getData()
+        randomBigNumber: randomBigNumber	/// @dev random number for use directly by getData()
     }
     ,() => {
-      this.getData();                     // retrieve random disguise options
+      this.getData();                     /// @dev set random disguise options
     });
   }
 
@@ -249,9 +246,9 @@ class App extends Component {
     /**
      * @notice set the disguise options based on random number
      */
-    let randomBigNumber = this.state.randomBigNumber;	// read random number set in state by setRandomDisguise()
+    let randomBigNumber = this.state.randomBigNumber;	/// @dev read random number set in state by setRandomDisguise()
     console.log("getData randomBigNumber", randomBigNumber);
-    this.setState({   //random number --> position of the option in the array of options
+    this.setState({   /// @dev random number --> position of the option in the array of options
       topType: this.options.topType[randomBigNumber % Object.values(this.options.topType).length],
       hatColor: this.options.hatColor[randomBigNumber % Object.values(this.options.hatColor).length],
       accessoriesType: this.options.accessoriesType[randomBigNumber % Object.values(this.options.accessoriesType).length],

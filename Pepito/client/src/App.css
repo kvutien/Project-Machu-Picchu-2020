@@ -1,5 +1,5 @@
 .container {
-  max-width: 42em;
+  max-width: 52em;
   margin: auto;
   text-align: center;
   background-color: #f8fff3;
@@ -21,7 +21,7 @@ h1 sup {
 }
 
 table {
-  width: 55%;
+  width: 65%;
   margin: auto;
   text-align: center;
   border-collapse: separate;

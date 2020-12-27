@@ -7,7 +7,7 @@
 
 # develop
 .eslintcache
-/.vscode
+.vscode/
 
 # testing
 /coverage
