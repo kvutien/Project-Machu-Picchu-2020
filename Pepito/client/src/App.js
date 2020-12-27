@@ -6,7 +6,7 @@ import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
-import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API
+import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
 
 /**
  * @author Vu Tien Khang - December 2020
