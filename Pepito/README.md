@@ -77,22 +77,25 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 │   │   │   ├── logo512.png
 │   │   │   ├── machupicchu_logo.png
 │   │   │   ├── manifest.json
-│   │   │   └── robots.txt
+│   │   │   ├── robots.txt
+│   │   │   └── xmas.png
 │   │   └── src
 │   │       ├── App.css
 │   │       ├── App.js
 │   │       ├── App.test.js
 │   │       ├── OptionTable-v7.js
 │   │       ├── OptionTable.js
-│   │       ├── React_Avataar_Table.css
-│   │       ├── React_Avataar_Table.html
 │   │       ├── React_Avataar_Table.tgn
 │   │       ├── contracts_abi
+│   │       │   ├── Pepito.json
+│   │       │   └── PepitoDisguise.json
 │   │       ├── getWeb3.js
 │   │       ├── index.css
 │   │       ├── index.js
 │   │       ├── logo.svg
 │   │       ├── old\ react-create\ code
+│   │       │   ├── App\ 1-with\ getWeb3\ in\ componentDidMount.js
+│   │       │   ├── App\ 2-with\ getWeb3\ in\ constructor.js
 │   │       │   ├── App\ copy.css
 │   │       │   └── App\ copy.js
 │   │       ├── reportWebVitals.js
@@ -103,14 +106,14 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 │   │   ├── Migrations.sol
 │   │   ├── Pepito.sol
 │   │   └── PepitoDisguise.sol
+│   ├── design_pattern_decisions.md
 │   ├── migrations
 │   │   ├── 1_initial_migration.js
 │   │   └── 2_deploy_contracts.js
 │   ├── test
 │   │   ├── PepitoDisguiseTest.js
 │   │   └── PepitoTest.js
-│   ├── truffle-config.js
-│   └── ~$Final\ Project\ Design.pptx
+│   └── truffle-config.js
 └── README.md
 ```
 
