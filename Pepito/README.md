@@ -19,7 +19,7 @@ The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 
 
 ## State of the project submitted end of December 2020
 See details in last section below: "ConsenSys Specifications of the dApp"
-* [demo video:](https://youtu.be/BPxhSxSpo5A) 
+* [demo video: https://youtu.be/BPxhSxSpo5A](https://youtu.be/BPxhSxSpo5A) 
 * backend working, still continuously improved
   * truffle project
   * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
