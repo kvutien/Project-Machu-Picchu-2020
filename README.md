@@ -13,7 +13,7 @@ The need to share data among humanitarians is recognized. The addressable market
 In my Final Project of the ConsenSys bootcamp, I'll initiate _Machu Picchu_ with [**Pepito**](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito), a simple dApp. It will take form of a game where users are able to build a character with components of its face: hair, eyes, nose, mouth, clothes, accessories). Then the user will record it on the blockchain where all other users may see. [Here is the Medium description](https://kvutien-yes.medium.com/machu-picchu-why-should-humanitarian-organizations-be-interested-in-using-blockchain-360bbfcb88f5). It's a gamification of a person-in-need's real life record, targeted at helping the staff members of humanitarians demystify blockchain away from cryptos, dark nets and speculations.
 ![Target look](https://github.com/kvutien/Machu-Picchu/blob/main/20201128%20Avatars.jpeg). Credits: [the React library of Fang Pen Lin](https://github.com/fangpenlin/avataaars)
 
-After the bootcamp, I'll make it grow in complexity and in useability by adding IPFS and OrbitDB or textile. It will be the theme of my participation in future hackathons. The project is open source and collaborative; let's make it happen together.
+After the bootcamp, I'll make it grow in complexity and in useability by adding IPFS and OrbitDB or textile. It will be the theme of my participation in future hackathons. The project is open source and collaborative. **Let's make it happen together.**
 
 OrbitDB is a Document Database, like MongoDB, instead of being a Relation Database, like MySQL. Document Database is suited for our purpose because we need no complex relation tables. The database contains JSON objects describing a _person in need_ and his/her _virtual personal secretary_ (actually a wallet and various data that can be used to optimise social relief programs). The final purpose is to make this tool and its data available as open source to all international organisations providing benefits to disinherited people: refugees, microfinance customers and in general all beneficiairies of aids etc. 
 
@@ -23,8 +23,8 @@ OrbitDB is a Document Database, like MongoDB, instead of being a Relation Databa
 
 # Advantages of _Machu Picchu_
 1. This will make "_Data as a Public Service_". Data collected by any social relief organisation are available and usable by others. Having the data on blockchain makes it trustable, open to the public and at the same time allows each _person in need_ to remain owner of his/her personal data, taking advantage of IPFS and of the _virtual personal secretary_.
-2. Using blockchain tokens allows *"Cash & Voucher Assistance"* programs (USD 5.6 Bn in 2019) to do micro-payments in full trust and reduced risk of corruption and theft, while at the same time avoid the high banking overhead when distributing small amounts of cash.
-3. Using blockchain DEX allows persons-in-need to collect, exchange and buble tokens from a number of cooperating helper organisations into a significant sum, that can be redeemed as fiat with the lowest overhead possible, and used to buy medicine, education, tools etc.
+2. Using blockchain tokens allows *"Cash & Voucher Assistance"* programs --USD 5.6 Bn in 2019-- to do micro-payments in full trust and reduced risk of corruption and theft, while at the same time avoids the high banking overhead when distributing small amounts of cash.
+3. Using blockchain DEX allows persons-in-need to collect, exchange and bundle tokens from a number of cooperating helper organisations into a significant sum, that can be redeemed as fiat with the lowest overhead possible, and used to buy medicine, education, tools etc.
 
 # Specifications of project Pepito, December 2020
 [The project is here](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito). 
