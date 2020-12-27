@@ -26,8 +26,10 @@ pragma solidity >=0.4.22 <0.8.0;
 */
 
 import "./PepitoDisguise.sol";
+import "../client/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
 
 contract Pepito {
+    using SafeMath for uint256;
 /* order of statements inside de contract
     1.	    State variables
     2.	    Struct, Arrays or Enums
@@ -107,6 +109,7 @@ order of function modifiers
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
         pepitoDisguises[disguiseNumber] = address(pepitoDisguise);   // record disguise smart contract
         disguiseNumber += 1;
+        // disguiseNumber = add(disguiseNumber, uint256(1));
         emit PepitoDisguiseCreated(address(pepitoDisguise));
         return pepitoDisguise;
     }
