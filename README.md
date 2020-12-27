@@ -1,5 +1,5 @@
 # _Machu-Picchu_
-[![Vu Tien's github stats](https://github-readme-stats.vercel.app/api?username=kvutien)](https://github.com/anuraghazra/github-readme-stats) [tool courtesy Anurag Hazra](https://github.com/anuraghazra/github-readme-stats)
+[![Vu Tien's github stats](https://github-readme-stats.vercel.app/api?username=kvutien)](https://github.com/anuraghazra/github-readme-stats) [stats tool courtesy Anurag Hazra](https://github.com/anuraghazra/github-readme-stats)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=kvutien)](https://github.com/anuraghazra/github-readme-stats)
 
