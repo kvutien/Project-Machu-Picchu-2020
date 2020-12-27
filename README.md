@@ -34,7 +34,8 @@ The dApp offers 3 actions in its current stage: create disguise, read disguise, 
 * Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update
 ## Roadmap of _Machu Picchu_
 Contributors can develop independently and contribute as a distinct project.
-* the first contribution is Pepito, a demonstration game [(this Final Project)](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito)
+* the first contribution is the hackhaton ETH-Online 2020, [a first idea but too complex](https://github.com/Machu-Pichu/hackathon/)
+* the second contribution is Pepito, a demonstration game [(this Final Project)](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito)
 
 Other contributions are welcome and could be:
 * a data management system to on-board, list and modify the persons in need, using OrbitDB and IPFS, with decentralised data schemas
