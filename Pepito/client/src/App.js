@@ -9,7 +9,7 @@ import Pepito from "./contracts_abi/Pepito.json";                 // to call web
 import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API
 
 /**
- * @author Vu Tien Khang
+ * @author Vu Tien Khang - December 2020
  * @notice React root component for Pepito frontend
  * @dev disguise random options - done
  * @dev web3 calls - work in progress
@@ -157,7 +157,7 @@ class App extends Component {
           </div>:<div></div>	// if error is false
         }
         <header>
-          <h1 className="m-5">Pepito Disguises <sup>(not yet) on blockchain</sup></h1>
+          <h1 className="m-5">Pepito Disguises <sup>on blockchain</sup></h1>
         </header>
         <div>
           <table>
