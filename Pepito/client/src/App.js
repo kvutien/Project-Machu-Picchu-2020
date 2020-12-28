@@ -1,7 +1,8 @@
 // class App.js v2.0 of Dec 26,2020
 import React, { Component } from 'react';	// from node.js module
-import './App.css';                       // specific
-import OptionTable from './OptionTable'; 	// specific
+import './App.css';                                 // specific
+//import { setRandomDisguise } from './helpers';    // specific - to be tested
+import OptionTable from './OptionTable'; 	          // specific
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
@@ -19,7 +20,7 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web
 class App extends Component {
 
   constructor() {
-    super()           // run super before running the constructor of the derived class
+    super()           // run super to create 'Component' before running the constructor of the derived class 
     this.state = {};	// state holds variables of the component App
     this.options = {	// disguise options
       topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
@@ -226,50 +227,62 @@ class App extends Component {
 
   async setRandomDisguise() {
     /** 
-     * @notice generate pseudo random values of uint32, to retrieve random disguise options
+     * @notice set the disguise options based on random number
+     * @dev generate pseudo random values of uint32, to retrieve random disguise options
      * @dev not truly random but good enough for demo purposes
     */
-    var getRandomValues = require("get-random-values");	/// @dev import JS random generator from npm
+    var getRandomValues = require("../node_modules/get-random-values");	/// @dev import JS random generator from npm
     var array = new Uint32Array(1);
-    getRandomValues(array);           /// @dev fill array with random numbers
+    getRandomValues(array);             /// @dev fill array with random numbers
     let randomBigNumber = array[0]; 	/// @dev use 1st random number in the array
-    this.setState({
-        loading: true,
-        randomBigNumber: randomBigNumber	/// @dev random number for use directly by getData()
-    }
-    ,() => {
-      this.getData();                     /// @dev set random disguise options
-    });
-  }
+    var idxTopType = randomBigNumber % Object.values(this.options.topType).length;
+    var idxHatColor = randomBigNumber % Object.values(this.options.hatColor).length;
+    var idxAccessoriesType = randomBigNumber % Object.values(this.options.accessoriesType).length;
+    var idxHairColor = randomBigNumber % Object.values(this.options.hairColor).length;
+    var idxFacialHairType = randomBigNumber % Object.values(this.options.facialHairType).length;
+    var idxfacialHairColor = randomBigNumber % Object.values(this.options.facialHairColor).length;
+    var idxClotheType = randomBigNumber % Object.values(this.options.clotheType).length;
+    var idxClotheColor = randomBigNumber % Object.values(this.options.clotheColor).length;
+    var idxEyeType = randomBigNumber % Object.values(this.options.eyeType).length;
+    var idxEyebrowType = randomBigNumber % Object.values(this.options.eyebrowType).length;
+    var idxMouthType = randomBigNumber % Object.values(this.options.mouthType).length;
+    var idxSkinColor = randomBigNumber % Object.values(this.options.skinColor).length;
 
-  async getData() {
-    /**
-     * @notice set the disguise options based on random number
-     */
-    let randomBigNumber = this.state.randomBigNumber;	/// @dev read random number set in state by setRandomDisguise()
-    console.log("getData randomBigNumber", randomBigNumber);
-    this.setState({   /// @dev random number --> position of the option in the array of options
-      topType: this.options.topType[randomBigNumber % Object.values(this.options.topType).length],
-      hatColor: this.options.hatColor[randomBigNumber % Object.values(this.options.hatColor).length],
-      accessoriesType: this.options.accessoriesType[randomBigNumber % Object.values(this.options.accessoriesType).length],
-      hairColor: this.options.hairColor[randomBigNumber % Object.values(this.options.hairColor).length],
-      facialHairType: this.options.facialHairType[randomBigNumber % Object.values(this.options.facialHairType).length],
-      facialHairColor: this.options.facialHairColor[randomBigNumber % Object.values(this.options.facialHairColor).length],
-      clotheType: this.options.clotheType[randomBigNumber % Object.values(this.options.clotheType).length],
-      clotheColor: this.options.clotheColor[randomBigNumber % Object.values(this.options.clotheColor).length],
-      eyeType: this.options.eyeType[randomBigNumber % Object.values(this.options.eyeType).length],
-      eyebrowType: this.options.eyebrowType[randomBigNumber % Object.values(this.options.eyebrowType).length],
-      mouthType: this.options.mouthType[randomBigNumber % Object.values(this.options.mouthType).length],
-      skinColor: this.options.skinColor[randomBigNumber % Object.values(this.options.skinColor).length],
-      loading: false
+    this.setState({
+        randomBigNumber: randomBigNumber,	/// @dev random number for use directly by getData()
+        idxTopType: idxTopType,
+        topType: this.options.topType[idxTopType],
+        idxHatColor: idxHatColor,
+        hatColor: this.options.hatColor[idxHatColor],
+        idxAccessoriesType: idxAccessoriesType,
+        accessoriesType: this.options.accessoriesType[idxAccessoriesType],
+        idxHairColor: idxHairColor,
+        hairColor: this.options.hairColor[idxHairColor],
+        idxFacialHairType: idxFacialHairType,
+        facialHairType: this.options.facialHairType[idxFacialHairType],
+        idxfacialHairColor: idxfacialHairColor,
+        facialHairColor: this.options.facialHairColor[idxfacialHairColor],
+        idxClotheType: idxClotheType,
+        clotheType: this.options.clotheType[idxClotheType],
+        idxClotheColor:idxClotheColor,
+        clotheColor: this.options.clotheColor[idxClotheColor],
+        idxEyeType: idxEyeType,
+        eyeType: this.options.eyeType[idxEyeType],
+        idxEyebrowType: idxEyebrowType,
+        eyebrowType: this.options.eyebrowType[idxEyebrowType],
+        idxMouthType: idxMouthType,
+        mouthType: this.options.mouthType[idxMouthType],
+        idxSkinColor: idxSkinColor,
+        skinColor: this.options.skinColor[idxSkinColor],
     }
     ,() => {
-      console.log("topType:", this.state.topType, ", hatColor:", this.state.hatColor, ", accessoriesType:", this.state.accessoriesType);
-      console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
-      console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
-      console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
-    });    
-  }
+        console.log("setRandomDisguise randomBigNumber", randomBigNumber);
+        console.log("topType:", this.state.topType, ", hatColor:", this.state.hatColor, ", accessoriesType:", this.state.accessoriesType);
+        console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
+        console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
+        console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
+        });
+    }
 }
 
 export default App;
