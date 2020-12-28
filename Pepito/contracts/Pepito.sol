@@ -53,7 +53,7 @@ order of function modifiers
     bool public stopped;            /// @dev    the circuit breaker
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
-    uint256 public disguiseNumber;  /// @dev    running number of disguises in array pepitoDisguiseAddresses
+    uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
     address[512] public pepitoDisguises;    /// @dev    array of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
@@ -76,7 +76,7 @@ order of function modifiers
         stopped = false;
         owner = msg.sender;     /// @dev    the owner is the EOA that deployed Pepito
         initialBalance = 10;    /// @dev    initial balance is 10 Pepito tokens
-        disguiseNumber = 0;     /// @dev    initial number of disguises created
+        disguiseCount = 0;     /// @dev    initial number of disguises created
     }
     
     function toggleContractActive() public isAdmin {
@@ -99,17 +99,16 @@ order of function modifiers
         /// @dev    and contract is hopelessly FOOBAR
    }
     
-    function createPepitoDisguise() public returns(PepitoDisguise) {
+    function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @dev    deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
-        require (disguiseNumber < 512, "there has been already 512 disguises created");
+        require (disguiseCount < 512, "there has been already 512 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        pepitoDisguises[disguiseNumber] = address(pepitoDisguise);   // record disguise smart contract
-        disguiseNumber += 1;
-        // disguiseNumber = add(disguiseNumber, uint256(1));
+        pepitoDisguises[disguiseCount] = address(pepitoDisguise);
+        disguiseCount.add(1);
         emit PepitoDisguiseCreated(address(pepitoDisguise));
         return pepitoDisguise;
     }

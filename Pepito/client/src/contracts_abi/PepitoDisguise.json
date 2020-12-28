@@ -6300,8 +6300,8 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x696612Cbbb424fc7E3884b5969C90AD322f4A646",
-      "transactionHash": "0x284096485cc944abf4eaeac995a36a8296b5e64075482ca4b0ba4e149a6328a4"
+      "address": "0x0b58005E8dcdC39d7a2EF79ef87777112A571c4C",
+      "transactionHash": "0x3397be771a6b9f31d30fd4b2ba56ed4c515cba437a0e493417994c54505f8aca"
     },
     "1608226970226": {
       "events": {},
@@ -6311,7 +6311,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-12-27T14:39:45.039Z",
+  "updatedAt": "2020-12-28T14:07:51.206Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Vu Tien Khang",

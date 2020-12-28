@@ -23,6 +23,7 @@ See details in last section below: "ConsenSys Specifications of the dApp"
 * backend working, still continuously improved
   * truffle project
   * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
+  * protect against overflow attack (SWC-101) and reentrancy attack (SWC-107), in `createPepitoDisguise()`
   * smart contracts deployed locally using "truffle develop"
 * frontend operational locally
   * React frontend
@@ -85,7 +86,6 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 │   │       ├── App.test.js
 │   │       ├── OptionTable-v7.js
 │   │       ├── OptionTable.js
-│   │       ├── React_Avataar_Table.tgn
 │   │       ├── contracts_abi
 │   │       │   ├── Pepito.json
 │   │       │   └── PepitoDisguise.json
@@ -150,8 +150,8 @@ Big thanks to the following resources:
 * (**done**) Be a Truffle project
 * Have a smart contract(s) commented according to the specs which:
   + (**done**) Have a circuit breaker design pattern and at least one other design pattern in Module 10 Lesson 1
-  + Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
-  + Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
+  + (**done**) Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
+  + (**done**) Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
 * (in progress) Have at least 5 tests for each smart contract
 * Smart contract should be deployed to a testnet
 
@@ -168,7 +168,7 @@ The front end is liberally inspired from this project [(https://github.com/keep-
 *	(**done**) Be uploaded to its own Github repository
 *	(**done**) Have a README doc describing the overview of your project, pointing out directory structure and how to build and run your project locally  
 *	(**done**) AND A document called design_pattern_decisions.md explaining which design patterns you used
-*	AND A document called avoiding_common_attacks.md explaining security steps you took what measures you took to ensure your contracts are not susceptible to common attacks
+*	(**done**) AND A document called avoiding_common_attacks.md explaining security steps you took what measures you took to ensure your contracts are not susceptible to common attacks
 *	AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
 *	A screen recording walking through your Dapp.
 
