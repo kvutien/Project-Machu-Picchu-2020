@@ -20,7 +20,7 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web
 class App extends Component {
 
   constructor() {
-    super()           // run super to create 'Component' before running the constructor of the derived class 
+    super()           // run super to create 'Component' before running the constructor of App, the derived class 
     this.state = {};	// state holds variables of the component App
     this.options = {	// disguise options
       topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
@@ -38,19 +38,17 @@ class App extends Component {
     }
     this.state.loading = false;                                 // for use in future testnet
     this.state.web3Connect = false;
-    this.storeDisguise = this.storeDisguise.bind(this);         // make storeDisguise know of "this"
-    this.setRandomDisguise = this.setRandomDisguise.bind(this); // make setRandomDisguise know of "this"
-    this.makePepito = this.makePepito.bind(this);               // make makePepito know of "this"
     this.setRandomDisguise();                                   // set random set of disguise options
     this.makePepito();                                          // connect to blockchain, create instance of Pepito
   }
 
-  state = { web3: null, accounts: null, contract: null, ownerPepito: null };          // to call web3 API
+  state = { web3: null, accounts: null, pepitoContract: null, ownerPepito: null };          // to call web3 API
 
-  async makePepito() {
-  /**
-  * @notice connect web3 API and create Pepito contract
-  */
+  makePepito = async () => {
+    /**
+    * @notice connect web3 API and create Pepito contract
+    * @dev this way to define makePepito as property of App is typical of React, to bind 'this'
+    */
     try {
       /// @dev access to blockchain via Metamask
       /// @dev get network provider and web3 instance by trying several channels 
@@ -62,18 +60,18 @@ class App extends Component {
       /// @dev create a Pepito singleton contract instance
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = Pepito.networks[networkId];
-      const instance = new web3.eth.Contract(
+      const pepitoInstance = new web3.eth.Contract(
         Pepito.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      const ownerPepito = await instance.methods.owner().call();
+      const ownerPepito = await pepitoInstance.methods.owner().call();
       var web3Connect = true;
 
-      /// @dev set web3, accounts, and contract to the state 
-      this.setState({ web3, accounts, contract: instance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
+      /// @dev set web3, accounts, and pepitoContract of the state variable
+      this.setState({ web3, accounts, pepitoContract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
         ,() => {
           console.log("1.user account", accounts,
-          ".\n 1.makePepito().Pepito contract", instance,
+          ".\n 1.makePepito().Pepito contract", pepitoInstance,
           ".\n  1.Pepito contract address", this.state.pepitoAddress,
           ".\n   1.web3Connect", web3Connect,
           ".\n    1.'owner' variable in Pepito", ownerPepito);
@@ -81,15 +79,15 @@ class App extends Component {
     } catch (error) {
       /// @dev catch any errors for any of the above operations.
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
+        `Failed to load web3, accounts, or to create pepitoContract. Check console for details.`,
       );
       console.error(error);
     }
   }
 
 
-  async componentDidMount() {	//React hook that runs after the first render() lifecycle
-    /// @notice placeholder
+  componentDidMount = async () => {	//React hook that runs after the first render() lifecycle
+    /** @notice placeholder  */
   };
 
   /** @notice section copied from truffle react, to be ignored
@@ -102,19 +100,20 @@ class App extends Component {
   };
   */ 
 
-  async storeDisguise() {
+  storeDisguise = async () => {
     /** 
     * @notice create a PepitoDisguise and store the options of this disguise
     * @dev WIP - to be refined and tested
+    * @dev this way to define storeDisguise as property of App is typical of React, to bind 'this'
     */
-    const { accounts, contract, web3Connect, ownerPepito } = this.state;
+    const { accounts, pepitoContract, web3Connect, ownerPepito } = this.state;
     console.log("storeDisguise, user account", accounts,
-      ".\n 2.storeDisguise, Pepito contract", contract,
+      ".\n 2.storeDisguise, Pepito contract", pepitoContract,
       ".\n  2.storeDisguise, web3Connect", web3Connect,
       ".\n   2.storeDisguise, 'owner' variable in Pepito", ownerPepito);
 
     if(web3Connect){
-      const pepitoDisguise = await contract.methods.createPepitoDisguise();
+      const pepitoDisguise = await pepitoContract.methods.createPepitoDisguise();
       /// @dev bug to be changed: pepitoDisguise is currently a transaction object, not an address
       console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
       var HatColor = 1;    //  test value, should be the rank in the array of HatColor
@@ -139,9 +138,9 @@ class App extends Component {
     } else alert("Please reload page first, to get connected to local blockchain");
   }
 
-  async getDisguise() {
+  async getNetDisguise() {
     /** 
-    * @notice retrieve a PepitoDisguise and display it
+    * @notice retrieve a PepitoDisguise from blockchain network and display it
     * @dev to be done
     */
   }
@@ -175,7 +174,7 @@ class App extends Component {
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5 disabled" 
-                onClick={this.getDisguise.bind(this)}>Retrieve disguise from blockchain: INACTIVE - WIP -
+                onClick={this.getNetDisguise.bind(this)}>Retrieve disguise from blockchain network: INACTIVE - WIP -
                 </button></td>
               </tr>
             </tbody>
@@ -225,16 +224,18 @@ class App extends Component {
     );
   }
 
-  async setRandomDisguise() {
+  setRandomDisguise = () => {
     /** 
      * @notice set the disguise options based on random number
      * @dev generate pseudo random values of uint32, to retrieve random disguise options
      * @dev not truly random but good enough for demo purposes
+     * @dev this way to define setRandomDisguise as property of App is typical of React, to bind 'this'
     */
     var getRandomValues = require("../node_modules/get-random-values");	/// @dev import JS random generator from npm
     var array = new Uint32Array(1);
-    getRandomValues(array);             /// @dev fill array with random numbers
+    getRandomValues(array);           /// @dev fill array with random numbers
     let randomBigNumber = array[0]; 	/// @dev use 1st random number in the array
+    /** @dev these idx... variables are the indexes of disguise options that will be stored on-chain */
     var idxTopType = randomBigNumber % Object.values(this.options.topType).length;
     var idxHatColor = randomBigNumber % Object.values(this.options.hatColor).length;
     var idxAccessoriesType = randomBigNumber % Object.values(this.options.accessoriesType).length;
@@ -281,8 +282,8 @@ class App extends Component {
         console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
         console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
         console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
-        });
-    }
+    });
+  }
 }
 
 export default App;
