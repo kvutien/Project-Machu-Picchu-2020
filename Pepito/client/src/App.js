@@ -1,13 +1,13 @@
 // class App.js v2.0 of Dec 26,2020
 import React, { Component } from 'react';	// from node.js module
-import './App.css';                                 // specific
-//import { setRandomDisguise } from './helpers';    // specific - to be tested
-import OptionTable from './OptionTable'; 	          // specific
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
 import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
+import './App.css';                                 // specific
+import OptionTable from './OptionTable'; 	          // specific
+//import { setRandomDisguise } from './helpers';    // specific - to be tested
 
 /**
  * @author Vu Tien Khang - December 2020
