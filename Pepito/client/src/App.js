@@ -1,13 +1,13 @@
-// class App.js v2.0 of Dec 26,2020
+// class App.js v2.0 of Dec 29,2020
 import React, { Component } from 'react';	// from node.js module
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
-import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
+//import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
 import './App.css';                                 // specific
 import OptionTable from './OptionTable'; 	          // specific
-//import { setRandomDisguise } from './helpers';    // specific - to be tested
+//import { setRandomDisguise } from './helpers';      // specific - to be tested
 
 /**
  * @author Vu Tien Khang - December 2020
@@ -36,25 +36,17 @@ class App extends Component {
       mouthType: ['Concerned', 'Default', 'Disbelief','Eating', 'Grimace', 'Sad', 'ScreamOpen', 'Serious', 'Smile', 'Tongue', 'Twinkle', 'Vomit'],
       skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
     }
-    this.state.loading = false;                                 // for use in future testnet
-    this.state.web3Connect = false;
+    this.setState({loading: false, web3Connect: false});
   }
 
   state = { web3: null, accounts: null, pepitoContract: null, ownerPepito: null };          // to call web3 API
 
-  componentDidMount = async () => {	//React hook that runs after the first render() lifecycle
-    /** @notice placeholder  */
-    this.setRandomDisguise();                                   // sync. set random set of disguise options
-    this.makePepito();                                          // async. connect to blockchain, create instance of Pepito
-    this.tryIt();
+  componentDidMount = async () => {
+    /** @notice React hook that runs after the first render() lifecycle  */
+    console.log("state", this.state);
+    this.setRandomDisguise();           // sync. set random set of disguise options
+    this.makePepito();                  // async. connect to blockchain, create instance of Pepito
   };
-
-  tryIt = () => {
-    /**
-    * @notice try using helper functions when using 'this' and props
-    */
-    this.myWord = ', please!';
-  }
 
   makePepito = async () => {
     /**
@@ -175,7 +167,7 @@ class App extends Component {
               <tr>
                 <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="120" height="120" /></th>
                 <td><button className="btn btn-lg btn-secondary mb-5" 
-                  onClick={this.setRandomDisguise}>Generate random disguise{this.myWord}</button></td>
+                  onClick={this.setRandomDisguise}>Generate random disguise</button></td>
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5" 
