@@ -38,11 +38,23 @@ class App extends Component {
     }
     this.state.loading = false;                                 // for use in future testnet
     this.state.web3Connect = false;
-    this.setRandomDisguise();                                   // set random set of disguise options
-    this.makePepito();                                          // connect to blockchain, create instance of Pepito
   }
 
   state = { web3: null, accounts: null, pepitoContract: null, ownerPepito: null };          // to call web3 API
+
+  componentDidMount = async () => {	//React hook that runs after the first render() lifecycle
+    /** @notice placeholder  */
+    this.setRandomDisguise();                                   // sync. set random set of disguise options
+    this.makePepito();                                          // async. connect to blockchain, create instance of Pepito
+    this.tryIt();
+  };
+
+  tryIt = () => {
+    /**
+    * @notice try using helper functions when using 'this' and props
+    */
+    this.myWord = ', please!';
+  }
 
   makePepito = async () => {
     /**
@@ -54,8 +66,10 @@ class App extends Component {
       /// @dev get network provider and web3 instance by trying several channels 
       const web3 = await getWeb3();
       //console.log("web3", web3);
+      /// @dev ***** TODO: check error when getWeb3 returns, in case Matamask not connected
       /// @dev use web3 to get the account of the user
       const accounts = await web3.eth.getAccounts();
+      console.log("0.user account", accounts);
 
       /// @dev create a Pepito singleton contract instance
       const networkId = await web3.eth.net.getId();
@@ -84,11 +98,6 @@ class App extends Component {
       console.error(error);
     }
   }
-
-
-  componentDidMount = async () => {	//React hook that runs after the first render() lifecycle
-    /** @notice placeholder  */
-  };
 
   /** @notice section copied from truffle react, to be ignored
   runExample = async () => {
@@ -138,7 +147,7 @@ class App extends Component {
     } else alert("Please reload page first, to get connected to local blockchain");
   }
 
-  async getNetDisguise() {
+  getNetDisguise = async () => {
     /** 
     * @notice retrieve a PepitoDisguise from blockchain network and display it
     * @dev to be done
@@ -160,15 +169,17 @@ class App extends Component {
           <h1 className="m-5">Pepito Disguises <sup>on blockchain</sup></h1>
         </header>
         <div>
+          <p></p>
           <table>
             <tbody>
               <tr>
                 <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="120" height="120" /></th>
-                <td><button className="btn btn-lg btn-secondary mb-5" onClick={this.setRandomDisguise.bind(this)}>Generate random disguise</button></td>
+                <td><button className="btn btn-lg btn-secondary mb-5" 
+                  onClick={this.setRandomDisguise}>Generate random disguise{this.myWord}</button></td>
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5" 
-                onClick={this.storeDisguise.bind(this)}>Store disguise on blockchain (WIP - Reload page if crash)
+                onClick={this.storeDisguise}>Store disguise on blockchain (WIP - Reload page if crash)
                 </button></td>
                 <td>Pepito Address {this.state.pepitoAddress}</td>
               </tr>
