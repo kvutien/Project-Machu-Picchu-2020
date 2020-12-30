@@ -50,10 +50,10 @@ class App extends Component {
     this.setState(setRandomDisguise(this.options));   // sync. state = random set of disguise options
     this.makePepito();                      // async. connect to blockchain, create instance of Pepito
     // console.log("1.user account", this.state.accounts,
-    // ".\n 1.makePepito().Pepito contract", this.state.contract,
-    // ".\n  1.Pepito contract address", this.state.pepitoAddress,
-    // ".\n   1.web3Connect", this.state.web3Connect,
-    // ".\n    1.'owner' variable in Pepito", this.state.ownerPepito);
+    // ".\n 3.makePepito().Pepito contract", this.state.contract,
+    // ".\n  3.Pepito contract address", this.state.pepitoAddress,
+    // ".\n   3.web3Connect", this.state.web3Connect,
+    // ".\n    3.'owner' variable in Pepito", this.state.ownerPepito);
 };
 
 makePepito = async () => {
