@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// version of Dec 30, 2020
 pragma solidity >=0.4.22 <0.8.0;
 /*  Order of contract elements
     1.	    Pragma statements

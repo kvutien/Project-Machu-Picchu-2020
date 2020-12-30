@@ -5,8 +5,7 @@
  * them to suit your project as necessary.
  *
  * More information about configuration can be found at:
- *
- * trufflesuite.com/docs/advanced/configuration
+ * <http://trufflesuite.com/docs/advanced/configuration>
  *
  * To deploy via Infura you'll need a wallet provider (like @truffle/hdwallet-provider)
  * to sign your transactions before they're sent to a remote public node. Infura accounts
@@ -23,8 +22,13 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const path = require("path");    // used to direct creation of ABI in another directory than default
 
 module.exports = {
+
+  // ask to create ABI in another directory than default, for React
+  contracts_build_directory: path.join(__dirname, "client/src/contracts_abi"),
+
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle

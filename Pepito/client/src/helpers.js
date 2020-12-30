@@ -1,34 +1,46 @@
-// helper JavaScript functions of Dec 29, 2020
+// helper JavaScript functions of Dec 30, 2020
 // - under test, calling setState directly (incorrect design and doesn't work). 
 // Not integrated yet with App.js
-import { setState } from 'react';	// from node.js module
 import getWeb3 from "./getWeb3";          // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
 
-export function setRandomDisguise(options, state) {
+export function tryIt () {
+    /**
+    * @notice simple trial helper functions for App.js
+    * @dev clean design: returns an object that App.js will insert in this.state
+    * @dev the text will be displayed in the button "Generate disguise"
+    * @dev tested and validated Dec 30
+    */
+    return {myWord: ', please!'};
+}
+
+
+export function setRandomDisguise(options) {
     /** 
-     * @notice set the disguise options based on random number
+     * @notice set & return the disguise options based on random number
      * @dev generate pseudo random values of uint32, to retrieve random disguise options
      * @dev not truly random but good enough for demo purposes
+     * @dev tested and validated Dec 30
     */
-    var getRandomValues = require("../node_modules/get-random-values");	/// @dev import JS random generator from npm
-    var array = new Uint32Array(1);
-    getRandomValues(array);             /// @dev fill array with random numbers
-    let randomBigNumber = array[0]; 	/// @dev use 1st random number in the array
-    var idxTopType = randomBigNumber % Object.values(options.topType).length;
-    var idxHatColor = randomBigNumber % Object.values(options.hatColor).length;
-    var idxAccessoriesType = randomBigNumber % Object.values(options.accessoriesType).length;
-    var idxHairColor = randomBigNumber % Object.values(options.hairColor).length;
-    var idxFacialHairType = randomBigNumber % Object.values(options.facialHairType).length;
-    var idxfacialHairColor = randomBigNumber % Object.values(options.facialHairColor).length;
-    var idxClotheType = randomBigNumber % Object.values(options.clotheType).length;
-    var idxClotheColor = randomBigNumber % Object.values(options.clotheColor).length;
-    var idxEyeType = randomBigNumber % Object.values(options.eyeType).length;
-    var idxEyebrowType = randomBigNumber % Object.values(options.eyebrowType).length;
-    var idxMouthType = randomBigNumber % Object.values(options.mouthType).length;
-    var idxSkinColor = randomBigNumber % Object.values(options.skinColor).length;
+    const getRandomValues = require("../node_modules/get-random-values");	/// @dev import JS random generator from npm
+    const array = new Uint32Array(1);
+    getRandomValues(array);               /// @dev fill array with random numbers
+    const randomBigNumber = array[0];     /// @dev use 1st random number in the array
+    /** @dev transform the random into ranks in the arrays */
+    const idxTopType = randomBigNumber % Object.values(options.topType).length;
+    const idxHatColor = randomBigNumber % Object.values(options.hatColor).length;
+    const idxAccessoriesType = randomBigNumber % Object.values(options.accessoriesType).length;
+    const idxHairColor = randomBigNumber % Object.values(options.hairColor).length;
+    const idxFacialHairType = randomBigNumber % Object.values(options.facialHairType).length;
+    const idxfacialHairColor = randomBigNumber % Object.values(options.facialHairColor).length;
+    const idxClotheType = randomBigNumber % Object.values(options.clotheType).length;
+    const idxClotheColor = randomBigNumber % Object.values(options.clotheColor).length;
+    const idxEyeType = randomBigNumber % Object.values(options.eyeType).length;
+    const idxEyebrowType = randomBigNumber % Object.values(options.eyebrowType).length;
+    const idxMouthType = randomBigNumber % Object.values(options.mouthType).length;
+    const idxSkinColor = randomBigNumber % Object.values(options.skinColor).length;
 
-    setState({
+    const disguise = {
         randomBigNumber: randomBigNumber,	/// @dev random number for use directly by getData()
         idxTopType: idxTopType,
         topType: options.topType[idxTopType],
@@ -55,46 +67,47 @@ export function setRandomDisguise(options, state) {
         idxSkinColor: idxSkinColor,
         skinColor: options.skinColor[idxSkinColor],
     }
-    ,() => {
-        console.log("setRandomDisguise randomBigNumber", state.randomBigNumber);
-        console.log("topType:", state.topType, ", hatColor:", state.hatColor, ", accessoriesType:", state.accessoriesType);
-        console.log("hairColor:", state.hairColor, ", facialHairType:", state.facialHairType, ", clotheType:", state.clotheType);
-        console.log("clotheColor:", state.clotheColor, ", eyeType:", state.eyeType, ", eyebrowType:", state.eyebrowType);
-        console.log("mouthType:", state.mouthType, ", skinColor:", state.skinColor);
-      });
+    console.log("setRandomDisguise randomBigNumber", randomBigNumber);
+    console.log("topType:", disguise.topType, ", hatColor:", disguise.hatColor, ", accessoriesType:", disguise.accessoriesType);
+    console.log("clotheColor:", disguise.clotheColor, ", eyeType:", disguise.eyeType, ", eyebrowType:", disguise.eyebrowType);
+    console.log("hairColor:", disguise.hairColor, ", facialHairType:", disguise.facialHairType, ", clotheType:", disguise.clotheType);
+    console.log("mouthType:", disguise.mouthType, ", skinColor:", disguise.skinColor);
+    console.log("disguise", disguise)
+    return disguise;
 }
 
 export const makePepito = async () => {
     /**
-    * @notice connect web3 API and create Pepito contract
+     * @notice connect web3 API and create Pepito contract
+     * @dev tested and validated Dec 30
     */
     try {
         /// @dev access to blockchain via Metamask
         /// @dev get network provider and web3 instance by trying several channels 
         const web3 = await getWeb3();
-        //console.log("web3", web3);
+        /// @dev ***** TODO: check error when getWeb3 returns, in case Matamask not connected
         /// @dev use web3 to get the account of the user
         const accounts = await web3.eth.getAccounts();
+        console.log("0.user account", accounts);
   
         /// @dev create a Pepito singleton contract instance
         const networkId = await web3.eth.net.getId();
         const deployedNetwork = Pepito.networks[networkId];
-        const instance = new web3.eth.Contract(
+        const pepitoInstance = new web3.eth.Contract(
           Pepito.abi,
           deployedNetwork && deployedNetwork.address,
         );
-        const ownerPepito = await instance.methods.owner().call();
+        const ownerPepito = await pepitoInstance.methods.owner().call();
         var web3Connect = true;
   
         /// @dev set web3, accounts, and contract to the state 
-        this.setState({ web3, accounts, contract: instance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
-          ,() => {
-            console.log("1.user account", accounts,
-            ".\n 1.makePepito().Pepito contract", instance,
-            ".\n  1.Pepito contract address", this.state.pepitoAddress,
-            ".\n   1.web3Connect", web3Connect,
-            ".\n    1.'owner' variable in Pepito", ownerPepito);
-          });
+        const web3Pepito = { web3, accounts, contract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
+        console.log("1.user account", web3Pepito.accounts,
+            ".\n 1.makePepito().Pepito contract", web3Pepito.contract,
+            ".\n  1.Pepito contract address", web3Pepito.pepitoAddress,
+            ".\n   1.web3Connect", web3Pepito.web3Connect,
+            ".\n    1.'owner' variable in Pepito", web3Pepito.ownerPepito);
+        return web3Pepito;
     } catch (error) {
         /// @dev catch any errors for any of the above operations.
         alert(
@@ -107,7 +120,7 @@ export const makePepito = async () => {
 export const storeDisguise = async () => {
     /** 
     * @notice create a PepitoDisguise and store the options of this disguise
-    * @dev WIP - to be refined and tested
+    * @dev WIP - to be refined and tested in App.js before transferring here in helpers.js
     */
     const { accounts, contract, web3Connect, ownerPepito } = this.state;
     console.log("storeDisguise, user account", accounts,

@@ -1,13 +1,14 @@
 // class App.js v2.0 of Dec 29,2020
-import React, { Component } from 'react';	// from node.js module
-import Avatar from 'avataaars'; 	        // from node.js module
+import React, { Component } from 'react';	      // from node.js module
+import Avatar from 'avataaars'; 	              // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
-import getWeb3 from "./getWeb3";          // to call web3 API
-import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
+//import getWeb3 from "./getWeb3";                                  // to call web3 API
+//import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
 //import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
 import './App.css';                                 // specific
 import OptionTable from './OptionTable'; 	          // specific
-//import { setRandomDisguise } from './helpers';      // specific - to be tested
+import { tryIt } from './tryIt';                    // specific
+import { setRandomDisguise, makePepito } from './helpers';      // specific
 
 /**
  * @author Vu Tien Khang - December 2020
@@ -43,53 +44,18 @@ class App extends Component {
 
   componentDidMount = async () => {
     /** @notice React hook that runs after the first render() lifecycle  */
-    console.log("state", this.state);
-    this.setRandomDisguise();           // sync. set random set of disguise options
-    this.makePepito();                  // async. connect to blockchain, create instance of Pepito
-  };
-
-  makePepito = async () => {
-    /**
-    * @notice connect web3 API and create Pepito contract
-    * @dev this way to define makePepito as property of App is typical of React, to bind 'this'
-    */
-    try {
-      /// @dev access to blockchain via Metamask
-      /// @dev get network provider and web3 instance by trying several channels 
-      const web3 = await getWeb3();
-      //console.log("web3", web3);
-      /// @dev ***** TODO: check error when getWeb3 returns, in case Matamask not connected
-      /// @dev use web3 to get the account of the user
-      const accounts = await web3.eth.getAccounts();
-      console.log("0.user account", accounts);
-
-      /// @dev create a Pepito singleton contract instance
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = Pepito.networks[networkId];
-      const pepitoInstance = new web3.eth.Contract(
-        Pepito.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-      const ownerPepito = await pepitoInstance.methods.owner().call();
-      var web3Connect = true;
-
-      /// @dev set web3, accounts, and pepitoContract of the state variable
-      this.setState({ web3, accounts, pepitoContract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
-        ,() => {
-          console.log("1.user account", accounts,
-          ".\n 1.makePepito().Pepito contract", pepitoInstance,
-          ".\n  1.Pepito contract address", this.state.pepitoAddress,
-          ".\n   1.web3Connect", web3Connect,
-          ".\n    1.'owner' variable in Pepito", ownerPepito);
-        });
-    } catch (error) {
-      /// @dev catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or to create pepitoContract. Check console for details.`,
-      );
-      console.error(error);
-    }
-  }
+    /** ----- trial using an external function */
+    var myWord = tryIt();
+    this.setState(myWord);
+    /** ----- end trial */
+    this.setState(setRandomDisguise(this.options));   // sync. state = random set of disguise options
+    this.setState(makePepito());                      // async. connect to blockchain, create instance of Pepito
+    console.log("1.user account", this.state.accounts,
+    ".\n 1.makePepito().Pepito contract", this.state.contract,
+    ".\n  1.Pepito contract address", this.state.pepitoAddress,
+    ".\n   1.web3Connect", this.state.web3Connect,
+    ".\n    1.'owner' variable in Pepito", this.state.ownerPepito);
+};
 
   /** @notice section copied from truffle react, to be ignored
   runExample = async () => {
@@ -139,7 +105,7 @@ class App extends Component {
     } else alert("Please reload page first, to get connected to local blockchain");
   }
 
-  getNetDisguise = async () => {
+  retrieveDisguise = async () => {
     /** 
     * @notice retrieve a PepitoDisguise from blockchain network and display it
     * @dev to be done
@@ -167,7 +133,7 @@ class App extends Component {
               <tr>
                 <th rowSpan="3"><img src="./machupicchu_logo.png" alt="Machu-Picchu" width="120" height="120" /></th>
                 <td><button className="btn btn-lg btn-secondary mb-5" 
-                  onClick={this.setRandomDisguise}>Generate random disguise</button></td>
+                  onClick={this.setRandomDisguise}>Generate random disguise{this.state.myWord}</button></td>
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5" 
@@ -177,7 +143,7 @@ class App extends Component {
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5 disabled" 
-                onClick={this.getNetDisguise.bind(this)}>Retrieve disguise from blockchain network: INACTIVE - WIP -
+                onClick={this.retrieveDisguise.bind(this)}>Retrieve disguise from blockchain network: INACTIVE - WIP -
                 </button></td>
               </tr>
             </tbody>
@@ -227,66 +193,6 @@ class App extends Component {
     );
   }
 
-  setRandomDisguise = () => {
-    /** 
-     * @notice set the disguise options based on random number
-     * @dev generate pseudo random values of uint32, to retrieve random disguise options
-     * @dev not truly random but good enough for demo purposes
-     * @dev this way to define setRandomDisguise as property of App is typical of React, to bind 'this'
-    */
-    var getRandomValues = require("../node_modules/get-random-values");	/// @dev import JS random generator from npm
-    var array = new Uint32Array(1);
-    getRandomValues(array);           /// @dev fill array with random numbers
-    let randomBigNumber = array[0]; 	/// @dev use 1st random number in the array
-    /** @dev these idx... variables are the indexes of disguise options that will be stored on-chain */
-    var idxTopType = randomBigNumber % Object.values(this.options.topType).length;
-    var idxHatColor = randomBigNumber % Object.values(this.options.hatColor).length;
-    var idxAccessoriesType = randomBigNumber % Object.values(this.options.accessoriesType).length;
-    var idxHairColor = randomBigNumber % Object.values(this.options.hairColor).length;
-    var idxFacialHairType = randomBigNumber % Object.values(this.options.facialHairType).length;
-    var idxfacialHairColor = randomBigNumber % Object.values(this.options.facialHairColor).length;
-    var idxClotheType = randomBigNumber % Object.values(this.options.clotheType).length;
-    var idxClotheColor = randomBigNumber % Object.values(this.options.clotheColor).length;
-    var idxEyeType = randomBigNumber % Object.values(this.options.eyeType).length;
-    var idxEyebrowType = randomBigNumber % Object.values(this.options.eyebrowType).length;
-    var idxMouthType = randomBigNumber % Object.values(this.options.mouthType).length;
-    var idxSkinColor = randomBigNumber % Object.values(this.options.skinColor).length;
-
-    this.setState({
-        randomBigNumber: randomBigNumber,	/// @dev random number for use directly by getData()
-        idxTopType: idxTopType,
-        topType: this.options.topType[idxTopType],
-        idxHatColor: idxHatColor,
-        hatColor: this.options.hatColor[idxHatColor],
-        idxAccessoriesType: idxAccessoriesType,
-        accessoriesType: this.options.accessoriesType[idxAccessoriesType],
-        idxHairColor: idxHairColor,
-        hairColor: this.options.hairColor[idxHairColor],
-        idxFacialHairType: idxFacialHairType,
-        facialHairType: this.options.facialHairType[idxFacialHairType],
-        idxfacialHairColor: idxfacialHairColor,
-        facialHairColor: this.options.facialHairColor[idxfacialHairColor],
-        idxClotheType: idxClotheType,
-        clotheType: this.options.clotheType[idxClotheType],
-        idxClotheColor:idxClotheColor,
-        clotheColor: this.options.clotheColor[idxClotheColor],
-        idxEyeType: idxEyeType,
-        eyeType: this.options.eyeType[idxEyeType],
-        idxEyebrowType: idxEyebrowType,
-        eyebrowType: this.options.eyebrowType[idxEyebrowType],
-        idxMouthType: idxMouthType,
-        mouthType: this.options.mouthType[idxMouthType],
-        idxSkinColor: idxSkinColor,
-        skinColor: this.options.skinColor[idxSkinColor],
-    }
-    ,() => {
-        console.log("setRandomDisguise randomBigNumber", randomBigNumber);
-        console.log("topType:", this.state.topType, ", hatColor:", this.state.hatColor, ", accessoriesType:", this.state.accessoriesType);
-        console.log("hairColor:", this.state.hairColor, ", facialHairType:", this.state.facialHairType, ", clotheType:", this.state.clotheType);
-        console.log("clotheColor:", this.state.clotheColor, ", eyeType:", this.state.eyeType, ", eyebrowType:", this.state.eyebrowType);
-        console.log("mouthType:", this.state.mouthType, ", skinColor:", this.state.skinColor);
-    });
-  }
 }
 
 export default App;
