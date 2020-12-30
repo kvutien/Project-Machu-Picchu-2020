@@ -79,7 +79,7 @@ export function setRandomDisguise(options) {
 export const makePepito = async () => {
     /**
      * @notice connect web3 API and create Pepito contract
-     * @dev tested and validated Dec 30
+     * @dev not yet validated
     */
     try {
         /// @dev access to blockchain via Metamask

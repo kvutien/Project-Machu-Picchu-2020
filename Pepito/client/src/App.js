@@ -2,8 +2,8 @@
 import React, { Component } from 'react';	      // from node.js module
 import Avatar from 'avataaars'; 	              // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
-//import getWeb3 from "./getWeb3";                                  // to call web3 API
-//import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
+import getWeb3 from "./getWeb3";                                  // to call web3 API
+import Pepito from "./contracts_abi/Pepito.json";                 // to call web3 API
 //import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
 import './App.css';                                 // specific
 import OptionTable from './OptionTable'; 	          // specific
@@ -48,15 +48,57 @@ class App extends Component {
     this.setState(myWord);
     /** ----- end trial */
     this.setState(setRandomDisguise(this.options));   // sync. state = random set of disguise options
-    this.setState(makePepito());                      // async. connect to blockchain, create instance of Pepito
-    console.log("1.user account", this.state.accounts,
-    ".\n 1.makePepito().Pepito contract", this.state.contract,
-    ".\n  1.Pepito contract address", this.state.pepitoAddress,
-    ".\n   1.web3Connect", this.state.web3Connect,
-    ".\n    1.'owner' variable in Pepito", this.state.ownerPepito);
+    this.makePepito();                      // async. connect to blockchain, create instance of Pepito
+    // console.log("1.user account", this.state.accounts,
+    // ".\n 1.makePepito().Pepito contract", this.state.contract,
+    // ".\n  1.Pepito contract address", this.state.pepitoAddress,
+    // ".\n   1.web3Connect", this.state.web3Connect,
+    // ".\n    1.'owner' variable in Pepito", this.state.ownerPepito);
 };
 
-  /** @notice section copied from truffle react, to be ignored
+makePepito = async () => {
+  /**
+   * @notice connect web3 API and create Pepito contract
+   * @dev tested and validated Dec 30
+  */
+  try {
+      /// @dev access to blockchain via Metamask
+      /// @dev get network provider and web3 instance by trying several channels 
+      const web3 = await getWeb3();
+      /// @dev ***** TODO: check error when getWeb3 returns, in case Matamask not connected
+      /// @dev use web3 to get the account of the user
+      const accounts = await web3.eth.getAccounts();
+      console.log("0.user account", accounts);
+
+      /// @dev create a Pepito singleton contract instance
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = Pepito.networks[networkId];
+      const pepitoInstance = new web3.eth.Contract(
+        Pepito.abi,
+        deployedNetwork && deployedNetwork.address,
+      );
+      const ownerPepito = await pepitoInstance.methods.owner().call();
+      var web3Connect = true;
+
+      /// @dev set web3, accounts, and contract to the state 
+      const web3Pepito = { web3, accounts, contract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
+      this.setState({ web3, accounts, contract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito }); 
+      console.log("1.user account", this.state.accounts,
+          ".\n 1.makePepito().Pepito contract", this.state.contract,
+          ".\n  1.Pepito contract address", this.state.pepitoAddress,
+          ".\n   1.web3Connect", this.state.web3Connect,
+          ".\n    1.'owner' variable in Pepito", this.state.ownerPepito);
+          // return web3Pepito;
+  } catch (error) {
+      /// @dev catch any errors for any of the above operations.
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`,
+      );
+      console.error(error);
+  }
+}
+
+/** @notice section copied from truffle react, to be ignored
   runExample = async () => {
     const { accounts, contract } = this.state;
     // Stores a given value, 5 by default.
@@ -138,12 +180,14 @@ class App extends Component {
                 <td><button className="btn btn-lg btn-secondary mb-5" 
                 onClick={this.storeDisguise}>Store disguise on blockchain (WIP - Reload page if crash)
                 </button></td>
-                <td>Pepito Address {this.state.pepitoAddress}</td>
               </tr>
               <tr>
                 <td><button className="btn btn-lg btn-secondary mb-5 disabled" 
                 onClick={this.retrieveDisguise.bind(this)}>Retrieve disguise from blockchain network: INACTIVE - WIP -
                 </button></td>
+              </tr>
+              <tr>
+                <td colSpan="2">Pepito Address {this.state.pepitoAddress}</td>
               </tr>
             </tbody>
           </table>
