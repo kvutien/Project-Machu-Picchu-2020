@@ -7,8 +7,7 @@ import { BounceLoader } from 'react-spinners'; 	// from node.js module
 //import PepitoDisguise from "./contracts_abi/PepitoDisguise.json"; // to call web3 API 
 import './App.css';                                 // specific
 import OptionTable from './OptionTable'; 	          // specific
-import { tryIt } from './tryIt';                    // specific
-import { setRandomDisguise, makePepito } from './helpers';      // specific
+import { setRandomDisguise, makePepito, tryIt } from './helpers';      // specific
 
 /**
  * @author Vu Tien Khang - December 2020
@@ -45,7 +44,7 @@ class App extends Component {
   componentDidMount = async () => {
     /** @notice React hook that runs after the first render() lifecycle  */
     /** ----- trial using an external function */
-    var myWord = tryIt();
+    const myWord = tryIt();
     this.setState(myWord);
     /** ----- end trial */
     this.setState(setRandomDisguise(this.options));   // sync. state = random set of disguise options
