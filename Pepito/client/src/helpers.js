@@ -103,10 +103,10 @@ export const makePepito = async () => {
         /// @dev set web3, accounts, and contract to the state 
         const web3Pepito = { web3, accounts, contract: pepitoInstance, pepitoAddress: deployedNetwork.address, web3Connect, ownerPepito } 
         console.log("1.user account", web3Pepito.accounts,
-            ".\n 1.makePepito().Pepito contract", web3Pepito.contract,
-            ".\n  1.Pepito contract address", web3Pepito.pepitoAddress,
-            ".\n   1.web3Connect", web3Pepito.web3Connect,
-            ".\n    1.'owner' variable in Pepito", web3Pepito.ownerPepito);
+            ".\n 3.makePepito().Pepito contract", web3Pepito.contract,
+            ".\n  3.Pepito contract address", web3Pepito.pepitoAddress,
+            ".\n   3.web3Connect", web3Pepito.web3Connect,
+            ".\n    3.'owner' variable in Pepito", web3Pepito.ownerPepito);
         return web3Pepito;
     } catch (error) {
         /// @dev catch any errors for any of the above operations.
