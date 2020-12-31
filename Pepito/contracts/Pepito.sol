@@ -23,11 +23,12 @@ pragma solidity >=0.4.22 <0.8.0;
     @dev        and will execute the few orders sent via SMS by the persons-in-need
     @dev Pepito contract only manages the array of addresses of disguise smart contract
 
-    @dev    Remix-compiled successfully 2020-12-06
+    @dev    Remix-compiled successfully 2020-12-30
 */
 
 import "./PepitoDisguise.sol";
 import "../client/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
+//import "./SafeMath.sol";      // used to compile in Remix
 
 contract Pepito {
     using SafeMath for uint256;
@@ -55,12 +56,12 @@ order of function modifiers
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
-    address[512] public pepitoDisguises;    /// @dev    array of contracts pepitoDisguise
+    address[512] public pepitoDisguiseContracts;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
     /// @dev    for the demo, we limit array size to 512; in real, disguises will be in IPFS database w/o number limit
 
-    event PepitoDisguiseCreated(address aDisguise);
+    event PepitoDisguiseCreated(uint256 disguiseCount, address addressDisguise);
     
     modifier isAdmin() {
         require(owner == msg.sender);   /// @dev    the caller of the function must be Pepito
@@ -80,37 +81,23 @@ order of function modifiers
         disguiseCount = 0;     /// @dev    initial number of disguises created
     }
     
-    function toggleContractActive() public isAdmin {
-        /// @dev    Circuit breaker to stop the smart contract in desperate cases & restart it
-        /// @dev    In the future we can add an additional modifier that restricts stopping a contract to be
-        /// @dev    based on another action, such as a vote of users
-        stopped = !stopped;
-    }
-    
     function registerDisguise() public payable stopInEmergency {
         /// @dev    create a disguise and (future) record it in IPFS
         /// @dev    stop all creation of new disguise if circuit breaker activated
         createPepitoDisguise();
     }
     
-    function withdraw () onlyInEmergency public payable {
-        /// @dev    withdraw balances of all tokens when situation is desperate
-        /// @dev    change 'public' to 'external' to reduce gas if never called inside this contract
-        /// @dev    add some code to withdraw all tokens from all disguises if circuit breaker activated
-        /// @dev    and contract is hopelessly FOOBAR
-   }
-    
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @dev    deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
-        /// @dev future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
+        /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
         require (disguiseCount < 512, "there has been already 512 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        pepitoDisguises[disguiseCount] = address(pepitoDisguise);
+        pepitoDisguiseContracts[disguiseCount] = address(pepitoDisguise);
         disguiseCount.add(1);
-        emit PepitoDisguiseCreated(address(pepitoDisguise));
+        emit PepitoDisguiseCreated(disguiseCount, address(pepitoDisguise));
         return pepitoDisguise;
     }
     
@@ -119,6 +106,20 @@ order of function modifiers
         /// @dev    i is loop index, rank in the array of disguises
         /// @return one instance of pepitoDisguiseAddress, function to retrieve its data is exposed in pepitoDisguide
         require (i < 512, "cannot exist more than 512 disguises");
-        return pepitoDisguises[i];
+        return pepitoDisguiseContracts[i];
     }
+    
+        function toggleContractActive() public isAdmin {
+        /// @dev    Circuit breaker to stop the smart contract in desperate cases & restart it
+        /// @dev    In the future we can add an additional modifier that restricts stopping a contract to be
+        /// @dev    based on another action, such as a vote of users
+        stopped = !stopped;
+    }
+    
+    function withdraw () onlyInEmergency public payable {
+        /// @dev    withdraw balances of all tokens when situation is desperate
+        /// @dev    change 'public' to 'external' to reduce gas if never called inside this contract
+        /// @dev    add some code to withdraw all tokens from all disguises if circuit breaker activated
+        /// @dev    and contract is hopelessly FOOBAR
+   }
 }

@@ -1,4 +1,4 @@
-// helper JavaScript functions of Dec 30, 2020
+// helper JavaScript functions of Dec 31, 2020
 // - under test, calling setState directly (incorrect design and doesn't work). 
 // Not integrated yet with App.js
 import getWeb3 from "./getWeb3";          // to call web3 API
@@ -9,7 +9,7 @@ export function tryIt () {
     * @notice simple trial helper functions for App.js
     * @dev clean design: returns an object that App.js will insert in this.state
     * @dev the text will be displayed in the button "Generate disguise"
-    * @dev tested and validated Dec 30
+    * @dev tested and validated Dec 31
     */
     return {myWord: ', please!'};
 }
