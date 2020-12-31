@@ -9,13 +9,13 @@ export function tryIt () {
     * @notice simple trial helper functions for App.js
     * @dev clean design: returns an object that App.js will insert in this.state
     * @dev the text will be displayed in the button "Generate disguise"
-    * @dev tested and validated Dec 31
+    * @dev tested and validated Dec 31 
     */
     return {myWord: ', please!'};
 }
 
 
-export function setRandomDisguise(options) {
+export function getRandomDisguise(options) {
     /** 
      * @notice set & return the disguise options based on random number
      * @dev generate pseudo random values of uint32, to retrieve random disguise options
