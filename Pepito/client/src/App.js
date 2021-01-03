@@ -1,4 +1,4 @@
-// class App.js v2.0 of Dec 29,2020
+// class App.js v2.0 of Jan 3, 2021
 import React, { Component } from 'react';	// from node.js module
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
@@ -10,7 +10,7 @@ import OptionTable from './OptionTable'; 	          // specific
 //import { setRandomDisguise } from './helpers';    // specific - to be tested
 
 /**
- * @author Vu Tien Khang - December 2020
+ * @author Vu Tien Khang - Jan 2021
  * @notice React root component for Pepito frontend
  * @dev disguise random options - done
  * @dev web3 calls - work in progress
@@ -188,7 +188,12 @@ class App extends Component {
                 </button></td>
               </tr>
               <tr>
-              <td colSpan="2">Pepito Address {this.state.pepitoAddress}</td>
+              <td colSpan="2">Pepito Address...--&gt;{this.state.pepitoAddress}</td>
+              </tr>
+              <tr>
+                <td colSpan="2"><a href='https://ibisa.users.earthengine.app/view/mcgyver3' target='_blank'
+                   className='btn btn-lg btn-secondary mb-5'>Earth Observation Easter Egg</a>
+                </td>
               </tr>
             </tbody>
           </table>
