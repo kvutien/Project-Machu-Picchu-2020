@@ -1,4 +1,4 @@
-// class App.js v2.0 of Jan 3, 2021
+// class App.js v2.0 of Jan 3, 2021 
 import React, { Component } from 'react';	// from node.js module
 import Avatar from 'avataaars'; 	        // from node.js module
 import { BounceLoader } from 'react-spinners'; 	// from node.js module
@@ -224,7 +224,7 @@ class App extends Component {
             />
           </div>
         }
-        {<OptionTable 
+        {<OptionTable       // display the table of current disguise options
           topType={topType}
           hatColor={hatColor}
           accessoriesType={accessoriesType}
