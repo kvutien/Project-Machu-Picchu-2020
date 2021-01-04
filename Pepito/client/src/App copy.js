@@ -1,4 +1,4 @@
-// class App.js v2.0 of Dec 31,2020 - test branch Jan 04, 2021
+// class App.js v2.0 of Dec 31,2020
 // componentDidMount calls this.setRandomDisguise that calls external helper getRandomDisguise
 // getRandomDisguise returns disguise that is not rendered
 // but problem: render loops if setRandomDisguise call this.setState()
