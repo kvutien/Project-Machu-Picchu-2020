@@ -5,28 +5,31 @@ import ReactTable from "react-table-6";   // in npm library
 import "react-table-6/react-table.css";   // (!) to be analysed
 
 class OptionTable extends React.Component {
-  constructor(props) {
-    super(props);
-  };
+    constructor(props) {
+        super(props);
+    };
 
-  render() {
-    /** @dev retrieve pepito disguise options from props */
-    const data = [        // array = rows, array components = JSON key:value pairs
-        {component: "topType", option: this.props.topType},
-        {component: "hatColor", option: this.props.hatColor},
-        {component: "accessoriesType", option: this.props.accessoriesType},
-        {component: "hairColor", option: this.props.hairColor},
-        {component: "facialHairType", option: this.props.facialHairType},
-        {component: "clotheType", option: this.props.clotheType},
-        {component: "clotheColor", option: this.props.clotheColor},
-        {component: "eyeType", option: this.props.eyeType},
-        {component: "eyebrowType", option: this.props.eyebrowType},
-        {component: "mouthType", option: this.props.mouthType},
-        {component: "skinColor", option: this.props.skinColor},
+    render() {
+        /** @dev retrieve Pepito disguise options from this.props.disguise */
+        const {topType, hatColor, accessoriesType, hairColor, facialHairType, facialHairColor,
+            clotheType, clotheColor, eyeType, eyebrowType, mouthType, skinColor} = this.props.disguise;
+        const data = [        // array = rows, array components = JSON key:value pairs
+        {component: "topType",      option: topType},
+        {component: "hatColor",     option: hatColor},
+        {component: "accessoriesType",  option: accessoriesType},
+        {component: "hairColor",        option: hairColor},
+        {component: "facialHairType",   option: facialHairType},
+        {component: "facialHairColor",  option: facialHairColor},
+        {component: "clotheType",   option: clotheType},
+        {component: "clotheColor",  option: clotheColor},
+        {component: "eyeType",      option: eyeType},
+        {component: "eyebrowType",  option: eyebrowType},
+        {component: "mouthType",    option: mouthType},
+        {component: "skinColor",    option: skinColor},
     ];
     const columns = [       // our table has 2 columns
         {Header: "AvatarComponent", accessor: "component"},  // 'Header' is any string, 'accessor' matches the JSON key
-        {Header: "Option", accessor: "option"}              // a dropdown menu to select an option of the component
+        {Header: "Option",          accessor: "option"}      // a dropdown menu to select an option of the component
     ];
     return (
       <div>
