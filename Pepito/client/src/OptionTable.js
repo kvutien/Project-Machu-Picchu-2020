@@ -1,4 +1,8 @@
-// class OptionTable
+/**  class OptionTable - project Pepito 
+ * @author Vu Tien Khang - Jan 2021
+ * @notice display a table of disguise options
+ * @dev will be upgraded to let the user select the options manually
+*/
 import React from "react";
 // import { render } from "react-dom";
 import ReactTable from "react-table-6";   // in npm library

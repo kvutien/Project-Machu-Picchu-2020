@@ -1,3 +1,8 @@
+/**  class App - project Pepito 
+ * @author Vu Tien Khang - Jan 2021
+ * @notice root class
+ * @dev refactored to move out most of the functions
+*/
 import React, { Component } from 'react';
 import DisguiseControls from './DisguiseControls';
 import DrawAvataar from './DrawAvataar';
