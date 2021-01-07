@@ -4,6 +4,7 @@
  * @dev refactored to move out most of the functions
 */
 import React, { Component } from 'react';
+import Disguise from './Disguise';
 import DisguiseControls from './DisguiseControls';
 import DrawAvataar from './DrawAvataar';
 import OptionTable from './OptionTable';
