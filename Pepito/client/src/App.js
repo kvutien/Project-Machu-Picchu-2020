@@ -12,7 +12,7 @@ import OptionTable from './OptionTable';
 class App extends Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {web3Connected: false};
         this.disguise = {};         // object Disguise from fillDisguise
         this.web3 = {};             // object Web3 from makepepito
         this.pepitoInstance = {};   // object Contract from makepepito
@@ -22,10 +22,9 @@ class App extends Component {
         this.setState({randomBigNumber: randomBigNumber});
         this.setState(idxDisguise);
         this.disguise = disguise;
-        this.setState(disguise, () => {console.log('---> state disguise updated', Object.keys(this.state), Object.values(this.state));});
+        this.setState(disguise, () => {console.log('---> state in setDisguise()', Object.keys(this.state), Object.values(this.state));});
     }
 
-    // this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connect, ownerPepito);
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
         this.setState({
             accounts: accounts, 
@@ -37,7 +36,7 @@ class App extends Component {
         });
         this.web3 = web3;               // object Web3 from makepepito
         this.pepitoInstance = pepitoInstance;   // object Contract from makepepito
-        console.log('web3, Instance', this.web3, this.pepitoInstance);
+        console.log('in connectedB(): web3, Instance', this.web3, this.pepitoInstance);
     }
 
     retrievedDisguise = async (idxDisguise) => {
@@ -52,10 +51,12 @@ class App extends Component {
                 </header>
                 <div>
                     <DisguiseControls 
-                        setDisguise={this.setDisguise} 
-                        connectedB={this.connectedB}
-                        pepitoAddress={this.state.pepitoAddress}
-                        retrievedDisguise={this.retrievedDisguise}
+                        setDisguise={this.setDisguise}              // used to return the disguise
+                        connectedB={this.connectedB}                // used to return the web3 and pepito
+                        pepitoAddress={this.state.pepitoAddress}    // will be displayed on screen
+                        web3Connected={this.state.web3Connected}
+                        pepitoInstance={this.pepitoInstance}
+                        retrievedDisguise={this.retrievedDisguise}  // used to return the disguise as indexes in arrays of options
                     />
                     <DrawAvataar disguise={this.disguise} />
                     <small>This disguise= <br/>{Object.values(this.disguise)}</small>

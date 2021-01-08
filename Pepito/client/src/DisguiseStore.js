@@ -8,21 +8,21 @@ import './App.css';
 class DisguiseStore extends React.Component{
 
     storeDisguise = () => {
-        alert('storing Disguise on-chain');
-        // const { accounts, pepitoContract, web3Connect, ownerPepito } = this.state;
-        // console.log("storeDisguise, user account", accounts,
-        //   ".\n 2.storeDisguise, Pepito contract", pepitoContract,
-        //   ".\n  2.storeDisguise, web3Connect", web3Connect,
-        //   ".\n   2.storeDisguise, 'owner' variable in Pepito", ownerPepito);
-        //   const { accounts, pepitoContract, web3Connect, ownerPepito } = this.state;
-        //   console.log("storeDisguise, user account", accounts,
-        //     ".\n 2.storeDisguise, Pepito contract", pepitoContract,
-        //     ".\n  2.storeDisguise, web3Connect", web3Connect,
-        //     ".\n   2.storeDisguise, 'owner' variable in Pepito", ownerPepito);
+        //alert('storing Disguise on-chain');
+        //const { accounts, pepitoInstance, web3Connected, ownerPepito } = this.state; //bug: this.state is unknown here
+        // we have to see exactly which component of App is required to store a disguise
+        const web3Connected = this.props.web3Connected;
+        const pepitoInstance = this.props.pepitoInstance;
+        console.log("--> ", /*"user account", accounts,*/
+            ".\n 2.storeDisguise, Pepito instance", pepitoInstance, // <-- needed
+            ".\n  2.storeDisguise, web3Connected", web3Connected,   // <-- needed
+            //".\n   2.storeDisguise, 'owner' variable in Pepito", ownerPepito
+            );
       
-        // if(web3Connect){
-        //     const pepitoDisguise = await pepitoContract.methods.createPepitoDisguise();
-        //     /// @dev bug to be changed: pepitoDisguise is currently a transaction object, not an address
+        if(web3Connected){
+        //     const pepitoDisguise = await pepitoInstance.methods.createPepitoDisguise();
+        //     //bug: pepitoDisguise is currently a transaction object, not an address
+               //we have to store the instance of pepitoDisguise in solidity and retrieve it here
         //     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
         //     var HatColor = 1;    //  test value, should be the rank in the array of HatColor
         //     await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
@@ -43,7 +43,7 @@ class DisguiseStore extends React.Component{
         //     await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
         //     await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
         //     */
-        // } else alert("Please reload page first, to get connected to local blockchain");  
+        } else alert("Please reload page first, to get connected to local blockchain");  
     }
 
     render() {

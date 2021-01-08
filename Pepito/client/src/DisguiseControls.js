@@ -10,6 +10,7 @@ import DisguiseStore from './DisguiseStore';
 import DisguiseRetrieve from './DisguiseRetrieve';
 
 class DisguiseControls extends React.Component {
+    
     render() {
         return(
             <div>
@@ -23,12 +24,18 @@ class DisguiseControls extends React.Component {
                         </tr>
                         <tr>
                             <td>
-                                <MakePepito connectedB={this.props.connectedB}/>
+                                <MakePepito 
+                                    web3Connected={this.props.web3Connected}
+                                    connectedB={this.props.connectedB}
+                                />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <DisguiseStore />
+                                <DisguiseStore 
+                                    web3Connected={this.props.web3Connected}
+                                    pepitoInstance={this.props.pepitoInstance}
+                                />
                             </td>
                         </tr>
                         <tr>
