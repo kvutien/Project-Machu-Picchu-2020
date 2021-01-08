@@ -54,6 +54,7 @@ class App extends Component {
                     <DisguiseControls 
                         setDisguise={this.setDisguise} 
                         connectedB={this.connectedB}
+                        pepitoAddress={this.state.pepitoAddress}
                         retrievedDisguise={this.retrievedDisguise}
                     />
                     <DrawAvataar disguise={this.disguise} />
