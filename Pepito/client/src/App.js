@@ -4,7 +4,7 @@
  * @dev refactored to move out most of the functions
 */
 import React, { Component } from 'react';
-import Disguise from './Disguise';
+//import Disguise from './Disguise';
 import DisguiseControls from './DisguiseControls';
 import DrawAvataar from './DrawAvataar';
 import OptionTable from './OptionTable';
@@ -13,20 +13,31 @@ class App extends Component {
     constructor() {
         super();
         this.state = {};
-        this.disguise = {};
+        this.disguise = {};         // object Disguise from fillDisguise
+        this.web3 = {};             // object Web3 from makepepito
+        this.pepitoInstance = {};   // object Contract from makepepito
     }
 
     setDisguise = async (randomBigNumber, idxDisguise, disguise) => {
         this.setState({randomBigNumber: randomBigNumber});
         this.setState(idxDisguise);
         this.disguise = disguise;
-        console.log('this.disguise', this.disguise);
-        this.setState(disguise, () => {console.log('state updated', Object.keys(this.state), Object.values(this.state));});
+        this.setState(disguise, () => {console.log('---> state disguise updated', Object.keys(this.state), Object.values(this.state));});
     }
 
-    connectedB = async (web3, accounts, pepitoContract) => {
-        // this.setState({web3, accounts, pepitoContract})
-        alert('Connect to Blockchain and create Pepito');
+    // this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connect, ownerPepito);
+    connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
+        this.setState({
+            accounts: accounts, 
+            pepitoAddress: pepitoAddress, 
+            web3Connected: web3Connected, 
+            ownerPepito: ownerPepito
+        }, () => {
+            console.log('state web3 updated', Object.keys(this.state), Object.values(this.state));
+        });
+        this.web3 = web3;               // object Web3 from makepepito
+        this.pepitoInstance = pepitoInstance;   // object Contract from makepepito
+        console.log('web3, Instance', this.web3, this.pepitoInstance);
     }
 
     retrievedDisguise = async (idxDisguise) => {
