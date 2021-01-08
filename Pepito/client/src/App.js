@@ -47,7 +47,7 @@ class App extends Component {
         return (
             <div className='container text-center'>
                 <header>
-                    <h1 className='m-5'>Pepito Disguise<sup>not yet on blockchain</sup></h1>
+                    <h1 className='m-5'>Pepito Disguise<sup>on blockchain</sup></h1>
                 </header>
                 <div>
                     <DisguiseControls 
