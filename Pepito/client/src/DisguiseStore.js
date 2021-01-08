@@ -8,11 +8,10 @@ import './App.css';
 class DisguiseStore extends React.Component{
 
     storeDisguise = () => {
-        //alert('storing Disguise on-chain');
-        //const { accounts, pepitoInstance, web3Connected, ownerPepito } = this.state; //bug: this.state is unknown here
         // we have to see exactly which component of App is required to store a disguise
         const web3Connected = this.props.web3Connected;
         const pepitoInstance = this.props.pepitoInstance;
+        // const {web3Connected, pepitoInstance} = this.props;
         console.log("--> ", /*"user account", accounts,*/
             ".\n 2.storeDisguise, Pepito instance", pepitoInstance, // <-- needed
             ".\n  2.storeDisguise, web3Connected", web3Connected,   // <-- needed
