@@ -41,7 +41,12 @@ In the following we'll specify and code a dApp to help you in this mission. But 
 ![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
 
 ## React Frontend design
-The frontend of _Machu Picchu_ is derived from Truffle Box React.
+The frontend of _Machu Picchu_ is derived from Truffle Box React. As comlpared to the version submitted in December, the `App.js` is reduced to the minimum. All important actions are in distinct React components. We can now improve gradually each function without impacting the others: 
+* how to generate disguises,
+*  how to store disguises (blockchain or IPFS or OrbitDB or Textile), 
+*  how to retrieve a disguise, modify it and store back
+
+We can also derive Pepito into a true humanitarian organisation without disrupting the code.
 
 ![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
 
