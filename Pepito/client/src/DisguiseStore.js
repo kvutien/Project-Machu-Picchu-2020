@@ -1,6 +1,6 @@
 /**  class DisguiseStore - project Pepito 
  * @author Vu Tien Khang - Jan 2021
- * @notice store disguise on blockchain
+ * @notice store disguise on blockchain - Work in progress
 */
 import React from 'react';
 import './App.css';

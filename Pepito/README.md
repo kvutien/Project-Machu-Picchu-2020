@@ -52,58 +52,49 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 ├── 20201128\ Avatars.jpeg
 ├── ConsenSys\ Academy?\200\231s\ 2020\ Blockchain\ Developer\ Bootcamp\ Final\ Project\ Spec.docx
 ├── LICENSE
-├── Pepito
+├── Pepito (the actual Bootcamp Final Project)
+│   ├── design_pattern_decisions.md
 │   ├── Final\ Project\ Design.png
 │   ├── Final\ Project\ Design.pptx
 │   ├── Final\ Project\ React.png
 │   ├── README.md
 │   ├── build
-│   │   └── contracts
-│   │       ├── Community.json
-│   │       ├── HelperInstitution.json
-│   │       ├── Migrations.json
-│   │       ├── Pepito.json
-│   │       └── PepitoDisguise.json
 │   ├── client
-│   │   ├── README.md
 │   │   ├── node_modules
 ...
 │   │   ├── package-lock.json
 │   │   ├── package.json
-│   │   ├── public
-│   │   │   ├── favicon-react.ico
-│   │   │   ├── favicon.ico
-│   │   │   ├── index.html
-│   │   │   ├── logo192.png
-│   │   │   ├── logo512.png
-│   │   │   ├── machupicchu_logo.png
-│   │   │   ├── manifest.json
-│   │   │   ├── robots.txt
-│   │   │   └── xmas.png
-│   │   └── src
+│   │   ├── public  (React app HTML template and assets)
+...
+│   │   └── src  (React frontend app)
 │   │       ├── App.css
 │   │       ├── App.js
 │   │       ├── App.test.js
 │   │       ├── OptionTable-v7.js
 │   │       ├── OptionTable.js
-│   │       ├── contracts_abi
-│   │       │   ├── Pepito.json
-│   │       │   └── PepitoDisguise.json
+│   │       ├── contracts_abi (compiled Solidity contracts)
+...
+│   │       ├── Disguise.js
+│   │       ├── DisguiseControls.js (block of components controlling the Disguise)
+│   │       ├── DisguiseRetrieve.js (component to retrieve the Disguise)
+│   │       ├── DisguiseStore.js (component to store on-chain the Disguise)
+│   │       ├── DrawAvataar.js (component to display the avataar)
 │   │       ├── getWeb3.js
+│   │       ├── helpers.js  (various helper functions)
 │   │       ├── index.css
 │   │       ├── index.js
 │   │       ├── logo.svg
+│   │       ├── MakePepito.svg (component to connect Web3 and create a Disguise contract under Pepito contract)
 │   │       ├── old\ react-create\ code
 ...
 │   │       ├── reportWebVitals.js
 │   │       └── setupTests.js
 │   ├── contracts
-│   │   ├── DraftCommunity.sol
-│   │   ├── DraftHelperInstitution.sol
+│   │   ├── DraftCommunity.sol (unused placeholder)
+│   │   ├── DraftHelperInstitution.sol (unused placeholder)
 │   │   ├── Migrations.sol
 │   │   ├── Pepito.sol
 │   │   └── PepitoDisguise.sol
-│   ├── design_pattern_decisions.md
 │   ├── migrations
 │   │   ├── 1_initial_migration.js
 │   │   └── 2_deploy_contracts.js
@@ -127,9 +118,8 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React.
 * (as of end Dec 2020) 
   * run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
-  * manually copy the ABI `Pepito.json` and `PepitoDisguise.json` from `Pepito/build/contracts` to `pepito/client/src/contracts_abi` because `App.js` cannot read outside the directory `src` (I have to investigate this React limitation)
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
-  * Run the app `npm run demo`
+  * Run the app `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
 * (*TODO: target setup process, to be detailed and tested*)
   * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
