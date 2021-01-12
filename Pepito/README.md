@@ -118,10 +118,9 @@ We can also derive Pepito into a true humanitarian organisation without disrupti
 * Install node.js via brew `brew install node`
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
-* Navidate to Pepito inside the cloned folder (`Machu-Picchu/Pepito/client`)
+* Navidate to Pepito inside the cloned folder (`Machu-Picchu/Pepito`)
 * Install the required packages `npm install`
 * (as of end Dec 2020) 
-  * run `cd ..` to return to `Machu-Picchu/Pepito` directory
   * run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
