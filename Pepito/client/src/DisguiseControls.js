@@ -35,6 +35,9 @@ class DisguiseControls extends React.Component {
                                 <DisguiseStore 
                                     web3Connected={this.props.web3Connected}
                                     pepitoInstance={this.props.pepitoInstance}
+                                    ownerPepito={this.props.ownerPepito}
+                                    idxDisguise={this.props.idxDisguise}
+                                    deployedDisguise={this.props.deployedDisguise}
                                 />
                             </td>
                         </tr>

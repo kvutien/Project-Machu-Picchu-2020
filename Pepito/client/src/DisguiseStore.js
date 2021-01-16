@@ -1,62 +1,54 @@
 /**  class DisguiseStore - project Pepito 
  * @author Vu Tien Khang - Jan 2021
  * @notice store disguise on blockchain - Work in progress
+ * @notice send transaction to deploy a disguiseContract
+ * @dev disguiseCount1 is the count in smart contract done without safeMath
 */
 import React from 'react';
 import './App.css';
 
 class DisguiseStore extends React.Component{
+    constructor() {
+        super();
+    }
 
-    storeDisguise = () => {
+    storeDisguise = async () => {
         const web3Connected = this.props.web3Connected;
-        console.log("--> ",
-            ".\n 2.storeDisguise, web3Connected", web3Connected,   // <-- needed
-            );
+        //console.log("--> 2.storeDisguise, web3Connected", web3Connected);
       
         if(web3Connected){
             const pepitoInstance = this.props.pepitoInstance;
-            console.log("--> ",
-            ".\n  2.storeDisguise.Pepito instance", pepitoInstance, // <-- needed
-            );
-            // below we subscribe to a websocket event
-            // pepitoInstance.events.PepitoDisguiseCreated ((err, event) => {console.log('2.storeDisguise.event', event)});
-                // .on('data', (event) => {
-                //     console.log(event);
-                // })
-                // .on('error', console.error);
-            // below we ask for all past events
-            // const allEvents = pepitoInstance.getPastEvents('PepitoDisguiseCreated', {fromBlock:0});
-            // console.log('--- allEvents =', allEvents);
+            //console.log("      2.storeDisguise.Pepito instance", pepitoInstance);            
 
-            /* replace below with const disguiseTransaction = pepitoInstance.methods.createPepitoDisguise()
-                    .send({from: owner}) */;
-            const disguiseTransaction = pepitoInstance.methods.createPepitoDisguise();
-            this.setState({disguiseTransaction: disguiseTransaction}, ()=>{
-                console.log('   2.storeDisguise-state.disguiseTransaction', disguiseTransaction)
-            })
-            console.log('   2.storeDisguise.disguiseTransaction returned', disguiseTransaction);
-        //     //bug: pepitoDisguise is currently a transaction object, not an address
-               //we have to store the instance of pepitoDisguise in solidity and retrieve it here
-        //     console.log("instance pepitoDisguise created by Pepito", pepitoDisguise);
-        //     var HatColor = 1;    //  test value, should be the rank in the array of HatColor
+            const disguiseReceipt = await pepitoInstance.methods.createPepitoDisguise()
+                .send({from: this.props.ownerPepito});
+            //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
+            
+            // ask the blockchain for all past events of type 'PepitoDisguiseCreated'
+            const allEvents = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {fromBlock:0});
+            //console.log('        2.storeDisguise.allEvents =', allEvents);
+            const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
+            const disguiseCount = lastEvent[0].returnValues.disguiseCount;
+            const disguiseCount1 = lastEvent[0].returnValues.disguiseCount1;
+            const addressDisguise = lastEvent[0].returnValues.addressDisguise;
+            console.log('        2.storeDisguise.lastEvent, count =', disguiseCount,
+                ', count1 =', disguiseCount1, 
+                ', disguise address', addressDisguise);
+
+            // build the array of disguise options to store
+            const {idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
+                idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor} = this.props.idxDisguise;
+            const disguise2store = [idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
+                idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor];
+            console.log('        2.storeDisguise.disguise2store =', disguise2store);
+
+            // return the count & address of disguise, + the array summarry of disguise options
+            this.props.deployedDisguise(disguiseCount1, addressDisguise, disguise2store);
+
         //     await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
         //     const storedDisguise = await pepitoDisguise.methods.storedDisguise().call();
         //     console.log("storedDisguise", storedDisguise);
       
-        //     /* 
-        //     await pepitoDisguise.methods.setTopType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setHatColor().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setAccessoriesType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setHairColor().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setFacialHairType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setFacialHairColor().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setClotheType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setClotheColor().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setEyeType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setEyebrowType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setMouthType().call({ from: accounts[0] });
-        //     await pepitoDisguise.methods.setSkinColor().call({ from: accounts[0] });
-        //     */
         } else alert("Please get connected first to local blockchain");  
     }
 

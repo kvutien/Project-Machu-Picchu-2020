@@ -56,12 +56,13 @@ order of function modifiers
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
-    address[512] public pepitoDisguiseContracts;    /// @dev    array of addresses of contracts pepitoDisguise
+    uint256 public disguiseCount1;  /// @dev    same but incremented without SafeMath
+    address[512] public disguiseContracts;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
     /// @dev    for the demo, we limit array size to 512; in real, disguises will be in IPFS database w/o number limit
 
-    event PepitoDisguiseCreated(uint256 disguiseCount, address addressDisguise);
+    event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address addressDisguise);
     
     modifier isAdmin() {
         require(owner == msg.sender);   /// @dev    the caller of the function must be Pepito
@@ -79,6 +80,7 @@ order of function modifiers
         owner = msg.sender;     /// @dev    the owner is the EOA that deployed Pepito
         initialBalance = 10;    /// @dev    initial balance is 10 Pepito tokens
         disguiseCount = 0;     /// @dev    initial number of disguises created
+        disguiseCount1 = 0;    /// @dev    for debug
     }
     
     function registerDisguise() public payable stopInEmergency {
@@ -95,9 +97,10 @@ order of function modifiers
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        pepitoDisguiseContracts[disguiseCount] = address(pepitoDisguise);
+        disguiseContracts[disguiseCount] = address(pepitoDisguise);
         disguiseCount.add(1);
-        emit PepitoDisguiseCreated(disguiseCount, address(pepitoDisguise));
+        disguiseCount1 += 1;
+        emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, address(pepitoDisguise));
         return pepitoDisguise;
     }
     
@@ -106,7 +109,7 @@ order of function modifiers
         /// @dev    i is loop index, rank in the array of disguises
         /// @return one instance of pepitoDisguiseAddress, function to retrieve its data is exposed in pepitoDisguide
         require (i < 512, "cannot exist more than 512 disguises");
-        return pepitoDisguiseContracts[i];
+        return disguiseContracts[i];
     }
     
         function toggleContractActive() public isAdmin {

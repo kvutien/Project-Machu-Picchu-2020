@@ -22,7 +22,7 @@ class MakePepito extends React.Component{
 
         // don't do anything if props.web3Connected == true
         if(!this.props.web3Connected) {
-            console.log('>>>> makePepito: this.props.web3Connected', this.props.web3Connected);
+            //console.log('>>>> makePepito: this.props.web3Connected', this.props.web3Connected);
             try {
                 /**
                  * @dev via Metamask, get blockchain network provider & web3 instance by trying several channels
@@ -52,11 +52,11 @@ class MakePepito extends React.Component{
                 var web3Connected = true;
 
                 /// @dev set web3, accounts, and pepitoContract of the state variable
-                console.log("1.user account", accounts,
+                /*console.log("1.user account", accounts,
                     ".\n 1.makePepito().Pepito contract", pepitoInstance,
                     ".\n  1.Pepito contract address", deployedNetwork.address,
                     ".\n   1.web3Connected", web3Connected,
-                    ".\n    1.'owner' variable in Pepito", ownerPepito);
+                    ".\n    1.'owner' variable in Pepito", ownerPepito); */
                 this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected, ownerPepito);
             } catch (error) {
                 /// @dev catch any errors for any of the above operations.
