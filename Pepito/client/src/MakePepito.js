@@ -1,6 +1,6 @@
 /**  class MakePepito - project Pepito 
  * @author Vu Tien Khang - Jan 2021
- * @notice connect to Web3, call App.connectB to store on App.state
+ * @notice connect to Web3 instance of Pepito, call App.connectB to store on App.state
 */
 import React from 'react';
 import getWeb3 from "./getWeb3";                    // to call web3 API

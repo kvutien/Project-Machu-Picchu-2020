@@ -12,31 +12,33 @@ import OptionTable from './OptionTable';
 class App extends Component {
     constructor() {
         super();
-        this.state = {web3Connected: false};
-        this.disguise = {};         // object Disguise from fillDisguise
-        this.web3 = {};             // object Web3 from makepepito
-        this.pepitoInstance = {};   // object Contract from makepepito
+        this.state = {web3Connected: false, 
+            disguise:{},             // initialise disguise so that DrawAvataar has an object in first render
+            web3: {},
+            pepitoInstance: {}
+        };
     }
 
     setDisguise = async (randomBigNumber, idxDisguise, disguise) => {
-        this.setState({randomBigNumber: randomBigNumber});
-        this.setState(idxDisguise);
-        this.disguise = disguise;
-        this.setState(disguise, () => {console.log('---> state in setDisguise()', Object.keys(this.state), Object.values(this.state));});
+    /** @notice record in state the values received as arguments */
+    this.setState({randomBigNumber: randomBigNumber});
+        this.setState({idxDisguise: idxDisguise});
+        this.setState({disguise: disguise}, () => {console.log('---> state in App.setDisguise()', Object.keys(this.state), Object.values(this.state));});
     }
 
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
+    /** @notice record in state the values received as arguments */
         this.setState({
             accounts: accounts, 
             pepitoAddress: pepitoAddress, 
+            pepitoInstance: pepitoInstance,
             web3Connected: web3Connected, 
+            web3: web3,
             ownerPepito: ownerPepito
         }, () => {
             console.log('state web3 updated', Object.keys(this.state), Object.values(this.state));
         });
-        this.web3 = web3;               // object Web3 from makepepito
-        this.pepitoInstance = pepitoInstance;   // object Contract from makepepito
-        console.log('in connectedB(): web3, Instance', this.web3, this.pepitoInstance);
+        console.log('in App.connectedB(): web3', this.state.web3, ', Instance', this.state.pepitoInstance);
     }
 
     retrievedDisguise = async (idxDisguise) => {
@@ -44,6 +46,7 @@ class App extends Component {
     }
 
     render() {
+        const disguise = this.state.disguise;
         return (
             <div className='container text-center'>
                 <header>
@@ -55,13 +58,13 @@ class App extends Component {
                         connectedB={this.connectedB}                // used to return the web3 and pepito
                         pepitoAddress={this.state.pepitoAddress}    // will be displayed on screen
                         web3Connected={this.state.web3Connected}
-                        pepitoInstance={this.pepitoInstance}
+                        pepitoInstance={this.state.pepitoInstance}
                         retrievedDisguise={this.retrievedDisguise}  // used to return the disguise as indexes in arrays of options
                     />
-                    <DrawAvataar disguise={this.disguise} />
-                    <small>This disguise= <br/>{Object.values(this.disguise)}</small>
+                    <DrawAvataar disguise={disguise} />
+                    <small>This disguise= <br/>{Object.values(disguise)}</small>
                     <p>Options (modifiable soon)</p>
-                    <OptionTable disguise={this.disguise} />
+                    <OptionTable disguise={disguise} />
                 </div>
             </div>
         );
