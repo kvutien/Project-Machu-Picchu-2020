@@ -1,18 +1,11 @@
 // SPDX-License-Identifier: MIT
-// version of Dec 30, 2020
+// version of Jan 17, 2021 - structure follows CodeTemplate.sol
 pragma solidity >=0.4.22 <0.8.0;
-/*  Order of contract elements
-    1.	    Pragma statements
-    2.	    Import statements
-    3.	    Interfaces
-    4.	    Libraries
-    5.	    Contracts
-*/
 
 /**
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
-    @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
+    @notice Pepito is a Caribbian corsair. He can create up to 64 PepitoDisguise in this version
     @notice Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick :-)
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
@@ -21,9 +14,10 @@ pragma solidity >=0.4.22 <0.8.0;
     @dev    - specially useful for persons-in-need because their contract will be their virtual secretary
     @dev        and will maintain their balance of tokens 
     @dev        and will execute the few orders sent via SMS by the persons-in-need
-    @dev Pepito contract only manages the array of addresses of disguise smart contract
+    @dev Pepito contract only manages the array of addresses of disguise smart contracts
+    @dev PepitoDisguise contract actually manages the array the disguise options, the personal data
 
-    @dev    Remix-compiled successfully 2020-12-30
+    @dev    Remix-compiled successfully 2021-01-17
 */
 
 import "./PepitoDisguise.sol";
@@ -32,46 +26,27 @@ import "../client/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
 
 contract Pepito {
     using SafeMath for uint256;
-/* order of statements inside de contract
-    1.	    State variables
-    2.	    Struct, Arrays or Enums
-    3.	    Events
-    4.	    Function Modifiers
-    5.	    Constructor
-    6.	    Fallback — Receive function
-    7.	    External visible functions
-    8.	    Public visible functions
-    9.	    Internal visible functions
-    10.	    Private visible functions
-
-order of function modifiers
-    1.	    Visibility
-    2.	    Mutability
-    3.	    Virtual
-    4.	    Override
-    5.	    Custom modifiers
-*/
 
     bool public stopped;            /// @dev    the circuit breaker
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
     uint256 public disguiseCount1;  /// @dev    same but incremented without SafeMath
-    address[512] public disguiseContracts;    /// @dev    array of addresses of contracts pepitoDisguise
+    address[64] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
-    /// @dev    for the demo, we limit array size to 512; in real, disguises will be in IPFS database w/o number limit
+    /// @dev    for the demo, we limit array size to 64; in real, disguises will be in IPFS database w/o number limit
 
-    event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address addressDisguise);
+    event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address[64] disguiseAddresses);
     
     modifier isAdmin() {
         require(owner == msg.sender);   /// @dev    the caller of the function must be Pepito
         _;
     }
-    modifier stopInEmergency() {    /// @dev    the caller of the breaker must be Pepito
+    modifier stopInEmergency() {        /// @dev    the caller of the breaker must be Pepito
         if(!stopped) _;
     }
-    modifier onlyInEmergency() {    /// @dev    the caller of the breaker must be Pepito
+    modifier onlyInEmergency() {        /// @dev    the caller of the breaker must be Pepito
         if(stopped) _;
     }
 
@@ -79,37 +54,41 @@ order of function modifiers
         stopped = false;
         owner = msg.sender;     /// @dev    the owner is the EOA that deployed Pepito
         initialBalance = 10;    /// @dev    initial balance is 10 Pepito tokens
-        disguiseCount = 0;     /// @dev    initial number of disguises created
-        disguiseCount1 = 0;    /// @dev    for debug
+        disguiseCount = 0;      /// @dev    number of disguises created, maintained with SafeMath
+        disguiseCount1 = 0;     /// @dev    currently used, unsafe arithmetic
     }
     
     function registerDisguise() public payable stopInEmergency {
-        /// @dev    create a disguise and (future) record it in IPFS
-        /// @dev    stop all creation of new disguise if circuit breaker activated
+        /// @notice create a disguise in circuit-breaker protected mode and (future) record it in IPFS
+        /// @notice stop all creation of new disguise if circuit breaker activated
+        /// @dev    TODO: inputs = PepitoDisguise pepitoDisguise, uint256[] disguise2store
+        /// @dev    TODO: to be called by DisguiseStore.js instead of today createPepitoDisguise()
+        /// @dev        await pepitoInstance.methods.registerDisguise()
         createPepitoDisguise();
     }
     
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
-        /// @dev    deploy an instance of PepitoDisguise with properties transferred from caller
+        /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
-        require (disguiseCount < 512, "there has been already 512 disguises created");
+        require (disguiseCount1 < 64, "there has been already 64 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        disguiseContracts[disguiseCount] = address(pepitoDisguise);
-        disguiseCount.add(1);
+        disguiseAddresses[disguiseCount1] = address(pepitoDisguise);
+        disguiseCount.add(1);   ///@dev used by SafeMath, but not working well yet
         disguiseCount1 += 1;
-        emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, address(pepitoDisguise));
-        return pepitoDisguise;
+        emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, disguiseAddresses); // emit the complete array of addresses
+        // --> emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, address(pepitoDisguise));
+        return pepitoDisguise;  ///@dev verify if this return is useful somewhere
     }
     
     function getPepitoDisguise(uint i) external view returns(address) {
         /// @dev    this function will be called from a JavaScript loop
         /// @dev    i is loop index, rank in the array of disguises
         /// @return one instance of pepitoDisguiseAddress, function to retrieve its data is exposed in pepitoDisguide
-        require (i < 512, "cannot exist more than 512 disguises");
-        return disguiseContracts[i];
+        require (i < 64, "cannot exist more than 64 disguises");
+        return disguiseAddresses[i];
     }
     
         function toggleContractActive() public isAdmin {

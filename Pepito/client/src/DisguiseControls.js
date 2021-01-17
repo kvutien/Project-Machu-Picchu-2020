@@ -34,6 +34,7 @@ class DisguiseControls extends React.Component {
                             <td>
                                 <DisguiseStore 
                                     web3Connected={this.props.web3Connected}
+                                    web3={this.props.web3}
                                     pepitoInstance={this.props.pepitoInstance}
                                     ownerPepito={this.props.ownerPepito}
                                     idxDisguise={this.props.idxDisguise}
@@ -48,6 +49,9 @@ class DisguiseControls extends React.Component {
                         </tr>
                         <tr>
                             <td colSpan="2">Pepito Address...--&gt;{this.props.pepitoAddress}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2">This disguise Address...--&gt;{this.props.disguiseAddress}</td>
                         </tr>
                         <tr>
                             <td colSpan="2"><a href='https://ibisa.users.earthengine.app/view/mcgyver3' target='_blank'

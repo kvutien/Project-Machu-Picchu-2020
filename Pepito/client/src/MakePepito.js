@@ -65,14 +65,14 @@ class MakePepito extends React.Component{
                 );
                 console.error(error);
             }
-        } else alert('no need: blockchain connected and Pepito already created');
+        } else alert('no need: blockchain interfaced and Pepito already known');
     }
 
     render() {
         return(
             <>
                 <button className="btn btn-lg btn-secondary mb-5" 
-                    onClick={this.makePepito}>Connect to blockchain & create Pepito</button>
+                    onClick={this.makePepito}>Get blockchain interface & Pepito credentials</button>
             </>
         )
     }

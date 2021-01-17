@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: MIT
-/*
-    Demo dApp for Machu Picchu. Also Final Project of Vu Tien Khang
-    Remix compiled successfully 2020-12-30
-*/
 pragma solidity >=0.4.22 <0.8.0;
 
 /** Solidity NatSpec format
     @title  PepitoDisguise. Demo dApp for Machu Picchu. Also Final Project of
     @author Vu Tien Khang
-    @notice Pepito is a Caribbian corsair. He can create up to 512 PepitoDisguise
-    @notice A disguise is composed of many features
+    @notice Pepito is a Caribbian corsair. He can create up to 64 PepitoDisguise in this demo
+    @notice A disguise is composed of many features, each feature has many options
+    @notice Currently, features and options are hard-coded in a array to optise blockchain storage
+    @notice     ... once moved to IPFS, features and options will be key-value pairs, open-ended
     @notice Copy this contract to generate also farmers, refugees, homeless etc.
     @dev    PepitoDisguise's function is similar to ENS Resolver.sol, Pepito to ENS Registry.sol
 
-    @dev    Remix-compiled successfully 2020-12-30
+    @dev    Remix-compiled successfully 2021-01-17
 */
 
 contract PepitoDisguise {
@@ -26,6 +24,7 @@ contract PepitoDisguise {
     enum AccessoriesTypes {Blank, Kurt, Prescription01, Prescription02, Round, Sunglasses, Wayfarers}
     enum HairColors {Auburn, Black, Blonde, BlondeGolden, Brown, BrownDark, PastelPink, Platinum, Red, SilverGray}
     enum FacialHairTypes {BeardLight, BeardMagestic, BeardMedium, Blank, MoustacheFancy, MoustacheMagnum}
+    enum FacialHairColors {Auburn, Black, Brown, BrownGolden, brownBlack, Platinum, red}
     enum ClotheTypes {BlazerShirt, BlazerSweater, CollarSweater, GraphicShirt, Graphics, Hoodie, Overall, ShirtCrewNeck, ShirtScoopNeck, ShirtVNeck}
     enum ClotheColors {Black, Blue01, Blue02, Blue03, Gray01, Gray02, Heather, PastelBlue, PastelGreen, PastelOrange, PastelRed, PastelYellow, Pink, Red, White}
     enum EyeTypes {Close, Cry, Default, Dizzy, EyeRoll, Happy, Hearts, Side, Squint, Surprised, Wink, WinkWacky}
@@ -38,6 +37,7 @@ contract PepitoDisguise {
         AccessoriesTypes accessoriesType; // 'Round', 'Sunglasses', 'Wayfarers' etc.
         HairColors hairColor;   // 'PastelYellow', 'Pink', 'Red', 'White' etc.
         FacialHairTypes facialHairType;   // 'BeardMedium', 'Blank', 'MoustacheFancy', 'MoustacheMagnum' etc.
+        FacialHairColors facialHairColor; // Auburn', 'Black', 'Brown' etc.
         ClotheTypes clotheType; // 'BlazerSweater', 'CollarSweater', 'GraphicShirt' etc.
         ClotheColors clotheColor; // 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White' etc.
         EyeTypes eyeType;       // 'Close', 'Cry', 'Default', 'Dizzy', 'EyeRoll' etc.
@@ -51,6 +51,21 @@ contract PepitoDisguise {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
         // balance = _initialBalance;
         balance = 0;
+    }
+    
+    function storeDisguise() public payable {
+        /// @dev    write the struct storedData in blockchain first, IPFS database in future
+        /// @dev    to be filled
+    }
+
+    function readDisguise() public {
+        /// @dev    retrieves the struct storedData from IPFS database
+        /// @dev    to be filled
+    }
+
+    function updateDisguise() public payable {
+        /// @dev    read, update, write back the struct storedData in IPFS database
+        /// @dev    to be filled
     }
     
     /// @dev    functions to set elements of the struct storedData with data of the disguise
@@ -68,19 +83,4 @@ contract PepitoDisguise {
     function setMouthType(MouthTypes x) public {storedDisguise.mouthType = x; }
     function setSkinColor(SkinColors x) public {storedDisguise.skinColor = x; }
 
-    function storeDisguise() public payable {
-        /// @dev    write the struct storedData in blockchain first, IPFS database in future
-        /// @dev    to be filled
-    }
-
-    function readDisguise() public {
-        /// @dev    retrieves the struct storedData from IPFS database
-        /// @dev    to be filled
-    }
-
-    function updateDisguise() public payable {
-        /// @dev    read, update, write back the struct storedData in IPFS database
-        /// @dev    to be filled
-    }
-    
 }

@@ -1,6 +1,6 @@
 /**  class App - project Pepito 
  * @author Vu Tien Khang - Jan 2021
- * @notice root class
+ * @notice React root component
  * @dev refactored to move out most of the functions
 */
 import React, { Component } from 'react';
@@ -10,25 +10,25 @@ import DrawAvataar from './DrawAvataar';
 import OptionTable from './OptionTable';
 
 class App extends Component {
-    constructor() {     // constructor is called whenever App.js code is changed and saved
+    constructor() {             // constructor is called whenever App.js code is changed and saved
         super();
         this.state = {web3Connected: false, 
-            disguise:{},             // initialise disguise so that DrawAvataar has an object in first render
+            disguise:{},        // initialise disguise so that DrawAvataar has an object in first render
             web3: {},
-            pepitoInstance: {}
+            pepitoInstance: {},
+            disguiseAddresses: []
         };
-        this.disguiseAddress = [];
     }
 
     setDisguise = async (randomBigNumber, idxDisguise, disguise) => {
-    /** @notice record in state the values received as arguments */
+    /** @notice record in state the values received from Disguise.js as arguments */
         this.setState({randomBigNumber: randomBigNumber});
         this.setState({idxDisguise: idxDisguise});
         this.setState({disguise: disguise}, () => {console.log('---> state after App.setDisguise()', Object.keys(this.state), Object.values(this.state));});
     }
 
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
-    /** @notice record in state the values received as arguments */
+    /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
             accounts: accounts, 
             pepitoAddress: pepitoAddress, 
@@ -42,12 +42,12 @@ class App extends Component {
         //console.log('in App.connectedB(): web3', this.state.web3, ',\n Instance', this.state.pepitoInstance);
     }
 
-    deployedDisguise = async (count, address, disguiseStored) => {
-    /** @notice add a callback to record in state the addresses of disguises */ 
-        this.disguiseAddress[count-1] = address;
+    deployedDisguise = async (count, disguiseAddresses, disguiseStored) => {
+    /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */ 
+        // this.disguiseAddresses[count-1] = disguiseAddresses;
         this.setState({
             disguiseCount: count,
-            disguiseAddress: this.disguiseAddress,
+            disguiseAddresses: disguiseAddresses,
             disguiseStored: disguiseStored
         }, () => {console.log('---> state after App.DisguiseStore', Object.keys(this.state), Object.values(this.state));
         });
@@ -69,7 +69,9 @@ class App extends Component {
                         setDisguise={this.setDisguise}              // used to return the disguise
                         connectedB={this.connectedB}                // used to return the web3 and pepito
                         pepitoAddress={this.state.pepitoAddress}    // will be displayed on screen
+                        disguiseAddress={this.state.disguiseAddresses[this.state.disguiseCount-1]}    // will be displayed on screen
                         web3Connected={this.state.web3Connected}
+                        web3={this.state.web3}
                         pepitoInstance={this.state.pepitoInstance}
                         ownerPepito={this.state.ownerPepito}
                         idxDisguise={this.state.idxDisguise}
