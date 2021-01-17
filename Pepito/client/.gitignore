@@ -6,6 +6,7 @@
 .pnp.js
 
 # develop
+.eslintcache
 /client/.eslintcache
 
 # testing
