@@ -42,7 +42,7 @@ In the following we'll specify and code a dApp to help you in this mission gener
 
 ![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
 
-**As part of future design**, to allow a simple SMS-based signature by the person-in-need while preserving security, we are considering the use of a multisignature pattern, shared between the persons-in-need and the chief of village (the "Factory"). The person-in-need will sign with an OTP and a simple mobile phone. the chief of village will have a tablet or smartphone and will sign with the wallet private key.
+**As part of future design**, to allow a simple SMS-based signature by the person-in-need while preserving security, we are considering the use of a multisignature pattern, shared between the persons-in-need and the chief of village (the "Factory"). The person-in-need will sign with an OTP and a simple mobile phone. The chief of village will have a tablet or smartphone and will sign with the wallet private key.
 
 ## React Frontend design
 The frontend of _Machu Picchu_ is derived from Truffle Box React. As compared to the version submitted in December, the `App.js` is reduced to the minimum. All important actions are in distinct React components. We can now improve gradually each function without impacting the others: 

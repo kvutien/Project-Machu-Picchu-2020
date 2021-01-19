@@ -44,7 +44,10 @@ class DisguiseControls extends React.Component {
                         </tr>
                         <tr>
                             <td>
-                                <DisguiseRetrieve retrievedDisguise={this.props.retrievedDisguise} />
+                                <DisguiseRetrieve
+                                    disguiseAddresses={this.props.disguiseAddresses}    //to retrieve a disguise
+                                    web3={this.props.web3}
+                                    retrievedDisguise={this.props.retrievedDisguise} />
                             </td>
                         </tr>
                         <tr>

@@ -57,16 +57,7 @@ contract Pepito {
         disguiseCount = 0;      /// @dev    number of disguises created, maintained with SafeMath
         disguiseCount1 = 0;     /// @dev    currently used, unsafe arithmetic
     }
-    
-    function registerDisguise() public payable stopInEmergency {
-        /// @notice create a disguise in circuit-breaker protected mode and (future) record it in IPFS
-        /// @notice stop all creation of new disguise if circuit breaker activated
-        /// @dev    TODO: inputs = PepitoDisguise pepitoDisguise, uint256[] disguise2store
-        /// @dev    TODO: to be called by DisguiseStore.js instead of today createPepitoDisguise()
-        /// @dev        await pepitoInstance.methods.registerDisguise()
-        createPepitoDisguise();
-    }
-    
+        
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
@@ -79,7 +70,6 @@ contract Pepito {
         disguiseCount.add(1);   ///@dev used by SafeMath, but not working well yet
         disguiseCount1 += 1;
         emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, disguiseAddresses); // emit the complete array of addresses
-        // --> emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, address(pepitoDisguise));
         return pepitoDisguise;  ///@dev verify if this return is useful somewhere
     }
     
