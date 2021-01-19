@@ -1,5 +1,7 @@
+var PepitoDisguise = artifacts.require('PepitoDisguise');
+
 contract('PepitoDisguise', async (accounts) => {
-    it('Calling setTopType(0) should set storedDisguise.top in storage to Eyepatch', async() => {
+    it('Calling storeDisguise should set storedDisguise.top in storage to Eyepatch', async() => {
         let newValue = 0;
         let instance = await PepitoDisguise.deployed()
 

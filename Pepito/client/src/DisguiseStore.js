@@ -59,7 +59,7 @@ class DisguiseStore extends React.Component{
                     disguiseAddress,
             );
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
-            const storeDisguiseReceipt = await pepitoDisguise.methods.storeDisguise(disguise2store, disguiseCount1-1)
+            const storeDisguiseReceipt = await pepitoDisguise.methods.storeDisguise(disguise2store)
                 .send({from: this.props.ownerPepito });
             //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
             

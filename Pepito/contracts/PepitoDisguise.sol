@@ -55,7 +55,7 @@ contract PepitoDisguise {
         balance = 0;
     }
     
-    function storeDisguise(uint256[12] memory _disguise2store, uint256 i) public {
+    function storeDisguise(uint256[12] memory _disguise2store) public {
         /// @dev    write the struct storedData in blockchain first, IPFS database in future
         disguiseInStore = _disguise2store;
     }
@@ -67,7 +67,7 @@ contract PepitoDisguise {
 
     function updateDisguise() public payable {
         /// @dev    read, update, write back the struct storedData in IPFS database
-        /// @dev    to be filled
+        /// @dev    TODO: to be filled
     }
     
     /// @dev    functions to set elements of the struct storedData with data of the disguise

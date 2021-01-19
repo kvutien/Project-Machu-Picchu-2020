@@ -72,15 +72,7 @@ contract Pepito {
         emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, disguiseAddresses); // emit the complete array of addresses
         return pepitoDisguise;  ///@dev verify if this return is useful somewhere
     }
-    
-    function getPepitoDisguise(uint i) external view returns(address) {
-        /// @dev    this function will be called from a JavaScript loop
-        /// @dev    i is loop index, rank in the array of disguises
-        /// @return one instance of pepitoDisguiseAddress, function to retrieve its data is exposed in pepitoDisguide
-        require (i < 64, "cannot exist more than 64 disguises");
-        return disguiseAddresses[i];
-    }
-    
+        
         function toggleContractActive() public isAdmin {
         /// @dev    Circuit breaker to stop the smart contract in desperate cases & restart it
         /// @dev    In the future we can add an additional modifier that restricts stopping a contract to be
