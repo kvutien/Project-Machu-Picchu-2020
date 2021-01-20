@@ -24,8 +24,8 @@ class App extends Component {
     /** @notice record in state the values received from Disguise.js as arguments */
         this.setState({
             randomBigNumber: randomBigNumber,
-            idxDisguise: idxDisguise,   // disguise options in key-value format
-            disguise: disguise          // disguise features in key-value format
+            idxDisguise: idxDisguise,   // disguise options object in key-value format
+            disguise: disguise          // disguise features object in key-value format
         }, () => {
             console.log('---> state after App.setDisguise()/Disguise', Object.keys(this.state), Object.values(this.state));
         });
@@ -34,12 +34,12 @@ class App extends Component {
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
     /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
-            accounts: accounts, 
-            pepitoAddress: pepitoAddress, 
-            pepitoInstance: pepitoInstance,
-            web3Connected: web3Connected, 
+            accounts: accounts,             // array of user accounts reachable by web3
+            pepitoAddress: pepitoAddress,   // scalar, address as in ABI
+            pepitoInstance: pepitoInstance, // web3 contract instance
+            web3Connected: web3Connected,   // boolean
             web3: web3,
-            ownerPepito: ownerPepito
+            ownerPepito: ownerPepito        // address of account owner of Pepito
         }, () => {
             console.log('---> state after App.connectedB()/makePepito', Object.keys(this.state), Object.values(this.state));
         });
@@ -49,10 +49,10 @@ class App extends Component {
     deployedDisguise = async (count, disguiseAddresses, disguiseStored) => {
     /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */ 
         this.setState({
-            disguiseCount: count,
-            disguiseAddresses: disguiseAddresses,
-            disguiseAddress: disguiseAddresses[count-1],
-            disguiseStored: disguiseStored
+            disguiseCount: count,                       // count === highest rank, rank is in [1,n]
+            disguiseAddresses: disguiseAddresses,       // array of addresses of PepitoDisguise contracts
+            disguiseAddress: disguiseAddresses[count-1],// address of currently displayed disguise
+            disguiseStored: disguiseStored              // array of unit indexes of features composing the disguise
         }, () => {
             console.log('---> state after App.deployedDisguise/DisguiseStore', Object.keys(this.state), Object.values(this.state));
         });
@@ -61,8 +61,8 @@ class App extends Component {
     retrievedDisguise = async (disguiseAddress, idxDisguise, disguise) => {
         this.setState({
             disguiseAddress: disguiseAddress,
-            idxDisguise: idxDisguise,
-            disguise: disguise
+            idxDisguise: idxDisguise,           // retrieved object in key-value format features:index
+            disguise: disguise                  // retrieved object in key-value format features:options
         }, () => {
             console.log('---> state after App.retrievedDisguise/DisguiseRetrieve', Object.keys(this.state), Object.values(this.state));
         });
@@ -73,7 +73,7 @@ class App extends Component {
         return (
             <div className='container text-center'>
                 <header>
-                    <h1 className='m-5'>Pepito Disguise<sup>on blockchain</sup></h1>
+                    <h1 className='m-5'>Pepito Disguise<sup>v0.1, on blockchain</sup></h1>
                 </header>
                 <div>
                     <DisguiseControls 
@@ -85,10 +85,11 @@ class App extends Component {
                         web3={this.state.web3}
                         pepitoInstance={this.state.pepitoInstance}
                         ownerPepito={this.state.ownerPepito}
-                        disguiseAddresses={this.state.disguiseAddresses}    //to retrieve a disguise
-                        idxDisguise={this.state.idxDisguise}
+                        disguiseAddresses={this.state.disguiseAddresses}    //addresses of all disguise contracts
+                        idxDisguise={this.state.idxDisguise}        // disguise object in key-value format features:index
+                        disguiseCount={this.state.disguiseCount}    // max number of disguises = n, max index being n-1
                         deployedDisguise={this.deployedDisguise}    // used to return disguise count & address
-                        retrievedDisguise={this.retrievedDisguise}  // used to return the disguise as indexes in arrays of options
+                        retrievedDisguise={this.retrievedDisguise}  // used to return the retrieved disguise
                     />
                     <DrawAvataar disguise={disguise} />
                     <small>This disguise= <br/>{Object.values(disguise)}</small>

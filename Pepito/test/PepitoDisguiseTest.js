@@ -1,25 +1,25 @@
 var PepitoDisguise = artifacts.require('PepitoDisguise');
 
 contract('PepitoDisguise', async (accounts) => {
-    it('Calling storeDisguise should set storedDisguise.top in storage to Eyepatch', async() => {
-        let newValue = 0;
-        let instance = await PepitoDisguise.deployed()
+    // it('Calling storeDisguise should set disguiseInStore to the same value as argument', async() => {
+    //     let newValue = 0;
+    //     let instance = await PepitoDisguise.deployed()
 
-        instance.setTop(newValue, {from: accounts[0]})
-        let returnedValue = await instance.storedDisguise.topType.call()    // not sure that call() can return a struct?
+    //     instance.storeDisguise(newValue, {from: accounts[0]})
+    //     let returnedValue = await instance.storeDisguise.disguiseInStore().call()
 
-        assert.equal(newValue, returnedValue, "The returned value should equal the new value.")
-    })
+    //     assert.equal(newValue, returnedValue, "The returned value should equal the new value.")
+    // })
 
-    it('Calling storeDisguise(x) should do something', async() => {
+    // it('Calling storeDisguise should do something', async() => {
 
-    })
+    // })
 
-    it('Calling readDisguise(x) should do something', async() => {
+    // it('Calling readDisguise should do something', async() => {
 
-    })
+    // })
 
-    it('Calling updateDisguise(x) should do something', async() => {
+    // it('Calling updateDisguise should do something', async() => {
         
-    })
+    // })
 })

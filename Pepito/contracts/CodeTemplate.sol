@@ -22,7 +22,7 @@ pragma solidity >=0.4.22 <0.8.0;
 import "../client/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
 //import "./SafeMath.sol";      // used to compile in Remix
 
-contract Pepito {
+contract CodeTemplate {
     using SafeMath for uint256;
 /* order of statements inside de contract
     1.	    State variables
@@ -58,13 +58,13 @@ order of function modifiers
         owner = msg.sender;     /// @dev    the owner is the EOA that deployed Pepito
     }
     
-    function registerDisguise() public payable stopInEmergency {
+    function someFunction() public payable stopInEmergency returns(address){
         /// @dev    create a disguise and (future) record it in IPFS
         /// @dev    stop all creation of new disguise if circuit breaker activated
-    }
-    
-    function someFunction() public payable returns(address) {
         return owner;
     }
+    
+    // function someFunction() public payable returns(address) {
+    // }
     
 }

@@ -18,7 +18,7 @@ contract PepitoDisguise {
     // state variables
     address pepitoDisguiseOwner;        /// @dev    the owner of the disguise is Pepito
     uint256 balance;                    /// @dev    running balance of pepitoTokens of this disguise
-    uint256[12] private disguiseInStore;    /// @dev    the disguise, fixed array of 12 feature indexes
+    uint256[12] public disguiseInStore;    /// @dev    the disguise, fixed array of 12 feature indexes
 
     /// @dev    when transposed to person-in-need, balance will be a mapping of tokens from many helperInstitutions
     // enum TopTypes {Eyepatch, Hat, Hijab, LongHairBigHair, LongHairBob, LongHairBun, LongHairCurly, LongHairCurvy, LongHairDreads, LongHairFrida, LongHairFro, LongHairFroBand, LongHairMiaWallace, LongHairNotTooLong, LongHairShavedSides, LongHairStraight, LongHairStraight2, LongHairStraightStrand, NoHair, ShortHairDreads01, ShortHairDreads02, ShortHairFrizzle, ShortHairShaggy, ShortHairShaggyMullet, ShortHairShortCurly, ShortHairShortFlat, ShortHairShortRound, ShortHairShortWaved, ShortHairSides, ShortHairTheCaesar, ShortHairTheCaesarSidePart, Turban, WinterHat1, WinterHat2, WinterHat3, WinterHat4}

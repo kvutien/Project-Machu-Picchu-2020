@@ -39,11 +39,11 @@ class MakePepito extends React.Component{
 
             try {
                 /** @dev create a Pepito singleton contract instance */
-                const web3 = this.web3;
-                const accounts = this.accounts;
-                const networkId = await web3.eth.net.getId();
-                const deployedNetwork = Pepito.networks[networkId];
-                const pepitoInstance = new web3.eth.Contract(
+                const web3 = this.web3;                             // get the web3 provider
+                const accounts = this.accounts;                     // get the reachable accounts
+                const networkId = await web3.eth.net.getId();       // get the network ID currently connected to
+                const deployedNetwork = Pepito.networks[networkId]; // get the network object in the ABI
+                const pepitoInstance = new web3.eth.Contract(       // make an JavaScript instance of Pepito
                     Pepito.abi,
                     deployedNetwork && deployedNetwork.address,
                 );

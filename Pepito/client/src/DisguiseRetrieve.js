@@ -7,8 +7,10 @@ import './App.js';
 import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call web3 API
 
 class DisguiseRetrieve extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state = { disguiseCount: this.props.disguiseCount -0 }; // state.disguiseCount is a number, props.disguiseCount is a string
+        //console.log('DisguiseRetrieve constructor: disguiseCount=', this.state.disguiseCount);
         this.options = {	/** @dev the disguise options will be factored out to be reused in OptionTable */
           topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
           hatColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
@@ -25,10 +27,12 @@ class DisguiseRetrieve extends React.Component{
         }
     }
 
+
+
     retrieveDisguise = async () => {
-        const idx2retrieve = 0;        // today, always retrieve the first disguise; later, will be an user input
+        //console.log('--- DisguiseRetrieve, retrieveDisguise(), idx2retrieve=', this.state.idx2retrieve);
         const disguiseAddresses = this.props.disguiseAddresses;     // addresses of all disguises
-        const disguiseAddress = disguiseAddresses[idx2retrieve];    // address of the disguise to retrieve
+        const disguiseAddress = disguiseAddresses[this.state.idx2retrieve];    // address of the disguise to retrieve
         /** create with web3 a connection to that pepitoDisguise */
         const pepitoDisguise = new this.props.web3.eth.Contract(
             PepitoDisguise.abi,
@@ -87,12 +91,37 @@ class DisguiseRetrieve extends React.Component{
         this.props.retrievedDisguise(disguiseAddress, idxDisguise, disguise);
     }
 
+    mySubmitHandler = async (event) => {
+        event.preventDefault();
+        const rank2retrieve = this.state.rank2retrieve - 0; // same trick as above to transform a string to a number for arithmetic compare
+        const idx2retrieve = rank2retrieve - 1;
+        this.setState({ disguiseCount: this.props.disguiseCount -0 });  // refresh the component's state in case new disguise was stored
+        const maxCount = this.state.disguiseCount;
+        // console.log('-- DisguiseRetrieve, mySubmitHandler(): idx2retrieve=', idx2retrieve, ' , maxCount', maxCount);
+        if(rank2retrieve < 1) {alert("Disguise #" + rank2retrieve+ " is less than 1")} 
+        else if(rank2retrieve > maxCount) {alert("Disguise #" + rank2retrieve+ " exceeds count " + maxCount)} 
+        else {
+            await this.setState({idx2retrieve: idx2retrieve});
+            this.retrieveDisguise()
+        };
+      }
+    myChangeHandler = async (event) => {
+        this.setState({rank2retrieve: event.target.value});
+    }
+
     render() {
         return(
             <>
-                <button className="btn btn-lg btn-secondary mb-5 " 
-                    onClick={this.retrieveDisguise}>Retrieve disguise from blockchain
-                </button>
+                <form onSubmit={this.mySubmitHandler}>
+                <p >Retrieve Disguise rank {this.state.rank2retrieve} index {this.state.idx2retrieve}</p>
+                <input
+                    type='text' size='2'
+                    onChange={this.myChangeHandler}
+                />
+                <input
+                    type='submit' value='Retrieve this disguise from blockchain'
+                />
+                </form>
             </>
         )
     }

@@ -47,6 +47,7 @@ class DisguiseControls extends React.Component {
                                 <DisguiseRetrieve
                                     disguiseAddresses={this.props.disguiseAddresses}    //to retrieve a disguise
                                     web3={this.props.web3}
+                                    disguiseCount={this.props.disguiseCount}
                                     retrievedDisguise={this.props.retrievedDisguise} />
                             </td>
                         </tr>

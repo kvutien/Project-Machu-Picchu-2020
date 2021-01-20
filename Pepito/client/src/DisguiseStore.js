@@ -1,8 +1,8 @@
 /**  class DisguiseStore - project Pepito 
  * @author Vu Tien Khang - Jan 2021
- * @notice send transaction to deploy a disguiseContract
- * @notice store disguise on blockchain
- * @dev disguiseCount1 is the count in smart contract, done without safeMath
+ * @notice send transaction to deploy a disguiseContract and
+ * @notice set the disguise state variable of this contract
+ * @dev disguiseCount1 = count of disguises, in [1,n], because disguiseCount using safeMath not working yet
 */
 import React from 'react';
 import './App.css';
@@ -17,7 +17,7 @@ class DisguiseStore extends React.Component{
         const web3Connected = this.props.web3Connected;
         //console.log("--> 2.storeDisguise, web3Connected", web3Connected);
       
-        if(web3Connected){      // add a try-catch here
+        if(web3Connected){      // TODO: add a try-catch here
             /** @dev    get the Factory contract */
             const pepitoInstance = this.props.pepitoInstance;
             //console.log("      2.storeDisguise.Pepito instance", pepitoInstance);            
@@ -27,14 +27,16 @@ class DisguiseStore extends React.Component{
                 .send({from: this.props.ownerPepito});
             //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
             
-            /** @dev    obtain array of disguise addresses from last event of type PepitoDisguiseCreated */
+            /** @dev    obtain latest array of all disguise addresses, using event of type PepitoDisguiseCreated
+             * note that in the way Pepito contract increments the disguiseCount, its value is in the range [1,n]
+             */
             const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
             const disguiseCount = lastEvent[0].returnValues.disguiseCount;
-            const disguiseCount1 = lastEvent[0].returnValues.disguiseCount1;
+            this.disguiseCount1 = lastEvent[0].returnValues.disguiseCount1;
             const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
-            const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount1-1];
+            const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[this.disguiseCount1-1];
             console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
-                ', count1 =', disguiseCount1, 
+                ', count1 =', this.disguiseCount1, 
                 ', disguise addresses', disguiseAddresses);
 
             /** @dev    build the array of options of features of this disguise to store it
@@ -51,7 +53,7 @@ class DisguiseStore extends React.Component{
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
             /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
-            this.props.deployedDisguise(disguiseCount1, disguiseAddresses, disguise2store);
+            this.props.deployedDisguise(this.disguiseCount1, disguiseAddresses, disguise2store);
 
             /** create with web3 a connection to the last pepitoDisguise; */
             const pepitoDisguise = new this.props.web3.eth.Contract(
@@ -70,9 +72,11 @@ class DisguiseStore extends React.Component{
     render() {
         return(
             <>
+                <span>Hint: better not store twice the same disguise :)</span>
                 <button className="btn btn-lg btn-secondary mb-5" 
                     onClick={this.storeDisguise}>Store disguise on blockchain
                 </button>
+                <span>, currently... {this.disguiseCount1}</span>
             </>
         )
     }
