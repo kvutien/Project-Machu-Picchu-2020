@@ -38,7 +38,8 @@ contract Pepito {
     /// @dev    for the demo, we limit array size to 64; in real, disguises will be in IPFS database w/o number limit
 
     event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address[64] disguiseAddresses);
-    
+    event PepitoStopped(bool stopped);
+
     modifier isAdmin() {
         require(owner == msg.sender);   /// @dev    the caller of the function must be Pepito
         _;
@@ -72,12 +73,13 @@ contract Pepito {
         emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, disguiseAddresses); // emit the complete array of addresses
         return pepitoDisguise;  ///@dev verify if this return is useful somewhere
     }
-        
-        function toggleContractActive() public isAdmin {
+
+    function toggleContractActive() public payable isAdmin {
         /// @dev    Circuit breaker to stop the smart contract in desperate cases & restart it
         /// @dev    In the future we can add an additional modifier that restricts stopping a contract to be
         /// @dev    based on another action, such as a vote of users
         stopped = !stopped;
+        emit PepitoStopped(stopped);
     }
     
     function withdraw () onlyInEmergency public payable {

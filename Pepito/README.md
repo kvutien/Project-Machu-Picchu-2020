@@ -19,7 +19,7 @@ The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 
 
 ## State of the project since submitted Mid Hanuary 2020
 See details in last section below: "ConsenSys Specifications of the dApp"
-* [demo video: https://youtu.be/BPxhSxSpo5A](https://youtu.be/BPxhSxSpo5A) 
+* [demo video: https://youtu.be/4ASGvdN0B48](https://youtu.be/4ASGvdN0B48) 
 * backend working, still continuously improved
   * truffle project
   * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
@@ -123,7 +123,7 @@ We can also derive Pepito into a true humanitarian organisation without disrupti
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
 * The cloned folder is `Machu-Picchu`
-* Install the required packages: in folder `Machu-Picchu/Pepito/client`, run `npm install`
+* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito/client`, run `npm install`
 * (as of Jan 2021) 
   * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate`
@@ -151,7 +151,7 @@ Big thanks to the following resources:
   + (**done**) Have a circuit breaker design pattern and at least one other design pattern in Module 10 Lesson 1
   + (**done**) Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
   + (**done**) Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
-* (not yet) Have at least 5 tests for each smart contract
+* (in progress) Today 8 tests working for 2 smart contracts, 4 tests not working
 * (not yet) Smart contract should be deployed to a testnet
 
 ## Frontend
