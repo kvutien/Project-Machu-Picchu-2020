@@ -3,7 +3,7 @@ const PepitoDisguise = artifacts.require('PepitoDisguise');
 // todo: add a block 'before' and separate into 2 'describe' sections
 
 contract('Pepito', async (accounts) => {
-        // test 1 - OK passed
+        // test 1, retrieve a contract - OK passed
         it('Pepito deployed address should be different from 0', async () => {
         const pepitoInstance = await Pepito.deployed();
 
@@ -13,7 +13,7 @@ contract('Pepito', async (accounts) => {
     });
 
     it('Initial balance should be 10', async() => {
-        // test 2 - OK passed. BTW, balance not yet useful but is a placeholder for later
+        // test 2, retrieve a scalar - OK passed. BTW, balance not yet useful but is a placeholder for later
         let pepitoInstance = await Pepito.deployed()
 
         let balance = await pepitoInstance.initialBalance();
@@ -21,7 +21,7 @@ contract('Pepito', async (accounts) => {
     })
 
     it('First createPepitoDisguise() should have disguiseCount == 1', async() => {
-        // test 3 - OK passed
+        // test 3, again a scaler but why do we need toNumber() to make it pass? - OK passed
         let pepitoInstance = await Pepito.deployed()
 
         await pepitoInstance.createPepitoDisguise( {from: accounts[0] })   // after we create a disguise...
@@ -31,7 +31,7 @@ contract('Pepito', async (accounts) => {
     })
 
     it('Each createPepitoDisguise() should increment disguiseCount1 and give a different address', async() => {
-        // test 4 - OK passed
+        // test 4, retrieve an address - OK passed
         Pepito.deployed()
             .then( async(pepitoInstance) => {
                 const disguiseInstance1 = await pepitoInstance.createPepitoDisguise( {from: accounts[0] })
@@ -46,7 +46,7 @@ contract('Pepito', async (accounts) => {
     })
 
     it('Calling toggleContractActive() should toggle the circuit breaker flag', async() => {
-        // test 5 - OK passed.
+        // test 5, retrieve a boolean - OK passed.
         var stopped = false;
         const oldValue = stopped;
         const pepitoInstance = await Pepito.deployed();
@@ -58,7 +58,7 @@ contract('Pepito', async (accounts) => {
 
     //--> question #1: how can I extract the address of a contract deployed from another?
     it('Calling readDisguise should return the same disguise as created', async() => {
-        // test 6 - No-OK
+        // test 6, retrieve array is OK but not retrieve from a child contract - No-OK
 
         // deploy Pepito and ask it to create a disguise
         let pepitoInstance = await Pepito.deployed();
