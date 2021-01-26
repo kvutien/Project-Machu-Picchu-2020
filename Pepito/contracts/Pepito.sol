@@ -3,7 +3,7 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 /**
-    @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of
+    @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of...
     @author Vu Tien Khang
     @notice Pepito is a Caribbian corsair. He can create up to 32 PepitoDisguise in this version
     @notice Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
@@ -17,7 +17,7 @@ pragma solidity >=0.4.22 <0.8.0;
     @dev Pepito contract only manages the array of addresses of disguise smart contracts
     @dev PepitoDisguise contract actually manages the array the disguise options, the personal data
 
-    @dev    Remix-compiled successfully 2021-01-17
+    @dev    Remix-compiled successfully 2021-01-26
 */
 
 import "./PepitoDisguise.sol";
@@ -35,7 +35,7 @@ contract Pepito {
     address[32] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
-    /// @dev    for the demo, we limit array size to 32; in real, disguises will be in IPFS database w/o number limit
+    /// @dev    for the demo, we limit array size to 32; in real, disguises will be in IPFS database illimited number
 
     event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address[32] disguiseAddresses);
     event PepitoStopped(bool stopped);

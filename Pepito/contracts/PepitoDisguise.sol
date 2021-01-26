@@ -2,16 +2,17 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 /** Solidity NatSpec format
-    @title  PepitoDisguise. Demo dApp for Machu Picchu. Also Final Project of
+    @title  PepitoDisguise. Demo dApp for Machu Picchu. Also Final Project of...
     @author Vu Tien Khang
-    @notice Pepito is a Caribbian corsair. He can create up to 64 PepitoDisguise in this demo
+    @notice Pepito is a Caribbian corsair. He can create PepitoDisguise in this demo
     @notice A disguise is composed of many features, each feature has many options
     @notice Currently, features and options are hard-coded in a array to optise blockchain storage
     @notice     ... once moved to IPFS, features and options will be key-value pairs, open-ended
-    @notice Copy this contract to generate also farmers, refugees, homeless etc.
+    @notice Copy this contract to generate also farmers, refugees, homeless persons etc.
+    @notice A disguise is a farmer, with a wallet of tokens populated by anybody who reads the description of the disguise
     @dev    PepitoDisguise's function is similar to ENS Resolver.sol, Pepito to ENS Registry.sol
 
-    @dev    Remix-compiled successfully 2021-01-17
+    @dev    Remix-compiled successfully 2021-01-26
 */
 
 contract PepitoDisguise {
@@ -37,7 +38,7 @@ contract PepitoDisguise {
 
     function readDisguise() public payable returns(uint256[12] memory) {
         /// @dev    in the future, retrieves the global variable disguiseInStore from IPFS database
-        /// @dev    payable so that in the future, can be paid to provide its details
+        /// @dev    payable so that in the future, a peson can be paid to provide personal details
         emit DisguiseRead(address(this), disguiseInStore);
         tokenBalance += 1;           // placeholder: everytime a disguise discloses its data, it will be paid
         return disguiseInStore;

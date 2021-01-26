@@ -15,16 +15,16 @@ In final the win-win situation is
 * Persons-in-need are free to share and exchange their tokens until they decide to make it real fiat money
 * Any private of public entity (large or small) who targets these persons can use the data, that are not confiscated by any single actor.
 
-The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services taregting the same population is 10 times this amount.
+The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services targeting the same population is 10 times this amount.
 
-## State of the project since submitted Mid Hanuary 2020
+## State of the project since submitted Mid January 2021
 See details in last section below: "ConsenSys Specifications of the dApp"
 * [demo video: https://youtu.be/4ASGvdN0B48](https://youtu.be/4ASGvdN0B48) 
 * backend working, still continuously improved
   * truffle project
-  * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful.
+  * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful. Circuit Breaker and Upgradeable Contracts will be also useful, but later.
   * protect against overflow attack (SWC-101) and reentrancy attack (SWC-107), in `createPepitoDisguise()`
-  * smart contracts deployed locally using "truffle develop"
+  * smart contracts deployed locally using `truffle develop`
   * (new) event 'disguiseCreated' now reports an array of all disguise addresses and the count of disguise
 * frontend operational locally
   * React frontend
@@ -33,8 +33,8 @@ See details in last section below: "ConsenSys Specifications of the dApp"
   * (new) React frontend is refactored, disguise factory creates disguises and populates the array of addresses, event is well captured
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
-  * have a README doc describing the overview of your project, how to set up and run etc. Read the MacOS section.
-  * have a document called `design_pattern_decisions.md` explaining which design patterns you used
+  * the README doc describing the overview of your project, how to set up and run etc. is below, Setup section for MacOS.
+  * have a document called `design_pattern_decisions.md` explaining which design patterns you used.
 
 # Design
 ## Smart contract backend design
@@ -50,7 +50,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React. As compared to
 *  how to store disguises (blockchain or IPFS or OrbitDB or Textile), 
 *  how to retrieve a disguise, modify it and store back
 
-We can also derive Pepito into a true humanitarian organisation without disrupting the code.
+We can also derive Pepito into a true humanitarian organisation management system without disrupting the code.
 
 ![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
 
@@ -73,33 +73,32 @@ We can also derive Pepito into a true humanitarian organisation without disrupti
 ...
 │   │   ├── package-lock.json
 │   │   ├── package.json
-│   │   ├── public  (React app HTML template and assets)
+│   │   ├── public                  (React app HTML template and assets)
 ...
-│   │   └── src  (React frontend app)
+│   │   └── src                     (React frontend app)
 │   │       ├── App.css
 │   │       ├── App.js
 │   │       ├── App.test.js
-│   │       ├── OptionTable-v7.js
+│   │       ├── OptionTable-v7.js   (not used but kept for the future)
 │   │       ├── OptionTable.js
-│   │       ├── contracts_abi (compiled Solidity contracts)
+│   │       ├── contracts_abi       (compiled Solidity contracts)
 ...
 │   │       ├── Disguise.js
 │   │       ├── DisguiseControls.js (block of components controlling the Disguise)
 │   │       ├── DisguiseRetrieve.js (component to retrieve the Disguise)
-│   │       ├── DisguiseStore.js (component to store on-chain the Disguise)
-│   │       ├── DrawAvataar.js (component to display the avataar)
+│   │       ├── DisguiseStore.js    (component to store on-chain the Disguise)
+│   │       ├── DrawAvataar.js      (component to display the avataar)
 │   │       ├── getWeb3.js
-│   │       ├── helpers.js  (various helper functions)
 │   │       ├── index.css
 │   │       ├── index.js
 │   │       ├── logo.svg
-│   │       ├── MakePepito.svg (component to connect Web3 and create a Disguise contract under Pepito contract)
-│   │       ├── old\ react-create\ code
+│   │       ├── MakePepito.svg      (component to connect Web3 & create a Disguise contract by Pepito contract)
 ...
 │   │       ├── reportWebVitals.js
 │   │       └── setupTests.js
 │   ├── contracts
-│   │   ├── DraftCommunity.sol (unused placeholder)
+│   │   ├── CodeTemplate.sol         (unused placeholder)
+│   │   ├── DraftCommunity.sol       (unused placeholder)
 │   │   ├── DraftHelperInstitution.sol (unused placeholder)
 │   │   ├── Migrations.sol
 │   │   ├── Pepito.sol
@@ -123,11 +122,12 @@ We can also derive Pepito into a true humanitarian organisation without disrupti
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
 * The cloned folder is `Machu-Picchu`
-* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito/client`, run `npm install`
+* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito/client`, and run `npm install`
 * (as of Jan 2021) 
   * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
-  * in `truffle develop` type `migrate`
-  * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first 2 Ganache accounts into Metamask
+  * in `truffle develop` type `migrate` (or `migrate --reset` to force a new deployment)
+  * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
+  * _note_: if Metamaks displays only one confirmation dialog when you store a disguise, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset metamask account)
   * in folder `Machu-Picchu/Pepito/client`, run the app `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
 * (*TODO: target setup process, to be detailed and tested*)
@@ -151,7 +151,7 @@ Big thanks to the following resources:
   + (**done**) Have a circuit breaker design pattern and at least one other design pattern in Module 10 Lesson 1
   + (**done**) Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
   + (**done**) Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
-* (in progress) Today 8 tests working for 2 smart contracts, 4 tests not working
+* (**done**) 5 tests for each 2 smart contracts, 3 tests not working, being investigated
 * (not yet) Smart contract should be deployed to a testnet
 
 ## Frontend
@@ -168,6 +168,6 @@ The front end is liberally inspired from this project [(https://github.com/keep-
 *	(**done**) Have a README doc describing the overview of your project, pointing out directory structure and how to build and run your project locally  
 *	(**done**) AND A document called design_pattern_decisions.md explaining which design patterns you used
 *	(**done**) AND A document called avoiding_common_attacks.md explaining security steps you took what measures you took to ensure your contracts are not susceptible to common attacks
-*	AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
-*	A screen recording walking through your Dapp.
+*	(**done**) A screen recording walking through your Dapp.
+*	(TODO) AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
 
