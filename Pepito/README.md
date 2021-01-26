@@ -17,7 +17,7 @@ In final the win-win situation is
 
 The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services targeting the same population is 10 times this amount.
 
-## State of the project since submitted Mid January 2021
+## State of the project submitted End January 2021
 See details in last section below: "ConsenSys Specifications of the dApp"
 * [demo video: https://youtu.be/4ASGvdN0B48](https://youtu.be/4ASGvdN0B48) 
 * backend working, still continuously improved
