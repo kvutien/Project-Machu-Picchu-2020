@@ -16,21 +16,35 @@ contract('PepitoDisguise', async (accounts) => {
         });
             
         it('PepitoDisguise deployed address should not be undefined', async () => {
-            // test 1bis, check deployed address - OK passed
+            // test 2, check deployed address - OK passed
             const address = await disguiseInstance.address;
             assert.notEqual(address, undefined, "PepitoDisguise address cannot be undefined");
         });
 
-        // test 1ter, check deployed address - OK passed
+        // test 3, check deployed address - OK passed
         it('PepitoDisguise deployed address should not be blank', async () => {
             const address = await disguiseInstance.address;
             assert.notEqual(address, '', "PepitoDisguise address cannot be blank");
         });
+
+        // test 4, check deployed tokenBalance - OK passed
+        it('PepitoDisguise initial balance should be 0', async () => {
+            const tokenBalance = await disguiseInstance.tokenBalance();
+            assert.equal(tokenBalance, 0, "PepitoDisguise address is not zero");
+        });
     })
 
     describe('Tests of contract logic', async() =>{
+        it('Each readDisguise should increment the balance', async() => {
+            // tokenBalance before readDisguise
+            const tokenBalance1 = (await disguiseInstance.tokenBalance()).toNumber();
+            await disguiseInstance.readDisguise();
+            const tokenBalance2 = (await disguiseInstance.tokenBalance()).toNumber();
+            assert.equal(tokenBalance1 + 1, tokenBalance2, 'tokenBalance should increase');
+        })
+
         it('Calling storeDisguise should set disguiseInStore to the same value as argument', async() => {
-            // test 2 - No-OK 
+            // test 5 - No-OK 
             let newDisguise = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
             await disguiseInstance.storeDisguise(newDisguise, {from: accounts[0]});

@@ -17,16 +17,16 @@ pragma solidity >=0.4.22 <0.8.0;
 contract PepitoDisguise {
     // state variables
     address pepitoDisguiseOwner;        /// @dev    the owner of the disguise is Pepito
-    uint256 balance;                    /// @dev    running balance of pepitoTokens of this disguise
+    uint256 public tokenBalance;        /// @dev    running balance of pepitoTokens of this disguise
     uint256[12] public disguiseInStore;    /// @dev    the disguise, fixed array of 12 feature indexes
    
     event DisguiseStored(address disguiseAddress, uint256[12] disguise);
     event DisguiseRead(address disguiseAddress, uint256[12] disguise);
 
-    constructor(address _pepitoDisguiseOwner/*, uint _initialBalance*/) public {
+    constructor(address _pepitoDisguiseOwner/*, uint _initialTokenBalance*/) public {
         pepitoDisguiseOwner = _pepitoDisguiseOwner;
-        // balance = _initialBalance;
-        balance = 0;
+        // tokenBalance = _initialTokenBalance; // placeholder
+        tokenBalance = 0;
     }
     
     function storeDisguise(uint256[12] memory _disguise2store) public payable {
@@ -39,6 +39,7 @@ contract PepitoDisguise {
         /// @dev    in the future, retrieves the global variable disguiseInStore from IPFS database
         /// @dev    payable so that in the future, can be paid to provide its details
         emit DisguiseRead(address(this), disguiseInStore);
+        tokenBalance += 1;           // placeholder: everytime a disguise discloses its data, it will be paid
         return disguiseInStore;
     }
 

@@ -63,17 +63,17 @@ contract('Pepito', async (accounts) => {
 
             // ask Pepito to create a disguise
             disguiseReceipt1 = await pepitoInstance.createPepitoDisguise( {from: accounts[0]});
-            // retrieve the args from the transaction receipt & retrieve the last disguise address
-            const lastEvent= await disguiseReceipt1.logs[0].args
             // the below instruction (in comment) is supposed to retrieve a specific event but doesn't work
             // const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
+            // --this one works: retrieve the args from the transaction receipt & retrieve the last disguise address
+            const lastEvent= await disguiseReceipt1.logs[0].args
             const disguiseCount1 = lastEvent.disguiseCount1;
             const disguiseAddresses = lastEvent.disguiseAddresses;
             const disguiseAddress = disguiseAddresses[disguiseCount1 - 1];
 
         //--> question #2: how can I make sure I have the correct disguise?
             // I want the instance of the last deployed disguise, in order to call its 'readDisguise'
-            let pepitoDisguiseInstance = await PepitoDisguise.deployed(disguiseAddress);
+            let pepitoDisguiseInstance = await PepitoDisguise.deployed(PepitoDisguise.abi, disguiseAddress);
 
             // the test below fails because I can't yet manage to find the right syntax
             // --here 'actual" = disguiseAddress = first address in the array, but what is the 'expected' address?
