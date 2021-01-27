@@ -30,20 +30,20 @@ contract('Pepito', async (accounts) => {
             // test 3, again a scaler but why do we need toNumber() to make it pass? - OK passed
 
             await pepitoInstance.createPepitoDisguise( {from: accounts[0] })   // after we create a disguise...
-            let result = (await pepitoInstance.disguiseCount1()).toNumber()    // count should be '1'
+            let result = (await pepitoInstance.disguiseCount()).toNumber()    // count should be '1'
             // How can I get 'result' in a format that suits assert when comparing with '1'?
-            assert.equal(result, 1, "Pepito disguiseCount1 is not incremented")
+            assert.equal(result, 1, "Pepito disguiseCount is not incremented")
         })
 
-        it('Each createPepitoDisguise() should increment disguiseCount1 and give a different receipt', async() => {
+        it('Each createPepitoDisguise() should increment disguiseCount and give a different receipt', async() => {
             // test 4, retrieve an address - OK passed
             const disguiseReceipt1 = await pepitoInstance.createPepitoDisguise( {from: accounts[0] })
-            let firstCount = (await pepitoInstance.disguiseCount1()).toNumber(); // should be '2' since we already created a disguise
+            let firstCount = (await pepitoInstance.disguiseCount()).toNumber(); // should be '2' since we already created a disguise
 
             const disguiseReceipt2 = await pepitoInstance.createPepitoDisguise( {from: accounts[0] } ) // create another PepitoDisguise
-            let secondCount = (await pepitoInstance.disguiseCount1()).toNumber();     // should be '3'
-            assert.equal(firstCount, 2, 'The first value of disguiseCount1 should be 2')
-            assert.equal(firstCount+1, secondCount, 'The second value of disguiseCount1 is not first + 1')
+            let secondCount = (await pepitoInstance.disguiseCount()).toNumber();     // should be '3'
+            assert.equal(firstCount, 2, 'The first value of disguiseCount should be 2')
+            assert.equal(firstCount+1, secondCount, 'The second value of disguiseCount is not first + 1')
             assert.notEqual(disguiseReceipt1, disguiseReceipt2, 'Receipts of 2 disguises must be different')
         })
 
@@ -57,21 +57,18 @@ contract('Pepito', async (accounts) => {
             assert.equal(!oldValue, stopped, "The value of stopped is not the negation of oldValue");
         })
 
-        //--> question #1: how can I extract the address of a contract deployed from another?
         it('Calling readDisguise should return the same disguise as created', async() => {
             // test 6, retrieve array is OK but not retrieve from a child contract - No-OK
 
             // ask Pepito to create a disguise
             disguiseReceipt1 = await pepitoInstance.createPepitoDisguise( {from: accounts[0]});
-            // the below instruction (in comment) is supposed to retrieve a specific event but doesn't work
-            // const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
-            // --this one works: retrieve the args from the transaction receipt & retrieve the last disguise address
+            // retrieve event from the args from transaction receipt & retrieve last disguise address
             const lastEvent= await disguiseReceipt1.logs[0].args
-            const disguiseCount1 = lastEvent.disguiseCount1;
+            const disguiseCount = lastEvent.disguiseCount;
             const disguiseAddresses = lastEvent.disguiseAddresses;
-            const disguiseAddress = disguiseAddresses[disguiseCount1 - 1];
+            const disguiseAddress = disguiseAddresses[disguiseCount - 1];
 
-        //--> question #2: how can I make sure I have the correct disguise?
+        //--> question: how can I make sure I have the correct disguise?
             // I want the instance of the last deployed disguise, in order to call its 'readDisguise'
             let pepitoDisguiseInstance = await PepitoDisguise.deployed(PepitoDisguise.abi, disguiseAddress);
 

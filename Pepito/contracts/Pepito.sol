@@ -31,13 +31,12 @@ contract Pepito {
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
-    uint256 public disguiseCount1;  /// @dev    same but incremented without SafeMath
     address[32] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
     /// @dev    for the demo, we limit array size to 32; in real, disguises will be in IPFS database illimited number
 
-    event PepitoDisguiseCreated(uint256 disguiseCount, uint256 disguiseCount1, address[32] disguiseAddresses);
+    event PepitoDisguiseCreated(uint256 disguiseCount, address[32] disguiseAddresses);
     event PepitoStopped(bool stopped);
 
     modifier isAdmin() {
@@ -56,21 +55,19 @@ contract Pepito {
         owner = msg.sender;     /// @dev    the owner is the EOA that deployed Pepito
         initialBalance = 10;    /// @dev    initial balance is 10 Pepito tokens
         disguiseCount = 0;      /// @dev    number of disguises created, maintained with SafeMath
-        disguiseCount1 = 0;     /// @dev    currently used, unsafe arithmetic
     }
         
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
-        require (disguiseCount1 < 32, "there has been already 32 disguises created");
+        require (disguiseCount < 32, "there has been already 32 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
-        disguiseAddresses[disguiseCount1] = address(pepitoDisguise);
-        disguiseCount.add(1);   ///@dev used by SafeMath, but not working well yet
-        disguiseCount1 += 1;
-        emit PepitoDisguiseCreated(disguiseCount, disguiseCount1, disguiseAddresses); // emit the complete array of addresses
+        disguiseAddresses[disguiseCount] = address(pepitoDisguise);
+        disguiseCount = disguiseCount.add(1);   ///@dev used by SafeMath
+        emit PepitoDisguiseCreated(disguiseCount, disguiseAddresses); // emit the complete array of addresses
         return pepitoDisguise;  ///@dev verify if this return is useful somewhere
     }
 
