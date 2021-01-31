@@ -17,12 +17,8 @@
  *
  */
 
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-const infuraKey = "0aad13c8e330424eb6f80a005b66bc8b";  // Infura projectID
-const infuraURL = 'https://rinkeby.infura.io/v3/0aad13c8e330424eb6f80a005b66bc8b'
-//
-const fs = require('fs');
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+require('dotenv').config();
 
 const path = require("path");    // used to direct creation of ABI in another directory than default
 
@@ -58,9 +54,14 @@ module.exports = {
       port: 8545,            // Standard Ganache CLI Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
-     rinkeby: {
-        provider: () => new HDWalletProvider(mnemonic, infuraURL),
+     "rinkeby-infura": {
+        provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
         network_id: 4,       // Rinkeby's network ID
+        gas: 5500000,
+      },
+     "kovan-infura": {
+        provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://kovan.infura.io/"+process.env.INFURA_KEY),
+        network_id: 42,       // Kovan's network ID
         gas: 5500000,
       },
        // Another network with more advanced options...
