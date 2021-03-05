@@ -3865,6 +3865,45 @@
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
+    "42": {
+      "events": {
+        "0x8367bd469a487c8678717b319d135d475852f0b483bddc97a1ca779b02ce1931": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "disguiseCount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address[32]",
+              "name": "disguiseAddresses",
+              "type": "address[32]"
+            }
+          ],
+          "name": "PepitoDisguiseCreated",
+          "type": "event"
+        },
+        "0xa70b3e24b0817a0077437c72806bbf69dda5e05e06318ac20c2add71ad08a55e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "stopped",
+              "type": "bool"
+            }
+          ],
+          "name": "PepitoStopped",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x31CeC6f5a120b08EC63b2903e7C0d840f2E6f860",
+      "transactionHash": "0xa71d84fa14e3bda573d10fe867d3676a84009c8f11fb48e685f43ac1f0329ed8"
+    },
     "5777": {
       "events": {
         "0x923adbc87f0779ec430116d167509b913d1e920d6d5ac8da78dd8bb8dc098280": {
@@ -4058,7 +4097,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-01-31T18:22:43.765Z",
+  "updatedAt": "2021-03-05T15:06:50.118Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

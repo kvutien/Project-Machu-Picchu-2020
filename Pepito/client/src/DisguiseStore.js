@@ -11,6 +11,7 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call w
 class DisguiseStore extends React.Component{
     constructor() {
         super();
+        this.state = {};
     }
 
     storeDisguise = async () => {
@@ -62,7 +63,7 @@ class DisguiseStore extends React.Component{
             const storeDisguiseReceipt = await pepitoDisguise.methods.storeDisguise(disguise2store)
                 .send({from: this.props.ownerPepito });
             //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
-            
+            this.setState({disguiseCount: disguiseCount});  // to update the render function
       
         } else alert("Please get first the blockchain interface & Pepito credentials");  
     }
@@ -74,7 +75,7 @@ class DisguiseStore extends React.Component{
                 <button className="btn btn-lg btn-secondary mb-5" 
                     onClick={this.storeDisguise}>Store disguise on blockchain
                 </button>
-                <span>, currently... {this.disguiseCount1}</span>
+                <span>, currently... {this.state.disguiseCount}</span>
             </>
         )
     }

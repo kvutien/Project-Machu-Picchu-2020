@@ -118,7 +118,7 @@ We can also derive Pepito into a true humanitarian organisation management syste
 ### MacOS
 
 * Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
-* Install node.js via brew `brew install node`
+* Install node.js via brew `brew install node@12` (`nodejs` v12 is the highest version compatible with `truffle` 5.1, as of March 2021)
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
 * The cloned folder is `Machu-Picchu`
@@ -132,6 +132,7 @@ We can also derive Pepito into a true humanitarian organisation management syste
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
 * (*TODO: target setup process, to be detailed and tested*)
   * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
+  * set your `WEB3_INFURA_PROJECT_ID`, and `PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get this by getting a free trial of [Infura](https://infura.io/). At the moment, it does need to be Infura. You can find your `PRIVATE_KEY` from your ethereum wallet like [metamask](https://metamask.io/). 
   * run `truffle migrate --network` (your testnet)
   * connect Metamask to this testnet where your account has some ETH
   * run the app `heroku URL` or `IPFS`

@@ -60,9 +60,16 @@ module.exports = {
         gas: 5500000,
       },
      "kovan-infura": {
-        provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://kovan.infura.io/"+process.env.INFURA_KEY),
+        provider: () => new HDWalletProvider(
+            process.env.TEST_MNEMONIC,
+            `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
+            1
+        ),             // my seeded account on Metamask with Kovan ETH 
         network_id: 42,       // Kovan's network ID
         gas: 5500000,
+        confirmations: 2,   // # of confs to wait between deployments. (default: 0)
+        timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+        skipDryRun: true    // Skip dry run before migrations? (default: false for public nets )
       },
        // Another network with more advanced options...
     // advanced: {
