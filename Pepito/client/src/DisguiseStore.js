@@ -7,11 +7,12 @@
 import React from 'react';
 import './App.css';
 import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call web3 API
+import { BounceLoader } from 'react-spinners';
 
 class DisguiseStore extends React.Component{
     constructor() {
         super();
-        this.state = {};
+        this.state = {disguiseCount: null, loading: false};
     }
 
     storeDisguise = async () => {
@@ -24,7 +25,8 @@ class DisguiseStore extends React.Component{
             //console.log("      2.storeDisguise.Pepito instance", pepitoInstance);            
 
             /** @dev    tell the Factory contract to deploy a PepitoDisguise contract */
-            const disguiseReceipt = await pepitoInstance.methods.createPepitoDisguise()
+            this.setState({loading: true});
+            await pepitoInstance.methods.createPepitoDisguise()
                 .send({from: this.props.ownerPepito});
             //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
             
@@ -33,6 +35,7 @@ class DisguiseStore extends React.Component{
              */
             const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
             const disguiseCount = lastEvent[0].returnValues.disguiseCount;
+            this.setState({disguiseCount: disguiseCount});  // to update the render function
             const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
             const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount-1];
             console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
@@ -51,19 +54,19 @@ class DisguiseStore extends React.Component{
                 const pad2 = (num) => String(num).padStart(2, '0');
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
-            /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
-            this.props.deployedDisguise(disguiseCount, disguiseAddresses, disguise2store);
-
             /** create with web3 a connection to the last pepitoDisguise; */
             const pepitoDisguise = new this.props.web3.eth.Contract(
                     PepitoDisguise.abi,
                     disguiseAddress,
             );
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
-            const storeDisguiseReceipt = await pepitoDisguise.methods.storeDisguise(disguise2store)
+            await pepitoDisguise.methods.storeDisguise(disguise2store)
                 .send({from: this.props.ownerPepito });
             //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
-            this.setState({disguiseCount: disguiseCount});  // to update the render function
+
+            /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
+            this.setState({loading: false});  // to update the render function
+            this.props.deployedDisguise(disguiseCount, disguiseAddresses, disguise2store);
       
         } else alert("Please get first the blockchain interface & Pepito credentials");  
     }
@@ -71,11 +74,20 @@ class DisguiseStore extends React.Component{
     render() {
         return(
             <>
+                <span>currently before storage: {this.props.disguiseCount} disguises</span> <br></br>
                 <span>Hint: better not store twice the same disguise :)</span>
                 <button className="btn btn-lg btn-secondary mb-5" 
                     onClick={this.storeDisguise}>Store disguise on blockchain
                 </button>
-                <span>, currently... {this.state.disguiseCount}</span>
+                { this.state.loading ?
+                    <div className="spinner">
+                        <BounceLoader
+                            color={'#6CEC7D'}
+                            loading={this.state.loading}
+                        />
+                    </div>:
+                    <span>, now... {this.state.disguiseCount}</span>
+            }
             </>
         )
     }

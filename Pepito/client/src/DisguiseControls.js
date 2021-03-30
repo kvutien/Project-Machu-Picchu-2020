@@ -35,6 +35,7 @@ class DisguiseControls extends React.Component {
                                 <DisguiseStore 
                                     web3Connected={this.props.web3Connected}
                                     web3={this.props.web3}
+                                    disguiseCount={this.props.disguiseCount}
                                     pepitoInstance={this.props.pepitoInstance}
                                     ownerPepito={this.props.ownerPepito}
                                     idxDisguise={this.props.idxDisguise}
@@ -48,6 +49,9 @@ class DisguiseControls extends React.Component {
                                     disguiseAddresses={this.props.disguiseAddresses}    //to retrieve a disguise
                                     web3={this.props.web3}
                                     disguiseCount={this.props.disguiseCount}
+                                    key={this.props.keyToggle}
+                                    retrieved={this.props.retrieved}
+                                    rank2retrieve={this.props.rank2retrieve}
                                     retrievedDisguise={this.props.retrievedDisguise} />
                             </td>
                         </tr>
