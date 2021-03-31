@@ -25,7 +25,7 @@ const path = require("path");    // used to direct creation of ABI in another di
 module.exports = {
 
   // ask to create ABI in another directory than default, for React
-  contracts_build_directory: path.join(__dirname, "client/src/contracts_abi"),
+  contracts_build_directory: path.join(__dirname, "src/contracts_abi"),
 
   /**
    * Networks define how you connect to your ethereum client and let you set the
