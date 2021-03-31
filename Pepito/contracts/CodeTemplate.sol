@@ -19,7 +19,7 @@ pragma solidity >=0.4.22 <0.8.0;
 */
 
 // imports examples
-import "../client/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
+import "../node_modules/@openzeppelin/contracts/math/SafeMath.sol";
 //import "./SafeMath.sol";      // used to compile in Remix
 
 contract CodeTemplate {

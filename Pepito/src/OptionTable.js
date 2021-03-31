@@ -9,9 +9,9 @@ import ReactTable from "react-table-6";   // in npm library
 import "react-table-6/react-table.css";   // (!) to be analysed
 
 class OptionTable extends React.Component {
-    constructor(props) {
-        super(props);
-    };
+    // constructor(props) {
+    //     super(props);
+    // };
 
     render() {
         /** @dev retrieve Pepito disguise options from this.props.disguise */

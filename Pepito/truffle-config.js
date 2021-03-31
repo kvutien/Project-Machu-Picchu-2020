@@ -17,17 +17,15 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+require('dotenv').config();
+
 const path = require("path");    // used to direct creation of ABI in another directory than default
 
 module.exports = {
 
   // ask to create ABI in another directory than default, for React
-  contracts_build_directory: path.join(__dirname, "client/src/contracts_abi"),
+  contracts_build_directory: path.join(__dirname, "src/contracts_abi"),
 
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -56,7 +54,24 @@ module.exports = {
       port: 8545,            // Standard Ganache CLI Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
-     // Another network with more advanced options...
+     "rinkeby-infura": {
+        provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
+        network_id: 4,       // Rinkeby's network ID
+        gas: 5500000,
+      },
+     "kovan-infura": {
+        provider: () => new HDWalletProvider(
+            process.env.TEST_MNEMONIC,
+            `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
+            1
+        ),             // my seeded account on Metamask with Kovan ETH 
+        network_id: 42,       // Kovan's network ID
+        gas: 5500000,
+        confirmations: 2,   // # of confs to wait between deployments. (default: 0)
+        timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+        skipDryRun: true    // Skip dry run before migrations? (default: false for public nets )
+      },
+       // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
     // network_id: 1342,       // Custom network
