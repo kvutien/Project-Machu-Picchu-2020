@@ -31,21 +31,21 @@ OrbitDB is a Document Database, like MongoDB, instead of being a Relation Databa
 The dApp offers 3 actions in its current stage: create disguise, read disguise, update disguise (more to come)
 * Create disguise: mainly in `React.js`, the dApp assembles a disguise from the choice of components, creates a JSON for each disguise and stores it on-chain
 * Read disguise: the dApp goes through the array of addesses of disguises, retrieves and displays the data of each disguise
-* Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update
+* ~~Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update~~
 ## Roadmap of _Machu Picchu_
 Contributors can develop independently and contribute as a distinct project.
 * the first contribution is the hackhaton ETH-Online 2020, [a first idea but a bit complex to start with](https://github.com/Machu-Pichu/hackathon/)
-* the second contribution is Pepito, a demonstration game [(this Final Project)](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito)
+* the second contribution is Pepito, a demonstration game [(this Final Project)](./Pepito)
 * the third contribution is Pepito, ported to CELO, for the ETH Denver 2021 hackathon. It won 4 bounties.
 
 Other contributions are welcome and could be:
-* a data management system to on-board, list and modify the persons in need, using OrbitDB and IPFS, with decentralised data schemas
+* a data management system to on-board, list and modify the persons in need, using [OrbitDB](https://orbitdb.org/) or [Textile](https://textile.io/) and IPFS, with decentralised data schemas, using [The Graph](https://thegraph.com/) for more complex queries
 * a management system of helper institutions, n-to-n connected to persons in need
 * modify the cost-free person-in-need on-boarding, using meta-transactions paid by helper institutions
 * progressive improvements. See White Paper (FileCoin can be added at any stage).
 ## Vision of Technical Stack
 A vision of the complete Technical Stack that can be used for _Machu Picchu_ is, in December 2020 and if we have 2-3 M$ immediately available :-)
-![Technical Stack](https://github.com/kvutien/Machu-Picchu/blob/main/20201029%20Machu%20Picchu%20Tech%20Stack.png)
+![Technical Stack](./20201029%20Machu%20Picchu%20Tech%20Stack.png)
 
 # Contributing
 Feel free to open new issues or submit pull requests for _Machu Picchu_. If you'd like to contact me before doing so, feel free to get in touch (see Contact section below).
