@@ -1,4 +1,4 @@
-Avoiding common attacks
+# Avoiding common attacks
 
 In this design we avoid 
 * Integer overflow attack (SWC-101): the count of disguises in createPepiptDisguise is protected by `SafeMath.sol`
