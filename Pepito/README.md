@@ -37,6 +37,38 @@ See details in last section below: "ConsenSys Specifications of the dApp"
   * the README doc describing the overview of your project, how to set up and run etc. is below, Setup section for MacOS.
   * have a document called `design_pattern_decisions.md` explaining which design patterns you used.
 
+# Demo setup
+
+### MacOS
+
+* Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
+* Install nodeJS via brew `brew install node@12` (`nodeJS` v12 is the highest version compatible with `truffle` 5.1, as of March 2021)
+* Navigate to the folder where you want to clone the Machu-Picchu project
+* Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
+* The cloned folder is `Machu-Picchu`
+* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito`, and run `npm install`
+* (as of Mar 2021) 
+  * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
+  * in `truffle develop` type `migrate` (or `migrate --reset` to force a new deployment)
+  * connect your Metamask to the local testnet of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
+  * open a distinct terminal, navigate to folder `Machu-Picchu/Pepito`, run the app with `npm run start`
+  * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
+  * _note_: when you store a disguise, Metamask will display one confirmation to create a disguise contract and one confirmation to store the disguise in this contract. If Metamask displays only one confirmation dialog, or one confirmation dialog with a strange gas limit, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
+* (*TODO: public testnet setup process, to be detailed and tested*)
+  * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
+  * set your `REACT_APP_WEB3_INFURA_PROJECT_ID`, and `REACT_APP_PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get the Infura key from a free trial of [Infura](https://infura.io/). At the moment, it does need to be Infura, we are still on a local truffle network. You can find your `REACT_APP_PRIVATE_KEY` from your ethereum wallet like [Metamask](https://metamask.io/). 
+  * run `truffle migrate --network` (your testnet)
+  * connect Metamask to this testnet where your account has some ETH
+  * do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`
+
+## Credits
+Big thanks to the following resources:
+
+* [https://avataaars.com/](https://avataaars.com): the initial creator of the images
+* [https://github.com/fangpenlin/avataaars](https://github.com/fangpenlin/avataaars): the creator of the React avataar random generator
+* [https://github.com/keep-network/random-avatar](https://github.com/keep-network/random-avatar): using avataar to illustrate its own blockchain secure random number generator 
+
+
 # Design
 ## Smart contract backend design
 In the following is the design of a dApp to help you in this mission generating disguises for Pepito. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once persons-in-need are recorded, all humanitarian organisations can access the data, and these persons keep full control on these personal data.
@@ -127,38 +159,6 @@ We can also derive Pepito into a true humanitarian organisation management syste
 
 7 directories, 58 files
 ```
-
-# Demo setup
-
-### MacOS
-
-* Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
-* Install nodeJS via brew `brew install node@12` (`nodeJS` v12 is the highest version compatible with `truffle` 5.1, as of March 2021)
-* Navigate to the folder where you want to clone the Machu-Picchu project
-* Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
-* The cloned folder is `Machu-Picchu`
-* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito`, and run `npm install`
-* (as of Mar 2021) 
-  * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
-  * in `truffle develop` type `migrate` (or `migrate --reset` to force a new deployment)
-  * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
-  * _note_: if Metamask displays only one confirmation dialog, or one confirmation dialog with a strange gas limit, when you store a disguise, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
-  * open a distinct terminal, navigate to folder `Machu-Picchu/Pepito`, run the app with `npm run start`
-  * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
-* (*TODO: public testnet setup process, to be detailed and tested*)
-  * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
-  * set your `REACT_APP_WEB3_INFURA_PROJECT_ID`, and `REACT_APP_PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get the Infura key from a free trial of [Infura](https://infura.io/). At the moment, it does need to be Infura, we are still on a local truffle network. You can find your `REACT_APP_PRIVATE_KEY` from your ethereum wallet like [Metamask](https://metamask.io/). 
-  * run `truffle migrate --network` (your testnet)
-  * connect Metamask to this testnet where your account has some ETH
-  * do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`
-
-## Credits
-Big thanks to the following resources:
-
-* [https://avataaars.com/](https://avataaars.com): the initial creator of the images
-* [https://github.com/fangpenlin/avataaars](https://github.com/fangpenlin/avataaars): the creator of the React avataar random generator
-* [https://github.com/keep-network/random-avatar](https://github.com/keep-network/random-avatar): using avataar to illustrate its own blockchain secure random number generator 
-
 
 # ConsenSys Specifications of the dApp
 ## Smart contract
