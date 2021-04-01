@@ -700,7 +700,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 638,
+                            "referencedDeclaration": 640,
                             "src": "1910:4:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_PepitoDisguise_$268",
@@ -910,7 +910,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 638,
+                            "referencedDeclaration": 640,
                             "src": "2248:4:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_PepitoDisguise_$268",
@@ -1784,7 +1784,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 638,
+                            "referencedDeclaration": 640,
                             "src": "1910:4:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_PepitoDisguise_$268",
@@ -1994,7 +1994,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 638,
+                            "referencedDeclaration": 640,
                             "src": "2248:4:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_PepitoDisguise_$268",
@@ -2399,7 +2399,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-03-31T19:49:57.649Z",
+  "updatedAt": "2021-04-01T15:15:18.283Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Vu Tien Khang",
