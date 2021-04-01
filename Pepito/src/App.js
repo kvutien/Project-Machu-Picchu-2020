@@ -41,7 +41,7 @@ class App extends Component {
 
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected,
         ownerPepito, disguiseCount, disguiseAddresses) => {
-   /** @notice record in state the values received from makePepito.js as arguments */
+        /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
             accounts: accounts,             // array of user accounts reachable by web3
             pepitoAddress: pepitoAddress,   // scalar, address as in ABI
@@ -91,7 +91,7 @@ class App extends Component {
         return (
             <div className='container text-center'>
                 <header>
-                    <h1 className='m-5'>Pepito Disguise<sup>v0.1, on ETH blockchain</sup></h1>
+                    <h1 className='m-5'>Pepito Disguise<sup>v0.1.1, on ETH blockchain</sup></h1>
                 </header>
                 <div>
                     <DisguiseControls 

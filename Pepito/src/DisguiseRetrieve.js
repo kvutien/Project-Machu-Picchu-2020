@@ -36,7 +36,7 @@ class DisguiseRetrieve extends React.Component{
         const disguiseAddresses = this.props.disguiseAddresses;     // addresses of all disguises
         const disguiseAddress = disguiseAddresses[this.state.idx2retrieve];    // address of the disguise to retrieve
         /** create with web3 a connection to that pepitoDisguise */
-        const pepitoDisguise = new this.props.web3.eth.Contract(
+        const pepitoDisguise = await new this.props.web3.eth.Contract(
             PepitoDisguise.abi,
             disguiseAddress,
         );
