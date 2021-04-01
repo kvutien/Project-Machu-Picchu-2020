@@ -46,7 +46,7 @@ class MakePepito extends React.Component{
                 const accounts = this.accounts;                     // get the accounts to pay for transactions
                 const networkId = await web3.eth.net.getId();       // get the network ID currently connected to
                 const deployedNetwork = Pepito.networks[networkId]; // get the network object matching the ID in the ABI
-                const pepitoInstance = new web3.eth.Contract(       // make an JavaScript instance of Pepito
+                const pepitoInstance = await new web3.eth.Contract(       // make an JavaScript instance of Pepito
                     Pepito.abi,
                     deployedNetwork && deployedNetwork.address,
                 );

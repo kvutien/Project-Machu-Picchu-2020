@@ -55,7 +55,7 @@ class DisguiseStore extends React.Component{
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
             /** create with web3 a connection to the last pepitoDisguise; */
-            const pepitoDisguise = new this.props.web3.eth.Contract(
+            const pepitoDisguise = await new this.props.web3.eth.Contract(
                     PepitoDisguise.abi,
                     disguiseAddress,
             );
