@@ -52,6 +52,12 @@ class MakePepito extends React.Component{
                 );
                 const ownerPepito = await pepitoInstance.methods.owner().call();
                 const disguiseCount = await pepitoInstance.methods.disguiseCount ().call();
+                if (ownerPepito === null || disguiseCount === null) {
+                    alert(
+                        `you may need to reset the current account in Metamask and reload the page, else any blockchain attempt may crash.`,
+                    );
+                    console.log('-> MakePepito - ownerPepito, disguiseCount', ownerPepito, disguiseCount);
+                };
                 let disguiseAddresses = [];
                 for (let i=0; i< disguiseCount; i++) {disguiseAddresses.push(0)};   // make array
                 disguiseAddresses.forEach(async (v, i, a) =>{            // fill array with addresses
