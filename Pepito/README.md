@@ -53,6 +53,7 @@ See details in last section below: "ConsenSys Specifications of the dApp"
   * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop>` type `migrate` (or `migrate --reset` to force a new deployment)
 * connect your Metamask to the local testnet of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
+  * _note_: if you already used Metamask on this testnet `truffle develop`, don't forget to "reset" the account used, to align Metamask's nonce with this fresh blockchain
 * launch the frontend
   * open another terminal window, `cd` to folder `Machu-Picchu/Pepito`, run the frontend with `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
