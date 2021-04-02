@@ -28,7 +28,7 @@ OrbitDB is a Document Database, like MongoDB, instead of being a Relation Databa
 
 # Specifications of project Pepito, December 2020
 [The project is here](https://github.com/kvutien/Machu-Picchu/tree/main/Pepito). 
-The dApp offers 3 actions in its current stage: create disguise, read disguise, update disguise (more to come)
+The dApp offers 3 actions in its current stage: create disguise, read disguise, ~~update disguise~~ (more to come)
 * Create disguise: mainly in `React.js`, the dApp assembles a disguise from the choice of components, creates a JSON for each disguise and stores it on-chain
 * Read disguise: the dApp goes through the array of addesses of disguises, retrieves and displays the data of each disguise
 * ~~Update disguise: the dApp searches for a specific disguise and displays the pairs key-value for update and records the update~~
