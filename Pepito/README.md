@@ -50,7 +50,8 @@ Big thanks to the following resources:
   * _Metamask note_: if you often use Metamask and this same testnet `truffle develop`, remember to "reset" the account used, to align Metamask's nonce with this fresh blockchain
   * _Metamask note_: when you store a disguise, Metamask will display one confirmation to create a disguise contract and one confirmation to store the disguise inside this contract. If Metamask displays only one single confirmation dialog, or displays a confirmation dialog with a strange gas limit, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
 
-|<img src="./MainGUI.PNG" alt="drawing" width="450"/>|
+|<img src="./MainGUI.png" alt="drawing" width="450"/>|
+
 
 * to be done once: click on the button "_Get blockchain interface & Pepito instance_"
 * click on the button "_Store disguise on blockchain_"
