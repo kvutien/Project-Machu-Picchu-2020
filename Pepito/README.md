@@ -53,7 +53,7 @@ Big thanks to the following resources:
 <img src="./MainGUI.png" alt="drawing" width="1780"/>
 
 
-* to be done once: click on the button "_Get blockchain interface & Pepito instance_"
+* do only once: click on the button "_Get blockchain interface & Pepito instance_"
 * click on the button "_Store disguise on blockchain_"
 * repeat as many time as desired
   * click on the button "_Generate random disguise_"
