@@ -12,6 +12,7 @@ contract('PepitoDisguise', async (accounts) => {
         it('PepitoDisguise deployed address should be different from 0', async () => {
             // test 1, check deployed address - OK passed    
             const address = await disguiseInstance.address;
+            console.log('       -address:', address);
             assert.notEqual(address, 0, "PepitoDisguise address cannot be 0x0");
         });
             
@@ -29,7 +30,8 @@ contract('PepitoDisguise', async (accounts) => {
 
         // test 4, check deployed tokenBalance - OK passed
         it('PepitoDisguise initial balance should be 0', async () => {
-            const tokenBalance = await disguiseInstance.tokenBalance();
+            const tokenBalance = (await disguiseInstance.tokenBalance()).toNumber();
+            console.log('       -tokenBalance:', tokenBalance);
             assert.equal(tokenBalance, 0, "PepitoDisguise address is not zero");
         });
     })
@@ -40,34 +42,44 @@ contract('PepitoDisguise', async (accounts) => {
             const tokenBalance1 = (await disguiseInstance.tokenBalance()).toNumber();
             await disguiseInstance.readDisguise();
             const tokenBalance2 = (await disguiseInstance.tokenBalance()).toNumber();
+            console.log('       -tokenBalance1:', tokenBalance1, ', tokenBalance2:', tokenBalance2);
             assert.equal(tokenBalance1 + 1, tokenBalance2, 'tokenBalance should increase');
         })
 
-        it('Calling storeDisguise should set disguiseInStore to the same value as argument', async() => {
-            // test 5 - No-OK 
+        it('Calling storeDisguise should emit event with disguiseInStore = argument of storeDisguise', async() => {
+            // test 5, compare disguise stored with disguise given in argument - OK passed
             let newDisguise = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-            await disguiseInstance.storeDisguise(newDisguise, {from: accounts[0]});
+            // store newDisguise in contract
+            let disguiseReceipt1= await disguiseInstance.storeDisguise(newDisguise, {from: accounts[0]});
             //-- question: how can I retrieve the array 'disguiseInStore'?
-            arrayDisguise = await disguiseInstance.disguiseInStore();
+            // arrayDisguise = await disguiseInstance.disguiseInStore();
+            // console.log('       -arrayDisguise:', arrayDisguise);
 
-            //-- question: if the above doesn't work, how can I retrieve the last event 'DisguiseStored' to get the disguise there?
-            const lastEvent= await disguiseInstance.logs[0].args
-            const storedDisguise = lastEvent.disguise;
-
-            assert.equal(newDisguise, storedDisguise, "The stored disguise should equal the new disguise.")
+            //-- in the meanwhile, I retrieve the last event 'DisguiseStored' to get the disguise there
+            const lastEvent= await disguiseReceipt1.logs[0].args
+            // console.log('       -lastEvent:', lastEvent);
+            const storedDisguise = lastEvent.disguise.map(e=>e.toNumber());
+            console.log('       -newDisguise:', newDisguise);
+            console.log('       -storedDisguise:', storedDisguise);
+            assert.deepEqual(newDisguise, storedDisguise, "The stored disguise should equal the new disguise.")
         })
 
         it('Calling readDisguise should return the same disguise as stored', async() => {
-            // test 3 - No-OK 
-            let newDisguise = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+            // test 6, compare disguise read with disguise stored - OK 
+            let newDisguise = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 
             //-- same question as above. I want to retrieve the disguise as stored to compare with the one as read
             await disguiseInstance.storeDisguise(newDisguise, {from: accounts[0]});
-            //-- question: why is returnedDisguise an object instead of an array?
-            let returnedDisguise = await disguiseInstance.readDisguise({from: accounts[0]});
+            let disguiseReceipt1 = await disguiseInstance.readDisguise({from: accounts[0]});
+            //-- in the meanwhile, I retrieve the last event 'DisguiseStored' to get the disguise there
+            const lastEvent= await disguiseReceipt1.logs[0].args
+            console.log('       -disguiseAddress:', lastEvent.disguiseAddress);
+            const returnedDisguise = lastEvent.disguise.map(e=>e.toNumber());
+            console.log('       -newDisguise:', newDisguise);
+            console.log('       -returnedDisguise:', returnedDisguise);
 
-            assert.equal(newDisguise, returnedDisguise, "The read disguise should equal the stored disguise.")
+            assert.deepEqual(newDisguise, returnedDisguise, "The read disguise should equal the stored disguise.")
         })
     })
 

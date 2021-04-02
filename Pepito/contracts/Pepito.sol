@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // version of Jan 17, 2021 - structure follows CodeTemplate.sol
-pragma solidity >=0.4.22 <0.8.0;
+pragma solidity >=0.6.0 <0.8.0;
 
 /**
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of...
