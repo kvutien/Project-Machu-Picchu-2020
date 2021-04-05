@@ -25,8 +25,8 @@ class DisguiseStore extends React.Component{
 
             /** @dev    tell the Factory contract to deploy a PepitoDisguise contract */
             this.setState({loading: true});
-            console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
-            console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
+            // console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
+            // console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
             await pepitoInstance.methods.createPepitoDisguise()
                .send({from: this.props.web3.givenProvider.selectedAddress});
             //todo: check selected account's balance and display in render()
@@ -58,18 +58,16 @@ class DisguiseStore extends React.Component{
                 const pad2 = (num) => String(num).padStart(2, '0');
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
-            /** create with web3 a connection to the last pepitoDisguise; */
-            // maybe we should refer to existing disguise, using Contract.at() instead of creating again a disguise?
-            // to be sure compare pepitoDisguise.address with disguiseAddress
+            /** create with web3 a connection to the last pepitoDisguise (syntax of web3JS v1.x) */
             const pepitoDisguise = await new this.props.web3.eth.Contract(
                     PepitoDisguise.abi,
                     disguiseAddress,
             );
+            // to be sure compare pepitoDisguise.address with disguiseAddress
+            console.log('..> DisguiseStore pepitoDisguise:', pepitoDisguise._address, disguiseAddress);
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
-            //todo: same as above: change to the selectedAccount's address in Metamask
             await pepitoDisguise.methods.storeDisguise(disguise2store)
                 .send({from: this.props.web3.givenProvider.selectedAddress});
-            //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
 
             /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
             this.setState({loading: false});  // to update the render function
