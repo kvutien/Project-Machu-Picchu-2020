@@ -10,7 +10,7 @@ contract('PepitoDisguise', async (accounts) => {
 
     describe('Tests of correct contract deployment', async() => {
         it('PepitoDisguise deployed address should be different from 0', async () => {
-            // test 1, check deployed address - OK passed    
+            // test 1, check deployed address - OK passed
             const address = await disguiseInstance.address;
             console.log('       -address:', address);
             assert.notEqual(address, 0, "PepitoDisguise address cannot be 0x0");
@@ -29,10 +29,10 @@ contract('PepitoDisguise', async (accounts) => {
         });
 
         // test 4, check deployed tokenBalance - OK passed
-        it('PepitoDisguise initial balance should be 0', async () => {
+        it('PepitoDisguise initial token balance should be 0', async () => {
             const tokenBalance = (await disguiseInstance.tokenBalance()).toNumber();
             console.log('       -tokenBalance:', tokenBalance);
-            assert.equal(tokenBalance, 0, "PepitoDisguise address is not zero");
+            assert.equal(tokenBalance, 0, "PepitoDisguise initial token balance is not zero");
         });
     })
 

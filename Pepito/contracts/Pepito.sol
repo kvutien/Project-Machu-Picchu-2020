@@ -29,7 +29,7 @@ contract Pepito {
 
     bool public stopped;            /// @dev    the circuit breaker
     address public owner;           /// @dev    account that deployed Pepito
-    uint256 public initialBalance;  /// @dev    initial balance of all disguises
+    uint256 public initialBalance;  /// @dev    balance Pepito gives to each disguise when creating one
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
     address[32] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
@@ -59,7 +59,6 @@ contract Pepito {
         
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
-        require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
         require (disguiseCount < 32, "there has been already 32 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);

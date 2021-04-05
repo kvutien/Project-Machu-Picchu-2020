@@ -1,8 +1,7 @@
 /**  class DisguiseStore - project Pepito 
- * @author Vu Tien Khang - Jan 2021
+ * @author Vu Tien Khang - April 2021
  * @notice send transaction to deploy a disguiseContract and
- * @notice set the disguise state variable of this contract
- * @dev disguiseCount1 = count of disguises, in [1,n], because disguiseCount using safeMath not working yet
+ * @notice have this disguise store its disguise options
 */
 import React from 'react';
 import './App.css';
@@ -26,8 +25,13 @@ class DisguiseStore extends React.Component{
 
             /** @dev    tell the Factory contract to deploy a PepitoDisguise contract */
             this.setState({loading: true});
+            console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
+            console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
             await pepitoInstance.methods.createPepitoDisguise()
-                .send({from: this.props.ownerPepito});
+               .send({from: this.props.web3.givenProvider.selectedAddress});
+            //todo: check selected account's balance and display in render()
+            //let balance = this.props.web3.eth.getBalance(web3js.givenProvider.selectedAddress).toString();
+            //balance = this.props.web3.utils.fromWei(balance);
             //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
             
             /** @dev    obtain latest array of all disguise addresses, using event of type PepitoDisguiseCreated
@@ -55,13 +59,16 @@ class DisguiseStore extends React.Component{
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
             /** create with web3 a connection to the last pepitoDisguise; */
+            // maybe we should refer to existing disguise, using Contract.at() instead of creating again a disguise?
+            // to be sure compare pepitoDisguise.address with disguiseAddress
             const pepitoDisguise = await new this.props.web3.eth.Contract(
                     PepitoDisguise.abi,
                     disguiseAddress,
             );
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
+            //todo: same as above: change to the selectedAccount's address in Metamask
             await pepitoDisguise.methods.storeDisguise(disguise2store)
-                .send({from: this.props.ownerPepito });
+                .send({from: this.props.web3.givenProvider.selectedAddress});
             //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
 
             /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
