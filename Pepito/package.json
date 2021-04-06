@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "truffle": "^5.1.0",
+    "@truffle/hdwallet-provider": "^1.2.1",
+    "@truffle/contract": "^4.2.23",
+    "web3": "1.2.1",
     "@openzeppelin/contracts": "^3.3.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
-    "@truffle/hdwallet-provider": "^1.2.1",
     "avataaars": "^1.1.0",
     "bignumber": "^1.1.0",
     "dotenv": "^8.2.0",
@@ -21,10 +24,7 @@
     "react-table-6": "^6.11.0",
     "require-symlink": "^0.2.0",
     "styled-components": "^5.2.1",
-    "truffle": "^4.1.13",
-    "truffle-contract": "^3.0.6",
-    "web-vitals": "^0.2.4",
-    "web3": "^1.0.0-beta.34"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

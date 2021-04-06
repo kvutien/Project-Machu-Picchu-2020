@@ -2388,8 +2388,8 @@
         }
       },
       "links": {},
-      "address": "0x58919E4c76330DB629FC1D79bee533Fc6Aa1c4c0",
-      "transactionHash": "0x2a8314651eb3b7b494b5fdfc93b67a26e532585df9a5c42d51beba5f037ba060"
+      "address": "0x523e9E111996C3f228148bB5d8FeC85486cB00a3",
+      "transactionHash": "0x67559168214da3595a66bcaf4cecc2e6a62ba45824d601544d2b47217dcdf87e"
     },
     "1608226970226": {
       "events": {},
@@ -2399,7 +2399,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-04-05T15:18:22.256Z",
+  "updatedAt": "2021-04-06T12:46:33.543Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Vu Tien Khang",
