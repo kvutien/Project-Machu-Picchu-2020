@@ -35,6 +35,7 @@ Big thanks to the following resources:
 * Install the required packages
   * `cd` to folder `Machu-Picchu/Pepito`, and 
   * run `npm install`
+* Rename the file `.env-sample` to `.env` and fill it with your Infura Project Key, and your Metamask seed phrase
 * Launch the `truffle develop` blockchain 
   * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop>` type `migrate` (or `migrate --reset` to force a new deployment)
@@ -58,10 +59,10 @@ Big thanks to the following resources:
 
 * do only once: click on the button "_Get blockchain interface & Pepito instance_"
 * click on the button "_Store disguise on blockchain_"
-* repeat as many time as desired
+* repeat as many times as desired
   * click on the button "_Generate random disguise_"
   * click on the button "_Store disguise on blockchain_"
-* after you have stored more than one disguise, you may retrieve the stored disguises
+* after you have stored more than one disguise, or see more than one disguise on Rinkeby, you may retrieve the stored disguises
   *  click on the text box
   *  give the number of the disguise to retrieve
   *  click on the button "_Retrieve this disguise from blockchain_"
