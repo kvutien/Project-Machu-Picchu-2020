@@ -25,6 +25,7 @@ Big thanks to the following resources:
 * [https://github.com/keep-network/random-avatar](https://github.com/keep-network/random-avatar): using avataar to illustrate its own blockchain secure random number generator 
 
 # Demo setup
+Last update: April 18, 2021.
 
 ## MacOS
 
