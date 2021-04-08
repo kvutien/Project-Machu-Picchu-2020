@@ -2301,6 +2301,51 @@
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0xe9ba7b1b0b27c6ab2b810a6374133382246908ff3a8732905a29993c7f2c95ab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "disguiseAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256[12]",
+              "name": "disguise",
+              "type": "uint256[12]"
+            }
+          ],
+          "name": "DisguiseRead",
+          "type": "event"
+        },
+        "0x504b87d066706ec2b4783bbd17c499c1dee069b91237189ac5319b5b1abbd3d9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "disguiseAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256[12]",
+              "name": "disguise",
+              "type": "uint256[12]"
+            }
+          ],
+          "name": "DisguiseStored",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x7D53eDDd21b67258ba8598DDBe97968391f1F89D",
+      "transactionHash": "0xe943d5967e5905b32d2f559b6c7d5d023cdd4c4c044c4248d10c535798368dea"
+    },
     "42": {
       "events": {
         "0xe9ba7b1b0b27c6ab2b810a6374133382246908ff3a8732905a29993c7f2c95ab": {
@@ -2388,8 +2433,8 @@
         }
       },
       "links": {},
-      "address": "0x523e9E111996C3f228148bB5d8FeC85486cB00a3",
-      "transactionHash": "0x67559168214da3595a66bcaf4cecc2e6a62ba45824d601544d2b47217dcdf87e"
+      "address": "0xe2e4ABc6E84c097CEF5d2fc04bFEE8311530B0F0",
+      "transactionHash": "0xc2b1123b401aaa47388a220c9f9574557489dd805d979cc3b8f48612c133adb4"
     },
     "1608226970226": {
       "events": {},
@@ -2399,7 +2444,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-04-06T12:46:33.543Z",
+  "updatedAt": "2021-04-08T13:18:35.873Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Vu Tien Khang",

@@ -28,7 +28,7 @@ class DisguiseStore extends React.Component{
             // console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
             // console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
             await pepitoInstance.methods.createPepitoDisguise()
-               .send({from: this.props.web3.givenProvider.selectedAddress});
+               .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: 7000000000});
             //todo: check selected account's balance and display in render()
             //let balance = this.props.web3.eth.getBalance(web3js.givenProvider.selectedAddress).toString();
             //balance = this.props.web3.utils.fromWei(balance);
@@ -36,6 +36,7 @@ class DisguiseStore extends React.Component{
             
             /** @dev    obtain latest array of all disguise addresses, using event of type PepitoDisguiseCreated
              * note that in the way Pepito contract increments the disguiseCount, its value is in the range [1,n]
+             * TODO: add a try/catch: lastEvent is undefined when gas price <10 gwei -> pepitoDisguise was reverted  
              */
             const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
             const disguiseCount = lastEvent[0].returnValues.disguiseCount;
@@ -63,11 +64,9 @@ class DisguiseStore extends React.Component{
                     PepitoDisguise.abi,
                     disguiseAddress,
             );
-            // to be sure compare pepitoDisguise.address with disguiseAddress
-            console.log('..> DisguiseStore pepitoDisguise:', pepitoDisguise._address, disguiseAddress);
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
             await pepitoDisguise.methods.storeDisguise(disguise2store)
-                .send({from: this.props.web3.givenProvider.selectedAddress});
+                .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: 7000000000});
 
             /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
             this.setState({loading: false});  // to update the render function

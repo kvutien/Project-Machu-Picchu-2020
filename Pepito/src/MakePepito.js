@@ -34,7 +34,7 @@ class MakePepito extends React.Component{
             } catch (error) {
                 /// @dev catch any errors for any of the above operations.
                 alert(
-                    `Failed to load web3. Check in Metamask that this page is connected to a blockchain account. Else see browser console for error details.`,
+                    `Failed to load web3. Check that Metamask connected this page to a blockchain account. Else see browser console for error details.`,
                 );
                 console.error(error);
             }
@@ -79,7 +79,7 @@ class MakePepito extends React.Component{
             } catch (error) {
                 /// @dev catch any errors for any of the above operations.
                 alert(
-                    `Failed to create pepitoContract. Did you migrate it? Check console for details.`,
+                    `Failed to create pepitoContract. Did you migrate it? Is Metamask testnet correct? Check console.`,
                 );
                 console.error(error);
             }

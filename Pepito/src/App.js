@@ -91,7 +91,7 @@ class App extends Component {
         return (
             <div className='container text-center'>
                 <header>
-                    <h1 className='m-5'>Pepito Disguise<sup>v0.1.1, on ETH blockchain</sup></h1>
+                    <h1 className='m-5'>Pepito Disguise<sup>v0.1.1, on Rinkeby</sup></h1>
                 </header>
                 <div>
                     <DisguiseControls 

@@ -3609,6 +3609,45 @@
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0x8367bd469a487c8678717b319d135d475852f0b483bddc97a1ca779b02ce1931": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "disguiseCount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address[32]",
+              "name": "disguiseAddresses",
+              "type": "address[32]"
+            }
+          ],
+          "name": "PepitoDisguiseCreated",
+          "type": "event"
+        },
+        "0xa70b3e24b0817a0077437c72806bbf69dda5e05e06318ac20c2add71ad08a55e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "stopped",
+              "type": "bool"
+            }
+          ],
+          "name": "PepitoStopped",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xE2824d846E3E65F3281FDbab2481fCe6f23BC682",
+      "transactionHash": "0x8b8d87f546aad3bc8b1b165bcbcb2a1da171842eb110bbbd3534de18dd96b422"
+    },
     "42": {
       "events": {
         "0x8367bd469a487c8678717b319d135d475852f0b483bddc97a1ca779b02ce1931": {
@@ -3816,8 +3855,8 @@
         }
       },
       "links": {},
-      "address": "0x58919E4c76330DB629FC1D79bee533Fc6Aa1c4c0",
-      "transactionHash": "0xb86fddc85e50f8e395661317b3dbd8442c1815afb242c60ede5d25ceb20e7e49"
+      "address": "0x0b58005E8dcdC39d7a2EF79ef87777112A571c4C",
+      "transactionHash": "0x9b816e327ab4838cc704f73f5eaccc43df55bd7cbb3531ebe21a21377f8a0326"
     },
     "1608226970226": {
       "events": {
@@ -3841,7 +3880,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-04-06T12:46:33.547Z",
+  "updatedAt": "2021-04-08T13:18:35.876Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

@@ -5,7 +5,7 @@ pragma solidity >=0.6.0 <0.8.0;
 /**
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of...
     @author Vu Tien Khang
-    @notice Pepito is a Caribbian corsair. He can create up to 32 PepitoDisguise in this version
+    @notice Pepito is a Caribbian corsair. He can create up to 128 PepitoDisguise in this version
     @notice Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick :-)
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
@@ -31,12 +31,12 @@ contract Pepito {
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    balance Pepito gives to each disguise when creating one
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
-    address[32] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
+    address[128] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
-    /// @dev    for the demo, we limit array size to 32; in real, disguises will be in IPFS database illimited number
+    /// @dev    for the demo, we limit array size to 128; in real, disguises will be in IPFS database illimited number
 
-    event PepitoDisguiseCreated(uint256 disguiseCount, address[32] disguiseAddresses);
+    event PepitoDisguiseCreated(uint256 disguiseCount, address[128] disguiseAddresses);
     event PepitoStopped(bool stopped);
 
     modifier isAdmin() {
@@ -60,7 +60,7 @@ contract Pepito {
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
         /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
-        require (disguiseCount < 32, "there has been already 32 disguises created");
+        require (disguiseCount < 128, "there has been already 128 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
