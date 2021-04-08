@@ -1,6 +1,6 @@
 {
   "name": "react_pepito",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@openzeppelin/contracts": "^3.3.0",
@@ -8,7 +8,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "@truffle/contract": "^4.2.23",
-    "@truffle/hdwallet-provider": "^1.2.3",
+    "@truffle/hdwallet-provider": "1.2.3",
     "avataaars": "^1.1.0",
     "bignumber": "^1.1.0",
     "dotenv": "^8.2.0",

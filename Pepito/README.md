@@ -200,3 +200,10 @@ The front end is liberally inspired from this project [(https://github.com/keep-
   * run `truffle migrate --network` (your testnet)
   * connect Metamask to this testnet where your account has some ETH
   * TODO: do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`
+
+## One last thing: versions of the packages used in development and tests
+* Truffle v5.1.46 (core: 5.1.46)
+* Solidity - 0.6.0 (solc-js set in truffle-config)
+* Node v12.18.4
+* Web3.js v1.2.1
+* @truffle/hdwallet-provider v1.2.3
