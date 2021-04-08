@@ -30,31 +30,21 @@ Last update: April 18, 2021.
 ## MacOS
 
 * Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
-* Install nodeJS via brew `brew install node@10` 
+* Install nodeJS via brew `brew install node@12.18.4` 
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
-* Install the required packages
+* Install the required packages as follows
   * `cd` to folder `Machu-Picchu/Pepito`, and 
   * run `npm install`
 * Rename the file `.env-sample` to `.env` and fill it with your Infura Project Key, and your Metamask seed phrase
-* Launch the `truffle develop` blockchain 
-  * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
-  * in `truffle develop>` type `migrate` (or `migrate --reset` to force a new deployment)
-* Connect your Metamask to the local testnet of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
-  * _Metamask note_: see caveats below in "_Suggested scenario_"
-* Launch the frontend
+* (New, Apr 18) Connect your Metamask to Rinkeby and select an account that has ETH on Rinkeby
+* Launch the frontend as follows
   * open another terminal window, `cd` to folder `Machu-Picchu/Pepito`, run the frontend with `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
   * exercise the functions of the scenario below 
-* (New) Connect your Metamask to Rinkeby and select an account that has ETH on Rinkeby
-* Reload the frontend and exercise again the scenario below
 
-## Suggested scenario
-* install the dApp as above
-* run the backend and the frontend as above
-  * _Metamask note_: if you often use Metamask and this same testnet `truffle develop`, remember to "reset" the account used, to align Metamask's nonce with this fresh blockchain
-  * _Metamask note_: when you store a disguise, Metamask will display one confirmation to create a disguise contract and one confirmation to store the disguise inside this contract. If Metamask displays only one single confirmation dialog, or displays a confirmation dialog with a strange gas limit, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
-  * _Metamask note_: if the gas price in Metamask is too low (<20 gwei> the disguise creation is reverted and the frontend hangs. A JavaScript `try/catch` will be added in the near future)
+## Suggested demo scenario
+* install the dApp as above and run the backend and the frontend as above
 
 <img src="./MainGUI.png" alt="drawing" width="1780"/>
 
@@ -67,14 +57,25 @@ Last update: April 18, 2021.
   *  click on the text box
   *  give the number of the disguise to retrieve
   *  click on the button "_Retrieve this disguise from blockchain_"
-* to run the truffle tests, go to the console window of `truffle develop` and type `test`
 
+## Truffle test, on local `truffle develop` network
+* in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
+* in `truffle develop>` type `migrate` (or `migrate --reset` to force a new deployment)
+* in `truffle develop>` type `test`
+
+## Run demo on local `truffle develop` network
+* Once the local testnet of `truffle develop` is running (should be http://127.0.0.1:9545) connect your Metamask to it and import the first `truffle develop` account into Metamask
+* In the browser window, reload the frontend and exercise again the scenario above
+* _Metamask notes_:
+  * if you often use Metamask on this same testnet `truffle develop`, remember to "reset" the account used, to align Metamask's nonce with this fresh blockchain
+  * when you store a disguise, Metamask will display one confirmation to create a disguise contract and one confirmation to store the disguise inside this contract. If Metamask displays only one single confirmation dialog, or displays a confirmation dialog with a strange gas limit, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
+  * if the gas price in Metamask is too low (<10 gwei) the disguise creation may be unsuccessful in Rinkeby, making the frontend hang. Reload the page and increase the gas price to 20 gwei. A JavaScript `try/catch` will be added in the near future)
 
 # State of the project submitted
 * [demo video: https://youtu.be/3nN-B7XjG_U](https://youtu.be/3nN-B7XjG_U) 
-* backend working, migrated to `truffle develop`. The Infura testnet deployment is done on Rinkeby
+* backend working, both on Rinkeby (new) and on `truffle develop`.
   * (new) 13 Mocha contract tests. In `Pepito`, 6 tests passed. In `PepitoDisguise`, 7 tests passed
-* frontend operational in local, external hosting TODO
+* frontend operational in `localhost`, external hosting TODO
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
 
@@ -175,7 +176,7 @@ We can also derive Pepito into a true humanitarian organisation management syste
   + (**done**) Have a circuit breaker design pattern and at least one other design pattern in Module 10 Lesson 1
   + (**done**) Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
   + (**done**) Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
-* (**done**) 5 tests for each 2 smart contracts, 3 tests not working, being investigated
+* (**done**) 5 tests or more for each 2 smart contracts
 * (**done**) Smart contract should be deployed to a testnet
 
 ## Frontend
@@ -196,13 +197,9 @@ The front end is liberally inspired from this project [(https://github.com/keep-
 *	(**done**) AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
 
 ## Public testnet setup process: all done but the last bullet
-  * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
-  * set your `REACT_APP_WEB3_INFURA_PROJECT_ID`, and `REACT_APP_PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get the Infura key from a free trial of [Infura](https://infura.io/). At the moment, it does need to be Infura, we are still on a local truffle network. You can find your `REACT_APP_PRIVATE_KEY` from your ethereum wallet like [Metamask](https://metamask.io/). 
-  * run `truffle migrate --network` (your testnet)
-  * connect Metamask to this testnet where your account has some ETH
   * TODO: do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`
 
-## One last thing: versions of the packages used in development and tests
+## One last thing: versions of the packages successfully used in development and tests
 * Truffle v5.1.46 (core: 5.1.46)
 * Solidity - 0.6.0 (solc-js set in truffle-config)
 * Node v12.18.4

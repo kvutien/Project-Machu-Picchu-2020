@@ -3871,11 +3871,30 @@
           ],
           "name": "PepitoDisguiseCreated",
           "type": "event"
+        },
+        "0x221affb7c1e1e0c1132ca3721a5fd14cccab94959e293462bd3ac64ae7c66f58": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "disguiseCount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address[128]",
+              "name": "disguiseAddresses",
+              "type": "address[128]"
+            }
+          ],
+          "name": "PepitoDisguiseCreated",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x0b58005E8dcdC39d7a2EF79ef87777112A571c4C",
-      "transactionHash": "0x9b816e327ab4838cc704f73f5eaccc43df55bd7cbb3531ebe21a21377f8a0326"
+      "address": "0x58919E4c76330DB629FC1D79bee533Fc6Aa1c4c0",
+      "transactionHash": "0x35c3b7d9bee716c877c31e463ae35a4e7f2c038b279a3468a8e72ae2fa71d73e"
     },
     "1608226970226": {
       "events": {
@@ -3899,7 +3918,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-04-08T15:03:51.663Z",
+  "updatedAt": "2021-04-08T17:22:47.509Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
