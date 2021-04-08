@@ -43,15 +43,18 @@ Big thanks to the following resources:
 * Launch the frontend
   * open another terminal window, `cd` to folder `Machu-Picchu/Pepito`, run the frontend with `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
+  * exercise the functions of the scenario below 
+* (New) Connect your Metamask to Rinkeby and select an account that has ETH on Rinkeby
+* Reload the frontend and exercise again the scenario below
 
 ## Suggested scenario
 * install the dApp as above
 * run the backend and the frontend as above
   * _Metamask note_: if you often use Metamask and this same testnet `truffle develop`, remember to "reset" the account used, to align Metamask's nonce with this fresh blockchain
   * _Metamask note_: when you store a disguise, Metamask will display one confirmation to create a disguise contract and one confirmation to store the disguise inside this contract. If Metamask displays only one single confirmation dialog, or displays a confirmation dialog with a strange gas limit, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset Metamask account)
+  * _Metamask note_: if the gas price in Metamask is too low (<20 gwei> the disguise creation is reverted and the frontend hangs. A JavaScript `try/catch` will be added in the near future)
 
 <img src="./MainGUI.png" alt="drawing" width="1780"/>
-
 
 * do only once: click on the button "_Get blockchain interface & Pepito instance_"
 * click on the button "_Store disguise on blockchain_"
@@ -66,10 +69,10 @@ Big thanks to the following resources:
 
 
 # State of the project submitted
-* [demo video: https://youtu.be/4ASGvdN0B48](https://youtu.be/4ASGvdN0B48) 
-* backend working, migrated to `truffle develop`. The Infura testnet deployment is in progress
+* [demo video: https://youtu.be/3nN-B7XjG_U](https://youtu.be/3nN-B7XjG_U) 
+* backend working, migrated to `truffle develop`. The Infura testnet deployment is done on Rinkeby
   * (new) 13 Mocha contract tests. In `Pepito`, 6 tests passed. In `PepitoDisguise`, 7 tests passed
-* frontend operational in local testnet, external hosting TODO
+* frontend operational in local, external hosting TODO
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
 
@@ -100,6 +103,7 @@ We can also derive Pepito into a true humanitarian organisation management syste
 ├── ConsenSys\ Academy?\200\231s\ 2020\ Blockchain\ Developer\ Bootcamp\ Final\ Project\ Spec.docx
 ├── LICENSE
 ├── Pepito
+│   ├── .env
 │   ├── Factory\ Pattern.png
 │   ├── Final\ Project\ Design.png
 │   ├── Final\ Project\ Design.pptx
@@ -143,9 +147,6 @@ We can also derive Pepito into a true humanitarian organisation management syste
 │   │   ├── OptionTable-v7.js
 │   │   ├── OptionTable.js
 │   │   ├── contracts_abi
-│   │   │   ├── CodeTemplate.json
-│   │   │   ├── Community.json
-│   │   │   ├── HelperInstitution.json
 │   │   │   ├── Migrations.json
 │   │   │   ├── Pepito.json
 │   │   │   ├── PepitoDisguise.json
@@ -173,7 +174,7 @@ We can also derive Pepito into a true humanitarian organisation management syste
   + (**done**) Have security features to protect against at least two attack vectors outlined in Module 9 Lesson 3
   + (**done**) Use a library (`SafeMath.sol`, `EthPM`, etc.) or extend another contract
 * (**done**) 5 tests for each 2 smart contracts, 3 tests not working, being investigated
-* (not yet) Smart contract should be deployed to a testnet
+* (**done**) Smart contract should be deployed to a testnet
 
 ## Frontend
 
@@ -190,11 +191,11 @@ The front end is liberally inspired from this project [(https://github.com/keep-
 *	(**done**) AND A document called design_pattern_decisions.md explaining which design patterns you used
 *	(**done**) AND A document called avoiding_common_attacks.md explaining security steps you took what measures you took to ensure your contracts are not susceptible to common attacks
 *	(**done**) A screen recording walking through your Dapp.
-*	(TODO) AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
+*	(**done**) AND A document called deployed_addresses.txt that describes where your contracts live (testnet AND address).
 
-## TODO: public testnet setup process
+## Public testnet setup process: all done but the last bullet
   * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
   * set your `REACT_APP_WEB3_INFURA_PROJECT_ID`, and `REACT_APP_PRIVATE_KEY` [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). You can get the Infura key from a free trial of [Infura](https://infura.io/). At the moment, it does need to be Infura, we are still on a local truffle network. You can find your `REACT_APP_PRIVATE_KEY` from your ethereum wallet like [Metamask](https://metamask.io/). 
   * run `truffle migrate --network` (your testnet)
   * connect Metamask to this testnet where your account has some ETH
-  * do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`
+  * TODO: do a React `build`, upload and run the app on `Heroku` or `Fleek` or `Netlifly`. `Fleek` is on `IPFS`

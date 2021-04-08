@@ -1,0 +1,125 @@
+kvutien@MBP18VTK-2 Pepito % truffle migrate --reset --network "rinkeby-infura"
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Pepito.sol
+> Artifacts written to /Users/kvutien/development/Machu-Picchu/Pepito/src/contracts_abi
+> Compiled successfully using:
+   - solc: 0.6.0+commit.26b70077.Emscripten.clang
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'rinkeby-infura-fork'
+> Network id:      4
+> Block gas limit: 10000000 (0x989680)
+
+1_initial_migration.js
+======================
+   Replacing 'Migrations'
+   ----------------------
+   > block number:        8377364
+   > block timestamp:     1617894127
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.925043708
+   > gas used:            177123 (0x2b3e3)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000354246 ETH
+
+   -------------------------------------
+   > Total cost:         0.000354246 ETH
+
+2_deploy_contracts.js
+=====================
+   Replacing 'Pepito'
+   ------------------
+   > block number:        8377366
+   > block timestamp:     1617894154
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.923616182
+   > gas used:            686425 (0xa7959)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00137285 ETH
+
+   Replacing 'PepitoDisguise'
+   --------------------------
+   > block number:        8377367
+   > block timestamp:     1617894158
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.923060048
+   > gas used:            278067 (0x43e33)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000556134 ETH
+
+   -------------------------------------
+   > Total cost:         0.001928984 ETH
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.00228323 ETH
+
+Starting migrations...
+======================
+> Network name:    'rinkeby-infura'
+> Network id:      4
+> Block gas limit: 10000000 (0x989680)
+
+1_initial_migration.js
+======================
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0xe13d9ea5106e985c809be79ebbd4190a4ad12a47a50c52982280de8b0bdefd77
+   > Blocks: 0            Seconds: 8
+   > contract address:    0xA5Af5d95881aB853C04C8e64f37Ea3104f58B1DD
+   > block number:        8377366
+   > block timestamp:     1617894171
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.921529494
+   > gas used:            193423 (0x2f38f)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00386846 ETH
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00386846 ETH
+
+2_deploy_contracts.js
+=====================
+   Replacing 'Pepito'
+   ------------------
+   > transaction hash:    0x3bdb4e41b2156ff06ad4afca3a84e45fc02eb959cc2677e341dc8b1e5f178f0f
+   > Blocks: 0            Seconds: 8
+   > contract address:    0x1D9f4555B0e5C4C5827dd308aBf8D82548027FFd
+   > block number:        8377368
+   > block timestamp:     1617894201
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.906518234
+   > gas used:            704825 (0xac139)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0140965 ETH
+
+   Replacing 'PepitoDisguise'
+   --------------------------
+   > transaction hash:    0xd67a0e970e619e213ea51c9f5844de62bc78e7fe00a4853ad34b4e713d0759a1
+   > Blocks: 1            Seconds: 12
+   > contract address:    0x3AD495a0bbB8F4b94f9FE711daec9F3ef579C8EF
+   > block number:        8377369
+   > block timestamp:     1617894216
+   > account:             0x62d5D1e5cf7E9C584d18E780e85F7ee19B8247e6
+   > balance:             2.900602894
+   > gas used:            295767 (0x48357)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00591534 ETH
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.02001184 ETH
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.0238803 ETH
