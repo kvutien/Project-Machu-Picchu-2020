@@ -56,16 +56,16 @@ module.exports = {
      },
     "rinkeby-infura": {
         provider: () => new HDWalletProvider(
-            process.env.REACT_APP_TEST_MNEMONIC,
-            `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
+            process.env.TEST_MNEMONIC,
+            `https://rinkeby.infura.io/v3/${process.env.INFURA_KEY}`
         ),
         network_id: 4,       // Rinkeby's network ID
         gas: 8500000,
     },
     "kovan-infura": {
         provider: () => new HDWalletProvider(
-            process.env.REACT_APP_TEST_MNEMONIC,
-            `https://kovan.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+            process.env.TEST_MNEMONIC,
+            `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
             1             // my seeded account on Metamask that has Kovan ETH
         ), 
         network_id: 42,       // Kovan's network ID

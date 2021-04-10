@@ -27,8 +27,9 @@ class DisguiseStore extends React.Component{
             this.setState({loading: true});
             // console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
             // console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
+            const gasPrice = 20000000000;
             await pepitoInstance.methods.createPepitoDisguise()
-               .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: 14000000000});
+               .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: gasPrice});
             //todo: check selected account's balance and display in render()
             //let balance = this.props.web3.eth.getBalance(web3js.givenProvider.selectedAddress).toString();
             //balance = this.props.web3.utils.fromWei(balance);
@@ -66,7 +67,7 @@ class DisguiseStore extends React.Component{
             );
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
             await pepitoDisguise.methods.storeDisguise(disguise2store)
-                .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: 14000000000});
+                .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: gasPrice});
 
             /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
             this.setState({loading: false});  // to update the render function
