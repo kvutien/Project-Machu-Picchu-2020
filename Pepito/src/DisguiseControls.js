@@ -18,7 +18,8 @@ class DisguiseControls extends React.Component {
                     <tbody>
                         <tr>
                             <th rowSpan="4">
-                                <a href="https://kvutien-yes.medium.com/machu-picchu-how-the-blockchain-can-help-persons-in-need-8396820d13d1" target="_blank">
+                                <a href="https://kvutien-yes.medium.com/machu-picchu-how-the-blockchain-can-help-persons-in-need-8396820d13d1" 
+                                target="_blank" rel="noreferrer" >
                                 <img src="./machupicchu_logo.png" alt="Machu-Picchu" width="130" height="130" />
                                 </a>
                             </th>
