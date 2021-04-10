@@ -37,7 +37,7 @@ Last update: April 10, 2021.
   * `cd` to folder `Machu-Picchu/Pepito`, and 
   * run `npm install`
 * Rename the file `.env-sample` to `.env` and fill it with your Infura Project Key, and your Metamask seed phrase
-* (New, Apr 18) Connect your Metamask to Rinkeby and select an account that has ETH on Rinkeby
+* (New, Apr 10) Connect your Metamask to Rinkeby and select an account that has ETH on Rinkeby
 * Launch the frontend as follows
   * open another terminal window, `cd` to folder `Machu-Picchu/Pepito`, run the frontend with `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app. It may take some time because the frontend is not optimized yet.
