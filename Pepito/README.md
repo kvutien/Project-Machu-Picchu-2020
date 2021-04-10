@@ -83,6 +83,8 @@ Last update: April 10, 2021.
 ## Design
 [Design Notes & ConsenSys requirements for Final Project](./Design%20notes.md)
 
+[Deployment Notes](./Deployment%20notes.md)
+
 ## One last thing: versions of the packages successfully used in development and tests
 * Truffle v5.1.46 (core: 5.1.46)
 * Solidity - 0.6.0 (solc-js set in truffle-config)

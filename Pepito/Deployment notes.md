@@ -3,7 +3,7 @@
 
 [<-- Design Notes](./Design%20notes.md)
 
-The following collects some information that were not in the ConsenSys Academy Course but are useful to deploy a dApp on a public testnet and using a public web server.
+The following notes collect some information that were not in the ConsenSys Academy Course but are useful to deploy Pepito on a public testnet and using a public web server.
 
 ## Overall explanation of public deployement 
 ### Coding changes

@@ -1,5 +1,7 @@
 # Design Notes
 [<-- Installation instructions](./README.md)
+
+[<-- Deployment Notes](./Deployment%20notes.md)
 ## Smart contract backend design
 In the following is the design of a dApp to help you in this mission generating disguises for Pepito. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once persons-in-need are recorded, all humanitarian organisations can access the data, and these persons keep full control on these personal data.
 
