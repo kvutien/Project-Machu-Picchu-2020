@@ -24,29 +24,28 @@ We can also derive Pepito into a true humanitarian organisation management syste
 .
 ├── 20201029\ Machu\ Picchu\ Tech\ Stack.png
 ├── 20201128\ Avatars.jpeg
-├── ConsenSys\ Academy?\200\231s\ 2020\ Blockchain\ Developer\ Bootcamp\ Final\ Project\ Spec.docx
 ├── LICENSE
 ├── Pepito
-│   ├── .env
+│   ├── Deployment\ notes.md
+│   ├── Deployment\ notes.png
+│   ├── Deployment.png
+│   ├── Design\ notes.md
 │   ├── Factory\ Pattern.png
 │   ├── Final\ Project\ Design.png
 │   ├── Final\ Project\ Design.pptx
 │   ├── Final\ Project\ React.png
+│   ├── MainGUI.png
 │   ├── README.md
-│   ├── Design\ notes.md
 │   ├── avoiding_common_attacks.md
 │   ├── contracts
-│   │   ├── CodeTemplate.sol
-│   │   ├── DraftCommunity.sol
-│   │   ├── DraftHelperInstitution.sol
 │   │   ├── Migrations.sol
 │   │   ├── Pepito.sol
 │   │   └── PepitoDisguise.sol
+│   ├── deployed_addresses.txt
 │   ├── design_pattern_decisions.md
 │   ├── migrations
 │   │   ├── 1_initial_migration.js
 │   │   └── 2_deploy_contracts.js
-│   ├── node_modules
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── public
@@ -86,9 +85,10 @@ We can also derive Pepito into a true humanitarian organisation management syste
 │   │   ├── 1-PepitoTest.js
 │   │   └── 2-PepitoDisguiseTest.js
 │   └── truffle-config.js
-└── README.md
+├── README.md
+└── package-lock.json
 
-7 directories, 58 files
+7 directories, 59 files
 ```
 
 # ConsenSys Specifications of the dApp
