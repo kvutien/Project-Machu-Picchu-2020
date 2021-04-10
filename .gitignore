@@ -14,7 +14,7 @@ node_modules/
 
 # production
 /build
-/contracts_abi
+/src/contracts_abi
 
 # misc
 .secret
