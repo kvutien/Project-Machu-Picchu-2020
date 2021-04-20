@@ -32,7 +32,7 @@ Last update: April 10, 2021.
 
 <img src="./MainGUI.png" alt="drawing" width="1780"/>
 
-* do only once: click on the button "_Get blockchain interface & Pepito instance_"
+* do only once: click on the button "_Get blockchain interface & Pepito instance_". Accept Metamask request to connect, with the correct account selected
 * click on the button "_Store disguise on blockchain_"
 * repeat the following as many times as desired
   * click on the button "_Generate random disguise_"
@@ -45,9 +45,10 @@ Last update: April 10, 2021.
   * if the gas price in Metamask is too low (<10 gwei) at peak hours the disguise creation transaction may not pass in Rinkeby, making the frontend hang. Reload the page and increase the gas price to 25 gwei. A JavaScript `try/catch` will be added in the near future)
 
 # Setup to run local `truffle test` 
-## Setup on MacOS 
+## Tools setup on MacOS 
 * Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
 * Install nodeJS via brew `brew install node@12.18.4` 
+## Setup for local development & test
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
 * Install the required packages as follows
@@ -79,12 +80,55 @@ Last update: April 10, 2021.
 * git
   * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
 
+## Setup on Linux Ubuntu 20.04 LTS 
+### Minimum setup to run the public demo on Netlify
+The following instructions assumes a freshly installed Virtual Machine (VM) on VirtualBox. This VM has 2-core CPU, 6 GB RAM, 60 GB strorage.
+* Install Chrome:
+``` bash
+  $ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  $ sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+* Install Metamask and feed one account with some ETH on testnet Rinkeby, select this account
+* Open Chrome on this demo URL: [https://pepito-disguises-rinkeby-v011.netlify.app/](https://pepito-disguises-rinkeby-v011.netlify.app/) [![Netlify Status](https://api.netlify.com/api/v1/badges/97648a38-dcc9-4770-8acd-52335bd4710d/deploy-status)](https://app.netlify.com/sites/pepito-disguises-rinkeby-v011/deploys)
+* When you click on the button "_Get blockchain interface & Pepito instance_" for the first time, Metamask will ask you to confirm that you accept to connect this demo page with your Metamask.
+* Authorize and follow the demo scenario as above
+
+This is enough if you only want to run the web app that is available on testnet Rinkaby. If you want to deploy locally and do some blockchain development, you need to install more tools.
+
+### Complete setup for local development and test
+* Install `nvm` (to specify the correct version of `nodeJS` and `npm` that are compatible with `truffle`)
+``` bash
+  $ sudo apt install curl
+  $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+  $ export NVM_DIR="$HOME/.nvm"
+  $ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  $ [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+* Install `nodeJS` at the latest version that is compatible with the package `@truffle/hdwallet-provider`
+``` bash
+  $ nvm install v12.18.4
+```
+* Install globally `truffle` at the latest version. It is installed gloablly to be able to invoke the command `truffle` from any folder.
+``` bash
+  $ npm install -g truffle
+  $ truffle version
+Truffle v5.3.2 (core: 5.3.2)
+Solidity v0.5.16 (solc-js)
+Node v12.18.4
+Web3.js v1.3.5
+```
+* Install `git` to retrieve the source code of Pepito
+``` bash
+  $ sudo apt install git
+```
+Follow the instructions above, section "Setup for local development & test"
+
 ## Design
 [Design Notes & ConsenSys requirements for Final Project](./Design%20notes.md)
 
 [Deployment Notes](./Deployment%20notes.md)
 
-## One last thing: versions of the packages successfully used in development and tests
+## One last thing: versions of the packages successfully used in development and tests, MacOS
 * Truffle v5.1.46 (core: 5.1.46)
 * Solidity - 0.6.0 (solc-js set in truffle-config)
 * Node v12.18.4

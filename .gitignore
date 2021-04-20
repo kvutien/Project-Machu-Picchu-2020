@@ -13,8 +13,8 @@ node_modules/
 /coverage
 
 # production
-/build
-/src/contracts_abi
+build/
+contracts_abi/
 
 # misc
 .secret
