@@ -57,16 +57,18 @@ class App extends Component {
         //console.log('in App.connectedB(): web3', this.state.web3, ',\n Instance', this.state.pepitoInstance);
     }
 
-    deployedDisguise = async (count, disguiseAddresses, disguiseStored) => {
-    /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */ 
-        this.setState({
-            disguiseCount: count,                       // count === highest rank, rank is in [1,n]
-            disguiseAddresses: disguiseAddresses,       // array of addresses of PepitoDisguise contracts
-            disguiseAddress: disguiseAddresses[count-1],// address of currently displayed disguise
-            disguiseStored: disguiseStored              // array of unit indexes of features composing the disguise
-        }, () => {
-            console.log('---> state after App.deployedDisguise/DisguiseStore', Object.keys(this.state), Object.values(this.state));
-        });
+    deployedDisguise = async (deployed, count, disguiseAddresses, disguiseStored) => {
+        if(deployed){
+        /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */ 
+            this.setState({
+                disguiseCount: count,                       // count === highest rank, rank is in [1,n]
+                disguiseAddresses: disguiseAddresses,       // array of addresses of PepitoDisguise contracts
+                disguiseAddress: disguiseAddresses[count-1],// address of currently displayed disguise
+                disguiseStored: disguiseStored              // array of unit indexes of features composing the disguise
+            }, () => {
+                console.log('---> state after App.deployedDisguise/DisguiseStore', Object.keys(this.state), Object.values(this.state));
+            });
+        }
     }
 
     retrievedDisguise = async (rank2retrieve, disguiseAddress, idxDisguise, disguise) => {

@@ -39,40 +39,48 @@ class DisguiseStore extends React.Component{
              * note that in the way Pepito contract increments the disguiseCount, its value is in the range [1,n]
              * TODO: add a try/catch: lastEvent is undefined when gas price <10 gwei -> pepitoDisguise was reverted  
              */
-            const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
-            const disguiseCount = lastEvent[0].returnValues.disguiseCount;
-            this.setState({disguiseCount: disguiseCount});  // to update the render function
-            const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
-            const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount-1];
-            console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
-                ', disguise addresses', disguiseAddresses);
+            let disguiseCount, disguiseAddresses, disguise2store;
+            try{
+                const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
+                const disguiseCount = lastEvent[0].returnValues.disguiseCount;
+                this.setState({disguiseCount: disguiseCount});  // to update the render function
+                const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
+                const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount-1];
+                console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
+                    ', disguise addresses', disguiseAddresses);
 
-            /** @dev    build the array of options of features of this disguise to store it
-             * @dev     today we hard-code the features and their options to reduce blockchain storage
-             * @dev     when we'll be on IPFS, we'll use key-value pairs
-             */
-            const {idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
-                idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor} = this.props.idxDisguise;
-            const disguise2store = [idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
-                idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor];
-            console.log('        2.storeDisguise.disguise2store =', disguise2store);
-            /** Note: we could also make a single string of 24 characters with the 12 numbers by using string cat on
+                /** @dev    build the array of options of features of this disguise to store it
+                 * @dev     today we hard-code the features and their options to reduce blockchain storage
+                 * @dev     when we'll be on IPFS, we'll use key-value pairs
+                 */
+                const {idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
+                    idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor} = this.props.idxDisguise;
+                const disguise2store = [idxTopType, idxHatColor, idxAccessoriesType, idxHairColor, idxFacialHairType, idxFacialHairColor,
+                    idxClotheType, idxClotheColor, idxEyeType, idxEyebrowType, idxMouthType, idxSkinColor];
+                console.log('        2.storeDisguise.disguise2store =', disguise2store);
+                /** Note: we could also make a single string of 24 characters with the 12 numbers by using string cat on
                 const pad2 = (num) => String(num).padStart(2, '0');
                 const disguise2store = pad2(idxTopType)+pad2(idxHatColor)+pad2(idxAccessoriesType) etc. */
 
-            /** create with web3 a connection to the last pepitoDisguise (syntax of web3JS v1.x) */
-            const pepitoDisguise = await new this.props.web3.eth.Contract(
-                    PepitoDisguise.abi,
-                    disguiseAddress,
-            );
-            /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
-            await pepitoDisguise.methods.storeDisguise(disguise2store)
-                .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: gasPrice});
+                /** create with web3 a connection to the last pepitoDisguise (syntax of web3JS v1.x) */
+                const pepitoDisguise = await new this.props.web3.eth.Contract(
+                        PepitoDisguise.abi,
+                        disguiseAddress,
+                );
+                /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
+                await pepitoDisguise.methods.storeDisguise(disguise2store)
+                    .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: gasPrice});
 
-            /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
-            this.setState({loading: false});  // to update the render function
-            this.props.deployedDisguise(disguiseCount, disguiseAddresses, disguise2store);
-      
+                /** @dev    return to App.js the count of disguises, their addresses & the disguise's options */
+                this.setState({loading: false});  // to update the render function
+                const disguiseCreated = true;
+                this.props.deployedDisguise(disguiseCreated, disguiseCount, disguiseAddresses, disguise2store);
+            }
+            catch{
+                const disguiseCreated = false;
+                alert("Disguise creation failed. Increase gas price in Metamask popup");
+                this.props.deployedDisguise(disguiseCreated, disguiseCount, disguiseAddresses, disguise2store);
+            }
         } else alert("Please get first the blockchain interface & Pepito credentials");  
     }
 
