@@ -1,6 +1,6 @@
 {
   "name": "react_pepito",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@openzeppelin/contracts": "^3.3.0",
