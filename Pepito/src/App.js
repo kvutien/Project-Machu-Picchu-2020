@@ -31,7 +31,7 @@ class App extends Component {
         this.setState({
             randomBigNumber: randomBigNumber,
             idxDisguise: idxDisguise,   // disguise options object in key-value format
-            disguise: disguise,          // disguise features object in key-value format
+            disguise: disguise,         // disguise features object in key-value format
             retrieved: false,
             keyToggle: keyToggle
         }, () => {
@@ -41,6 +41,21 @@ class App extends Component {
 
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected,
         ownerPepito, disguiseCount, disguiseAddresses) => {
+        let net;
+        const chainId = await web3.eth.net.getId();
+        switch (chainId) {
+            case 1:
+                net = ', on mainnet'
+                break
+            case 4:
+                net = ', on rinkebi'
+                break
+            case 42:
+                net = ', on kovan'
+                break
+            default:
+                net = ', on develop'
+        };
         /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
             accounts: accounts,             // array of user accounts reachable by web3
@@ -48,7 +63,8 @@ class App extends Component {
             pepitoInstance: pepitoInstance, // web3 contract instance
             web3Connected: web3Connected,   // boolean
             web3: web3,
-            ownerPepito: ownerPepito,        // address of account owner of Pepito
+            net: net,                       // name of the blockchain
+            ownerPepito: ownerPepito,       // address of account owner of Pepito
             disguiseCount: disguiseCount,
             disguiseAddresses: disguiseAddresses
         }, () => {
@@ -93,7 +109,7 @@ class App extends Component {
         return (
             <div className='container text-center'>
                 <header>
-                    <h1 className='m-5'>Pepito Disguise<sup>v0.1.1, on Rinkeby</sup></h1>
+                <h1 className='m-5'>Pepito Disguise<sup>v0.1.2 {this.state.net}</sup></h1>
                 </header>
                 <div>
                     <DisguiseControls 

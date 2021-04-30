@@ -66,11 +66,12 @@ class MakePepito extends React.Component{
 
                 var web3Connected = true;
 
-                /*console.log("1.user account", accounts,
+                /* console.log("1.user account", accounts,
                     ".\n 1.makePepito().Pepito contract", pepitoInstance,
                     ".\n  1.Pepito contract address", deployedNetwork.address,
                     ".\n   1.web3Connected", web3Connected,
-                    ".\n    1.'owner' variable in Pepito", ownerPepito); */
+                    ".\n    1.'owner' variable in Pepito", ownerPepito, 
+                    ".\n     1.web3", web3); */
 
                 /** @dev return to App.js web3, accounts, pepitoContract etc. */
                 this.setState({loading: false});
