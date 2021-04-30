@@ -27,7 +27,7 @@ class DisguiseStore extends React.Component{
             this.setState({loading: true});
             // console.log('--> DisguiseStore, address of disguise creator & payer:', this.props.web3.givenProvider.selectedAddress);
             // console.log('--> DisguiseStore, address of ownerPepito:', this.props.ownerPepito);
-            const gasPrice = 20000000000;
+            const gasPrice = 10000000000;
             await pepitoInstance.methods.createPepitoDisguise()
                .send({from: this.props.web3.givenProvider.selectedAddress, gasPrice: gasPrice});
             //todo: check selected account's balance and display in render()
