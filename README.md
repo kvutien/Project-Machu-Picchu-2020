@@ -9,7 +9,7 @@ General presentation. [The ConsenSys Bootcamp 2020 Final Project of Vu Tien Khan
 [![](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/badge/project-machu----picchu-brightgreen)](https://github.com/Machu-Pichu/general.git)
 
-*(Written in May 2021)*
+*(Written in May 2021)* see [update of February 2023](https://github.com/kvutien/Project-Machu_Picchu_White_Paper_Tutorial2023)
 
 _Machu Picchu_ is the beginning of a collaborative open source initiative. It aims to use the Ethereum blockchain to share “_Data as a Public Service_” among all the humanitarian organisations that provide support and benefits to the persons-in-need. These persons remain owners of their data and receive a micro-fee from every entity that retrieves this data. Like when you give your data to the GAFA to obtain map guidance, news, entertainment suggestions, taxi services etc. But here the data are accessible to all, including startups. [The business model is explained here in Medium](https://kvutien-yes.medium.com/machu-picchu-how-the-blockchain-can-help-persons-in-need-8396820d13d1).
 
